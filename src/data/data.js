@@ -3,7 +3,7 @@ import test from '../images/images.index.js';
 export const mainCatalogList = [
   {
     title: 'Vinos',
-    img: '',
+    img: test,
     alt: 'Imagen de vinos',
     href: '/vinos',
     id: 'vinos',
@@ -11,7 +11,7 @@ export const mainCatalogList = [
   },
   {
     title: 'Espumosos',
-    img: '',
+    img: test,
     alt: 'Imagen de espumosos',
     href: '/espumosos',
     id: 'espumosos',
@@ -19,7 +19,7 @@ export const mainCatalogList = [
   },
   {
     title: 'Destilados',
-    img: '',
+    img: test,
     alt: 'Imagen de destilados',
     href: '/destilados',
     id: 'destilados',
