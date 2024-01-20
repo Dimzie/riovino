@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/riovino/static/css/main.21e7c2d0.css",
-    "main.js": "/riovino/static/js/main.c795a94e.js",
+    "main.js": "/riovino/static/js/main.00f19137.js",
     "static/media/Hero.jpg": "/riovino/static/media/Hero.62cf6f8a41146e2d0479.jpg",
     "static/media/Montserrat-Regular.ttf": "/riovino/static/media/Montserrat-Regular.24785cc015b27a3e964b.ttf",
     "static/media/test.jpg": "/riovino/static/media/test.0a7d51003b502de36a4a.jpg",
     "index.html": "/riovino/index.html",
     "main.21e7c2d0.css.map": "/riovino/static/css/main.21e7c2d0.css.map",
-    "main.c795a94e.js.map": "/riovino/static/js/main.c795a94e.js.map"
+    "main.00f19137.js.map": "/riovino/static/js/main.00f19137.js.map"
   },
   "entrypoints": [
     "static/css/main.21e7c2d0.css",
-    "static/js/main.c795a94e.js"
+    "static/js/main.00f19137.js"
   ]
 }
