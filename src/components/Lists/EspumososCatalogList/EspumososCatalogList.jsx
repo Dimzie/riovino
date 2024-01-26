@@ -1,22 +1,25 @@
 import React from 'react';
-import { List } from './EspumososCatalogList.styled';
+import { H1Title, List } from './EspumososCatalogList.styled';
 import { espumososCatalogList } from 'data/data';
 import EspumososCatalogItem from 'components/Items/EspumososCatalogItem/EspumososCatalogItem';
 
 const EspumososCatalogList = () => {
   return (
-    <List>
-      {espumososCatalogList.map(({ title, img, alt, href, id, qty }) => (
-        <EspumososCatalogItem
-          title={title}
-          img={img}
-          href={href}
-          key={id}
-          alt={alt}
-          qty={qty}
-        />
-      ))}
-    </List>
+    <>
+      <H1Title>Espumosos</H1Title>
+      <List>
+        {espumososCatalogList.map(({ title, img, alt, href, id, qty }) => (
+          <EspumososCatalogItem
+            title={title}
+            img={img}
+            href={href}
+            key={id}
+            alt={alt}
+            qty={qty}
+          />
+        ))}
+      </List>
+    </>
   );
 };
 

@@ -28,6 +28,11 @@ body {
   src: url('../fonts/Montserrat-Regular.ttf');
 }
 
+@font-face {
+  font-family: 'Carattere';
+  src: url('../fonts/Carattere-Regular.ttf');
+}
+
 /* Resets */
 
 h1,

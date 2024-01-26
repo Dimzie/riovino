@@ -1,21 +1,25 @@
 import React from 'react';
-import { List } from './MainCatalogList.styled';
+import { H1Title, List } from './MainCatalogList.styled';
 import { mainCatalogList } from 'data/data';
 import MainCatalogItem from 'components/Items/MainCatalogItem/MainCatalogItem';
 
 const MainCatalogList = () => {
   return (
-    <List>
-      {mainCatalogList.map(({ title, img, href, alt, id }) => (
-        <MainCatalogItem
-          title={title}
-          img={img}
-          href={href}
-          key={id}
-          alt={alt}
-        />
-      ))}
-    </List>
+    <>
+      <H1Title>Catalogar</H1Title>
+      <List>
+        {mainCatalogList.map(({ title, img, href, alt, id, qty }) => (
+          <MainCatalogItem
+            title={title}
+            img={img}
+            href={href}
+            key={id}
+            alt={alt}
+            qty={qty}
+          />
+        ))}
+      </List>
+    </>
   );
 };
 

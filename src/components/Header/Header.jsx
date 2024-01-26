@@ -11,6 +11,7 @@ import {
 } from './Header.styled';
 import Container from 'components/GlobalContainer/GlobalContainer';
 import { LocationIcon, PhoneIcon } from 'helpers/Icons/Icons.styled';
+import { headerLogo } from 'images/images.index';
 
 const Header = () => {
   return (
@@ -28,7 +29,7 @@ const Header = () => {
               </AddressLinkLocation>
             </AddressItem>
             <LogoImgContainer>
-              <img src="" alt="Rio Vino Logo" />
+              <img src={headerLogo} alt="Rio Vino Logo" height="60"/>
             </LogoImgContainer>
             <AddressItem>
               <AddressLinkPhone href="tel:+34123456789" aria-label="Phone">

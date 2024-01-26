@@ -3,6 +3,7 @@ import { IoLocationOutline } from 'react-icons/io5';
 import { FiPhone } from 'react-icons/fi';
 import { LiaTelegram } from 'react-icons/lia';
 import { FaInstagram } from 'react-icons/fa';
+import { BiArrowBack } from 'react-icons/bi';
 
 export const LocationIcon = styled(IoLocationOutline)`
   width: 16px;
@@ -10,6 +11,11 @@ export const LocationIcon = styled(IoLocationOutline)`
 `;
 
 export const PhoneIcon = styled(FiPhone)`
+  width: 16px;
+  height: 16px;
+`;
+
+export const BackIcon = styled(BiArrowBack)`
   width: 16px;
   height: 16px;
 `;

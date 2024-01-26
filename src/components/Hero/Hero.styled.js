@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import bkg from 'images/HeroImg/Hero.jpg';
+import bkg from 'images/Hero/Hero.jpg';
 
 export const HeroSection = styled.section`
   position: absolute;

@@ -1,3 +1,3 @@
-import test from './test.jpg';
+import headerLogo from './Header/riovino-header-logo.png';
 
-export default test;
+export { headerLogo };

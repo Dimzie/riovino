@@ -1,8 +1,16 @@
 import styled from 'styled-components';
 
+export const H1Title = styled.h1`
+  font-family: 'Carattere';
+  text-align: center;
+  font-size: 72px;
+  margin-bottom: 50px;
+`;
+
 export const List = styled.ul`
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
-    justify-content: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 70px;
 `;

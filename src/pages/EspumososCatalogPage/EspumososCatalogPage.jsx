@@ -1,17 +1,13 @@
+import BackBtn from 'components/BackBtn/BackBtn';
 import EspumososCatalogList from 'components/Lists/EspumososCatalogList/EspumososCatalogList';
 import { Section } from 'pages/Common.styled';
-import React, { useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from 'react';
 
 const EspumososCatalogPage = () => {
-  const location = useLocation();
-  const backLink = useRef(location?.state?.from ?? '/');
   return (
     <Section>
       <EspumososCatalogList />
-      <Link to={backLink.current}>
-        <button type="button">Back</button>
-      </Link>
+      <BackBtn />
     </Section>
   );
 };

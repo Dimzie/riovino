@@ -3,8 +3,7 @@ import styled from 'styled-components';
 export const HeaderSection = styled.header`
   position: absolute;
   width: 100%;
-  padding-top: 30px;
-  padding-bottom: 15px;
+  padding: 15px 0px;
   background-color: rgba(1, 1, 1, 0.25);
 `;
 
@@ -13,6 +12,7 @@ export const Address = styled.address``;
 export const AddressList = styled.ul`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const AddressItem = styled.li``;
@@ -81,4 +81,5 @@ export const AddressText = styled.p`
 `;
 
 export const LogoImgContainer = styled.div`
+  width: 100px;
 `;

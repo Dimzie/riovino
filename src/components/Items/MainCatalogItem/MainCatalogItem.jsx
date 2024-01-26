@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ImgContainer, Li, Quantity, Title } from './MainCatalogItem.styled';
 
-const CatalogItem = ({ title, href, img, alt }) => {
+const CatalogItem = ({ title, href, img, alt, qty }) => {
   return (
     <Li>
       <Link to={href}>
@@ -10,7 +10,7 @@ const CatalogItem = ({ title, href, img, alt }) => {
           <img src={img} alt={alt} />
         </ImgContainer>
         <Title>{title}</Title>
-        <Quantity>(2400)</Quantity>
+        <Quantity>({qty})</Quantity>
       </Link>
     </Li>
   );

@@ -1,18 +1,14 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Main, Section } from 'pages/Common.styled';
 import VinosCatalogList from 'components/Lists/VinosCatalogList/VinosCatalogList';
-import { Link, useLocation } from 'react-router-dom';
+import BackBtn from 'components/BackBtn/BackBtn';
 
 const VinosCatalogPage = () => {
-  const location = useLocation();
-  const backLink = useRef(location?.state?.from ?? '/');
   return (
     <Main>
       <Section>
         <VinosCatalogList />
-        <Link to={backLink.current}>
-          <button type="button">Back</button>
-        </Link>
+        <BackBtn />
       </Section>
     </Main>
   );
