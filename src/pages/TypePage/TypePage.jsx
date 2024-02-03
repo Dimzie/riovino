@@ -10,7 +10,7 @@ const TypePage = () => {
   const { type } = useParams();
   console.log(type);
   useEffect(() => {
-    dispatch(getProducts(type));
+    dispatch(getProducts());
   }, [dispatch]);
   return (
     <Section>
