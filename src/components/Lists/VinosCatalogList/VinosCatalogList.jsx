@@ -8,14 +8,14 @@ const VinosCatalogList = () => {
     <>
       <H1Title>Vinos</H1Title>
       <List>
-        {vinosCatalogList.map(({ title, img, alt, href, id, qty }) => (
+        {vinosCatalogList.map(({ title, img, alt, type, id, qty }) => (
           <VinosCatalogItem
             title={title}
             img={img}
-            href={href}
             key={id}
             alt={alt}
             qty={qty}
+            type={type}
           />
         ))}
       </List>

@@ -43,7 +43,18 @@ export const FooterSocialLink = styled.a`
 `;
 
 export const FooterWarningText = styled.p`
-  font-size: 14px;
+  /* Responsive FooterWarningText */
+  font-size: 10px;
   line-height: 1.5;
   text-align: center;
+
+  /* Tablets FooterWarningText */
+  @media screen and (min-width: 481px) and (max-width: 768px) {
+    font-size: 12px;
+  }
+
+  /* Laptops, Desctops, Televisors FooterWarningText */
+  @media screen and (min-width: 769px) {
+    font-size: 14px;
+  }
 `;

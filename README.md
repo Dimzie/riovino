@@ -5,3 +5,6 @@ Used libs:
 *react-router-dom
 *react-icons
 *modern-normalize
+*react-redux
+*redux-toolkit
+*axios
