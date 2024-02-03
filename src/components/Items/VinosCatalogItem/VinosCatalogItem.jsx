@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ImgContainer, Li, Quantity, Title } from './VinosCatalogItem.styled';
 
-const VinosCatalogItem = ({ title, href, img, alt, qty, type }) => {
+const VinosCatalogItem = ({ title, img, alt, qty, type, state }) => {
   return (
     <Li>
-      <Link to={`/vinos/${type}`}>
+      <Link to={`/vinos/${type}`} state={state}>
         <ImgContainer>
           <img src={img} alt={alt} />
         </ImgContainer>

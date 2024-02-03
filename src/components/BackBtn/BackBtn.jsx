@@ -1,13 +1,10 @@
-import React, { useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
 import { BackBtnLink, BackBtnSpan } from './BackBtn.styled';
 import { BackIcon } from 'helpers/Icons/Icons.styled';
 
-const BackBtn = () => {
-  const location = useLocation();
-  const backLink = useRef(location?.state?.from ?? '/');
+const BackBtn = ({ backLink }) => {
   return (
-    <BackBtnLink to={backLink.current}>
+    <BackBtnLink to={backLink}>
       <BackBtnSpan>
         <BackIcon />
         Atrás
