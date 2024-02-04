@@ -4,6 +4,7 @@ import { FiPhone } from 'react-icons/fi';
 import { LiaTelegram } from 'react-icons/lia';
 import { FaInstagram } from 'react-icons/fa';
 import { BiArrowBack } from 'react-icons/bi';
+import { RxHamburgerMenu } from 'react-icons/rx';
 
 export const LocationIcon = styled(IoLocationOutline)`
   width: 16px;
@@ -28,4 +29,11 @@ export const TelegramIcon = styled(LiaTelegram)`
 export const InstagramIcon = styled(FaInstagram)`
   width: 28px;
   height: 28px;
+`;
+
+export const BurgerIcon = styled(RxHamburgerMenu)`
+  width: 40px;
+  height: 40px;
+  color: #ffffff;
+  transition: color 100ms ease-in;
 `;

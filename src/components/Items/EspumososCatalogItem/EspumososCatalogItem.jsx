@@ -7,10 +7,10 @@ import {
   Title,
 } from './EspumososCatalogItem.styled';
 
-const EspumososCatalogItem = ({ title, href, img, alt, qty }) => {
+const EspumososCatalogItem = ({ title, type, img, alt, qty, state }) => {
   return (
     <Li>
-      <Link to={href}>
+      <Link to={`/vinos/${type}`} state={state}>
         <ImgContainer>
           <img src={img} alt={alt} />
         </ImgContainer>
