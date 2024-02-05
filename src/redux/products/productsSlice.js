@@ -5,6 +5,9 @@ import {
   getDestiladosCount,
   getEspumososCount,
   getVinosCount,
+  getProductById,
+  addProduct,
+  updateProduct,
 } from './operations';
 
 const handlePending = state => {
@@ -35,12 +38,18 @@ const productsSlice = createSlice({
     builder
       // PENDING
       .addCase(getProducts.pending, handlePending)
+      .addCase(getProductById.pending, handlePending)
+      .addCase(addProduct.pending, handlePending)
+      .addCase(updateProduct.pending, handlePending)
       .addCase(getCountByType.pending, handlePending)
       .addCase(getVinosCount.pending, handlePending)
       .addCase(getEspumososCount.pending, handlePending)
       .addCase(getDestiladosCount.pending, handlePending)
       // REJECTED
       .addCase(getProducts.rejected, handleRejected)
+      .addCase(getProductById.pending, handleRejected)
+      .addCase(addProduct.pending, handleRejected)
+      .addCase(updateProduct.pending, handleRejected)
       .addCase(getCountByType.rejected, handleRejected)
       .addCase(getVinosCount.rejected, handleRejected)
       .addCase(getEspumososCount.rejected, handleRejected)
@@ -48,6 +57,24 @@ const productsSlice = createSlice({
       // FULLFILLED
       .addCase(getProducts.fulfilled, (state, { payload }) => {
         state.products = payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(getProductById.fulfilled, (state, { payload }) => {
+        state.productById = payload;
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(addProduct.fulfilled, (state, { payload }) => {
+        state.products.push(payload);
+        state.isLoading = false;
+        state.error = null;
+      })
+      .addCase(updateProduct.fulfilled, (state, { payload }) => {
+        const index = state.products.findIndex(
+          product => product._id === payload._id
+        );
+        state.products[index] = payload;
         state.isLoading = false;
         state.error = null;
       })
