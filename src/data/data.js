@@ -1,4 +1,3 @@
-import { totalNumberOfVinos } from '../helpers/Calculate/calculate.js';
 import { zaglushka } from 'images/images.index.js';
 
 export const mainCatalogList = [
@@ -8,7 +7,7 @@ export const mainCatalogList = [
     alt: 'Imagen de vinos',
     href: '/vinos',
     id: 'vinos',
-    qty: totalNumberOfVinos,
+    countKey: 'totalVinos',
   },
   {
     title: 'Espumosos',
@@ -16,7 +15,7 @@ export const mainCatalogList = [
     alt: 'Imagen de espumosos',
     href: '/espumosos',
     id: 'espumosos',
-    qty: '',
+    countKey: 'totalEspumosos',
   },
   {
     title: 'Destilados',
@@ -24,7 +23,7 @@ export const mainCatalogList = [
     alt: 'Imagen de destilados',
     href: '/destilados',
     id: 'destilados',
-    qty: '',
+    countKey: 'totalDestilados',
   },
 ];
 
@@ -35,7 +34,7 @@ export const vinosCatalogList = [
     alt: 'Imagen de vino tinto',
     type: 'tinto',
     id: 'tinto',
-    qty: 210,
+    countKey: 'totalTinto',
   },
   {
     title: 'Vino Blanco',
@@ -43,7 +42,7 @@ export const vinosCatalogList = [
     alt: 'Imagen de vino blanco',
     type: 'blanco',
     id: 'blanco',
-    qty: 100,
+    countKey: 'totalBlanco',
   },
   {
     title: 'Vino Rosado',
@@ -51,7 +50,7 @@ export const vinosCatalogList = [
     alt: 'Imagen de vino rosado',
     type: 'rosado',
     id: 'rosado',
-    qty: 135,
+    countKey: 'totalRosado',
   },
   {
     title: 'Vino Generoso',
@@ -59,7 +58,7 @@ export const vinosCatalogList = [
     alt: 'Imagen de vino generoso',
     type: 'generoso',
     id: 'generoso',
-    qty: 57,
+    countKey: 'totalGeneroso',
   },
   {
     title: 'Vino Dulce',
@@ -67,7 +66,7 @@ export const vinosCatalogList = [
     alt: 'Imagen de vino dulce',
     type: 'dulce',
     id: 'dulce',
-    qty: 308,
+    countKey: 'totalDulce',
   },
   {
     title: 'Vino Naranja',
@@ -75,7 +74,7 @@ export const vinosCatalogList = [
     alt: 'Imagen de vino naranja',
     type: 'naranja',
     id: 'naranja',
-    qty: 78,
+    countKey: 'totalNaranja',
   },
   {
     title: 'Vermut',
@@ -83,7 +82,7 @@ export const vinosCatalogList = [
     alt: 'Imagen de vermut',
     type: 'vermut',
     id: 'vermut',
-    qty: 34,
+    countKey: 'totalVermut',
   },
 ];
 
@@ -94,7 +93,6 @@ export const espumososCatalogList = [
     alt: 'Imagen de champagne',
     href: '/champagnes',
     id: 'champagnes',
-    qty: 210,
   },
   {
     title: 'Cava',
@@ -102,7 +100,6 @@ export const espumososCatalogList = [
     alt: 'Imagen de cava',
     href: '/cavas',
     id: 'cavas',
-    qty: 130,
   },
   {
     title: 'Corpinnat',
@@ -110,7 +107,6 @@ export const espumososCatalogList = [
     alt: 'Imagen de corpinnat',
     href: '/corpinnates',
     id: 'corpinnates',
-    qty: 79,
   },
   {
     title: 'Prosecco',
@@ -118,7 +114,6 @@ export const espumososCatalogList = [
     alt: 'Imagen de prosecco',
     href: '/proseccos',
     id: 'proseccos',
-    qty: 61,
   },
   {
     title: 'Otros Espumosos',
@@ -126,7 +121,6 @@ export const espumososCatalogList = [
     alt: 'Imagen de otro espumosos',
     href: '/otro-espumosos',
     id: 'otro-espumosos',
-    qty: 413,
   },
 ];
 
@@ -137,7 +131,6 @@ export const destiladosCatalogList = [
     alt: 'Imagen de ron',
     href: '/ron',
     id: 'ron',
-    qty: 413,
   },
   {
     title: 'Ginebra',
@@ -145,7 +138,6 @@ export const destiladosCatalogList = [
     alt: 'Imagen de ginebras',
     href: '/ginebras',
     id: 'ginebras',
-    qty: 61,
   },
   {
     title: 'Whisky',
@@ -153,7 +145,6 @@ export const destiladosCatalogList = [
     alt: 'Imagen de whisky',
     href: '/whisky',
     id: 'whisky',
-    qty: 79,
   },
   {
     title: 'Vodka',
@@ -161,7 +152,6 @@ export const destiladosCatalogList = [
     alt: 'Imagen de vodka',
     href: '/vodka',
     id: 'vodka',
-    qty: 210,
   },
   {
     title: 'Cognac',
@@ -169,7 +159,6 @@ export const destiladosCatalogList = [
     alt: 'Imagen de cognac',
     href: '/Cognac',
     id: 'Cognac',
-    qty: 130,
   },
   {
     title: 'Brandy',
@@ -177,7 +166,6 @@ export const destiladosCatalogList = [
     alt: 'Imagen de brandy',
     href: '/brandy',
     id: 'brandy',
-    qty: 215,
   },
   {
     title: 'Pastis',
@@ -185,7 +173,6 @@ export const destiladosCatalogList = [
     alt: 'Imagen de pastis',
     href: '/pastis',
     id: 'pastis',
-    qty: 467,
   },
   {
     title: 'Tequila y Mezcal',
@@ -193,7 +180,6 @@ export const destiladosCatalogList = [
     alt: 'Imagen de tequila y mezcal',
     href: '/tequila-y-mezcal',
     id: 'tequila-y-mezcal',
-    qty: 47,
   },
   {
     title: 'Grappa y aguardiente',
@@ -201,7 +187,6 @@ export const destiladosCatalogList = [
     alt: 'Imagen de grappa y aguardiente',
     href: '/grappa-y-aguardiente',
     id: 'grappa-y-aguardiente',
-    qty: 21,
   },
   {
     title: 'Calvados',
@@ -209,7 +194,6 @@ export const destiladosCatalogList = [
     alt: 'Imagen de calvados',
     href: '/calvados',
     id: 'calvados',
-    qty: 88,
   },
   {
     title: 'Licores',
@@ -217,7 +201,6 @@ export const destiladosCatalogList = [
     alt: 'Imagen de licores',
     href: '/licores',
     id: 'licores',
-    qty: 167,
   },
   {
     title: 'Pacharan',
@@ -225,7 +208,6 @@ export const destiladosCatalogList = [
     alt: 'Imagen de pacharan',
     href: '/pacharan',
     id: 'pacharan',
-    qty: 299,
   },
   {
     title: 'Aperitivos',
@@ -233,6 +215,5 @@ export const destiladosCatalogList = [
     alt: 'Imagen de aperitivos',
     href: '/aperitivos',
     id: 'aperitivos',
-    qty: 45,
   },
 ];
