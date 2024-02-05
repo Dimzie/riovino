@@ -101,6 +101,19 @@ export const updateProduct = createAsyncThunk(
   }
 );
 
+export const removeProduct = createAsyncThunk(
+  'products/removeProduct',
+  async (id, thunkAPI) => {
+    try {
+      const response = await instance.delete(`products/${id}`);
+      console.log('response.data', response.data);
+      return id;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const getCountByType = createAsyncThunk(
   'products/getTotalByType',
   async (_, thunkAPI) => {
