@@ -3,6 +3,8 @@ import { H1Title, List } from './MainCatalogList.styled';
 import { mainCatalogList } from 'data/data';
 import MainCatalogItem from 'components/Items/MainCatalogItem/MainCatalogItem';
 import { useLocation } from 'react-router-dom';
+import Modal from 'components/Modal/Modal';
+import AddProductForm from 'components/AddProductForm/AddProductForm';
 
 const MainCatalogList = () => {
   const location = useLocation();
@@ -23,6 +25,10 @@ const MainCatalogList = () => {
           />
         ))}
       </List>
+
+      <Modal>
+        <AddProductForm />
+      </Modal>
     </>
   );
 };
