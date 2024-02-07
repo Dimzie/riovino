@@ -40,7 +40,7 @@ export const getProductById = createAsyncThunk(
 export const addProduct = createAsyncThunk(
   'products/addProduct',
   async (
-    { image, title, type, subType, alcohol, price, region, capacity },
+    { image, title, type, subType, alcohol, price, region, capacity, discount },
     thunkAPI
   ) => {
     try {
@@ -55,6 +55,9 @@ export const addProduct = createAsyncThunk(
       formData.append('price', price);
       formData.append('region', region);
       formData.append('capacity', capacity);
+      if (discount) {
+        formData.append('discount', discount);
+      }
 
       const response = await instance.post('/products', formData, {
         headers: {
