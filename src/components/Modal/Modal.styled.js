@@ -17,9 +17,14 @@ export const Overlay = styled.div`
 export const ModalContainer = styled.div`
   position: relative;
   padding: 40px 18px;
-  min-width: 300px;
-  min-height: 350px;
+  max-width: 90%;
+  min-width: 250px;
+  max-height: 90vh;
   background-color: white;
+
+  @media screen and (min-width: 768px) {
+    width: 600px;
+  }
 `;
 
 export const CloseBtn = styled.button`

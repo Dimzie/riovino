@@ -47,5 +47,6 @@ export const ProductSchema = Yup.object().shape({
     .matches(/^[0-9]+(?:\.\d{1,2})?$/, 'Invalid price')
     .required('Required'),
   region: Yup.string().min(2).max(35).required('Required'),
+  discount: Yup.string().matches(/^[0-9]+$/, 'Only numbers'),
   // image: Yup.mixed(),
 });

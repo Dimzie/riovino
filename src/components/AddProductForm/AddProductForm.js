@@ -7,6 +7,7 @@ import {
   StyledErrorMessage,
   StyledField,
   StyledForm,
+  StyledOption,
   SubmitButton,
 } from './AddProductForm.styled';
 import { addProduct } from '../../redux/products/operations';
@@ -14,7 +15,7 @@ import { addProduct } from '../../redux/products/operations';
 const AddProductForm = ({ onModalClose }) => {
   const [previewImage, setPreviewImage] = useState(null);
   const [typeValue, setTypeValue] = useState('');
-  const [setSubTypeValue] = useState('');
+  const [subTypeValue, setSubTypeValue] = useState('');
 
   const dispatch = useDispatch();
 
@@ -26,6 +27,7 @@ const AddProductForm = ({ onModalClose }) => {
     capacity: '',
     price: '',
     region: '',
+    discount: '',
     image: null,
   };
 
@@ -51,9 +53,7 @@ const AddProductForm = ({ onModalClose }) => {
     >
       {props => {
         const isValid = field =>
-          props.touched[field] && props.errors[field]
-            ? 'is-inValid'
-            : 'is-valid';
+          props.touched[field] && props.errors[field] ? false : true;
 
         return (
           <StyledForm autoComplete="on">
@@ -79,10 +79,10 @@ const AddProductForm = ({ onModalClose }) => {
                 name="type"
                 defaultValue=""
               >
-                <option value="" disabled hidden></option>
-                <option value="vinos">Vinos</option>
-                <option value="espumosos">Espumosos</option>
-                <option value="destilados">Destilados</option>
+                <StyledOption value="" disabled hidden></StyledOption>
+                <StyledOption value="vinos">Vinos</StyledOption>
+                <StyledOption value="espumosos">Espumosos</StyledOption>
+                <StyledOption value="destilados">Destilados</StyledOption>
               </StyledField>
               <ErrorMessage name="type" component={StyledErrorMessage} />
             </Label>
@@ -99,14 +99,14 @@ const AddProductForm = ({ onModalClose }) => {
                   }}
                   $isvalid={isValid('subType')}
                 >
-                  <option value="" disabled hidden></option>
-                  <option value="tinto">Tinto</option>
-                  <option value="blanco">Blanco</option>
-                  <option value="rosado">Rosado</option>
-                  <option value="generoso">Generoso</option>
-                  <option value="dulce">Dulce</option>
-                  <option value="aranja">Naranja</option>
-                  <option value="vermut">Vermut</option>
+                  <StyledOption value="" disabled hidden></StyledOption>
+                  <StyledOption value="tinto">Tinto</StyledOption>
+                  <StyledOption value="blanco">Blanco</StyledOption>
+                  <StyledOption value="rosado">Rosado</StyledOption>
+                  <StyledOption value="generoso">Generoso</StyledOption>
+                  <StyledOption value="dulce">Dulce</StyledOption>
+                  <StyledOption value="aranja">Naranja</StyledOption>
+                  <StyledOption value="vermut">Vermut</StyledOption>
                 </StyledField>
                 <ErrorMessage name="subType" component={StyledErrorMessage} />
               </Label>
@@ -124,12 +124,14 @@ const AddProductForm = ({ onModalClose }) => {
                   }}
                   $isvalid={isValid('subType')}
                 >
-                  <option value="" disabled hidden></option>
-                  <option value="champagne">Champagne</option>
-                  <option value="cava">Cava</option>
-                  <option value="corpinnat">Corpinnat</option>
-                  <option value="prosecco">Prosecco</option>
-                  <option value="otrosEspumosos">Otros Espumosos</option>
+                  <StyledOption value="" disabled hidden></StyledOption>
+                  <StyledOption value="champagne">Champagne</StyledOption>
+                  <StyledOption value="cava">Cava</StyledOption>
+                  <StyledOption value="corpinnat">Corpinnat</StyledOption>
+                  <StyledOption value="prosecco">Prosecco</StyledOption>
+                  <StyledOption value="otrosEspumosos">
+                    Otros Espumosos
+                  </StyledOption>
                 </StyledField>
                 <ErrorMessage name="subType" component={StyledErrorMessage} />
               </Label>
@@ -147,24 +149,37 @@ const AddProductForm = ({ onModalClose }) => {
                   }}
                   $isvalid={isValid('subType')}
                 >
-                  <option value="" disabled hidden></option>
-                  <option value="ron">Ron</option>
-                  <option value="ginebra">Ginebra</option>
-                  <option value="whisky">Whisky</option>
-                  <option value="vodka">Vodka</option>
-                  <option value="cognac">Cognac</option>
-                  <option value="brandy">Brandy</option>
-                  <option value="pastis">Pastis</option>
-                  <option value="tequilaYMezcal">TequilaYMezcal</option>
-                  <option value="grappaYAguardiente">GrappaYAguardiente</option>
-                  <option value="calvados">Calvados</option>
-                  <option value="licores">Licores</option>
-                  <option value="pacharan">Pacharan</option>
-                  <option value="aperitivos">Aperitivos</option>
+                  <StyledOption value="" disabled hidden></StyledOption>
+                  <StyledOption value="ron">Ron</StyledOption>
+                  <StyledOption value="ginebra">Ginebra</StyledOption>
+                  <StyledOption value="whisky">Whisky</StyledOption>
+                  <StyledOption value="vodka">Vodka</StyledOption>
+                  <StyledOption value="cognac">Cognac</StyledOption>
+                  <StyledOption value="brandy">Brandy</StyledOption>
+                  <StyledOption value="pastis">Pastis</StyledOption>
+                  <StyledOption value="tequilaYMezcal">
+                    TequilaYMezcal
+                  </StyledOption>
+                  <StyledOption value="grappaYAguardiente">
+                    GrappaYAguardiente
+                  </StyledOption>
+                  <StyledOption value="calvados">Calvados</StyledOption>
+                  <StyledOption value="licores">Licores</StyledOption>
+                  <StyledOption value="pacharan">Pacharan</StyledOption>
+                  <StyledOption value="aperitivos">Aperitivos</StyledOption>
                 </StyledField>
                 <ErrorMessage name="subType" component={StyledErrorMessage} />
               </Label>
             )}
+            <Label>
+              Region
+              <StyledField
+                type="text"
+                name="region"
+                $isvalid={isValid('region')}
+              />
+              <ErrorMessage name="region" component={StyledErrorMessage} />
+            </Label>
             <Label>
               Alcohol
               <StyledField
@@ -193,16 +208,16 @@ const AddProductForm = ({ onModalClose }) => {
               <ErrorMessage name="price" component={StyledErrorMessage} />
             </Label>
             <Label>
-              Region
+              Discount
               <StyledField
                 type="text"
-                name="region"
-                $isvalid={isValid('region')}
+                name="discount"
+                $isvalid={isValid('discount')}
               />
-              <ErrorMessage name="region" component={StyledErrorMessage} />
+              <ErrorMessage name="discount" component={StyledErrorMessage} />
             </Label>
+
             <Label>
-              Image
               <input
                 type="file"
                 name="image"

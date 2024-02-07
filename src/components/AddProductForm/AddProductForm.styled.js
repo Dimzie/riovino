@@ -16,8 +16,17 @@ export const Label = styled.label`
 `;
 
 export const StyledField = styled(Field)`
-  display: block;
   width: 100%;
+  height: 30px;
+  padding: 0 10px;
+  padding-bottom: 2px;
+  background-color: lightgray;
+  outline: none;
+  border: 1px solid ${props => (props.$isvalid ? 'transparent' : 'red')};
+`;
+
+export const StyledOption = styled.option`
+  background-color: #fff;
 `;
 
 export const StyledErrorMessage = styled.p``;
