@@ -16,10 +16,14 @@ import Container from 'components/GlobalContainer/GlobalContainer';
 import { LocationIcon, PhoneIcon } from 'helpers/Icons/Icons.styled';
 import { headerLogo3 } from 'images/images.index';
 import BurgerMenu from 'components/BurgerMenu/BurgerMenu';
+import Loader from 'components/Loader/Loader';
+import { useProducts } from 'hooks/useProducts';
 
 const Header = () => {
+  const { isProductsLoading } = useProducts();
   return (
     <HeaderSection>
+      {isProductsLoading && <Loader />}
       <Container>
         <HeaderWrapper>
           <Address>
@@ -48,7 +52,7 @@ const Header = () => {
             <LogInBtn type="button">Log In</LogInBtn>
             <SignUpBtn type="button">Sign Up</SignUpBtn>
           </HeaderBtnList>
-          <BurgerMenu/>
+          <BurgerMenu />
         </HeaderWrapper>
       </Container>
     </HeaderSection>

@@ -6,12 +6,11 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useProducts } from 'hooks/useProducts';
 import { getCountByType } from '../../../redux/products/operations';
-import Loader from 'components/Loader/Loader';
 
 const MainCatalogList = () => {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { countByType, isProductsLoading } = useProducts();
+  const { countByType } = useProducts();
   useEffect(() => {
     dispatch(getCountByType());
   }, [dispatch]);
@@ -19,26 +18,22 @@ const MainCatalogList = () => {
   return (
     <>
       <H1Title>Catalogar</H1Title>
-      {isProductsLoading ? (
-        <Loader />
-      ) : (
-        <List>
-          {mainCatalogList.map(({ title, img, href, alt, id, countKey }) => {
-            const totalCount = countByType[countKey];
-            return (
-              <MainCatalogItem
-                title={title}
-                img={img}
-                href={href}
-                key={id}
-                alt={alt}
-                qty={totalCount}
-                state={{ from: location }}
-              />
-            );
-          })}
-        </List>
-      )}
+      <List>
+        {mainCatalogList.map(({ title, img, href, alt, id, countKey }) => {
+          const totalCount = countByType[countKey];
+          return (
+            <MainCatalogItem
+              title={title}
+              img={img}
+              href={href}
+              key={id}
+              alt={alt}
+              qty={totalCount}
+              state={{ from: location }}
+            />
+          );
+        })}
+      </List>
     </>
   );
 };

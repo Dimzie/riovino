@@ -4,7 +4,7 @@ export const HeaderSection = styled.header`
   position: absolute;
   width: 100%;
   padding: 15px 0px;
-  background-color: rgba(1, 1, 1, 0.25);
+  background-color: rgba(1, 1, 1, 0.3);
 `;
 
 export const HeaderWrapper = styled.div`
