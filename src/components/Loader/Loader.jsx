@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
+import { LoaderWrapper } from './Loader.styled';
 
 const Loader = () => {
-  return (
-    <div>kek loader</div>
-  )
-}
+  return <LoaderWrapper />;
+};
 
-export default Loader
+export default Loader;

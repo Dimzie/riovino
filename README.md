@@ -8,3 +8,4 @@ Used libs:
 *react-redux
 *redux-toolkit
 *axios
+*react-loader-spinner

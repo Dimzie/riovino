@@ -9,7 +9,7 @@ export const H1Title = styled.h1`
 
 export const List = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 40px;
+  gap: 20px;
 `;

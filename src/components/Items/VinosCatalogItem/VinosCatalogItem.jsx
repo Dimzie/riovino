@@ -10,7 +10,9 @@ const VinosCatalogItem = ({ title, img, alt, qty, type, state }) => {
           <img src={img} alt={alt} />
         </ImgContainer>
         <Title>{title}</Title>
-        <Quantity>({qty})</Quantity>
+        <Quantity>
+          (<i>{qty} typos</i>)
+        </Quantity>
       </Link>
     </Li>
   );
