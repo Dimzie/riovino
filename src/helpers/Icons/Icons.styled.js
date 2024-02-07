@@ -35,5 +35,5 @@ export const BurgerIcon = styled(RxHamburgerMenu)`
   width: 40px;
   height: 40px;
   color: #ffffff;
-  transition: color 100ms ease-in;
+  transition: color 150ms ease-in;
 `;
