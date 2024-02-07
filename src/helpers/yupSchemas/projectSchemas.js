@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 export const ProductSchema = Yup.object().shape({
-  title: Yup.string().required('Requrired'),
+  title: Yup.string().required('Required'),
   type: Yup.string()
     .oneOf(['vinos', 'destilados', 'espumosos'], 'Wrong type')
     .required('Required'),

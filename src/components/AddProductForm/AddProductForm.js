@@ -4,21 +4,29 @@ import { useDispatch } from 'react-redux';
 import { ProductSchema } from 'helpers/yupSchemas/projectSchemas';
 import {
   AddIconWrapper,
+  DeleteIconWrapper,
+  FieldWrapper,
   ImageLabel,
   ImageText,
+  ImageWrapper,
   Label,
   StyledErrorMessage,
   StyledField,
   StyledForm,
   StyledOption,
   SubmitButton,
+  Wrapper,
 } from './AddProductForm.styled';
 import { addProduct } from '../../redux/products/operations';
-import { IoIosAddCircle } from 'react-icons/io';
+import { IoAddSharp } from 'react-icons/io5';
+import { BsArrowClockwise } from 'react-icons/bs';
+import { MdDelete } from 'react-icons/md';
+import { zaglushka } from '../../images/images.index';
 
 const AddProductForm = ({ onModalClose }) => {
   const [previewImage, setPreviewImage] = useState(null);
   const [typeValue, setTypeValue] = useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [subTypeValue, setSubTypeValue] = useState('');
 
   const dispatch = useDispatch();
@@ -70,91 +78,93 @@ const AddProductForm = ({ onModalClose }) => {
               />
               <ErrorMessage name="title" component={StyledErrorMessage} />
             </Label>
-            <Label>
-              Type *
-              <StyledField
-                onChange={e => {
-                  props.setFieldValue('type', e.target.value);
-                  props.setFieldValue('subType', '');
-                  setTypeValue(e.target.value);
-                }}
-                $isvalid={isValid('type')}
-                as="select"
-                name="type"
-                defaultValue=""
-              >
-                <StyledOption value="" disabled hidden></StyledOption>
-                <StyledOption value="vinos">Vinos</StyledOption>
-                <StyledOption value="espumosos">Espumosos</StyledOption>
-                <StyledOption value="destilados">Destilados</StyledOption>
-              </StyledField>
-              <ErrorMessage name="type" component={StyledErrorMessage} />
-            </Label>
+            <FieldWrapper>
+              {' '}
+              <Label>
+                Type *
+                <StyledField
+                  onChange={e => {
+                    props.setFieldValue('type', e.target.value);
+                    props.setFieldValue('subType', '');
+                    setTypeValue(e.target.value);
+                  }}
+                  $isvalid={isValid('type')}
+                  as="select"
+                  name="type"
+                  defaultValue=""
+                >
+                  <StyledOption value="" disabled hidden></StyledOption>
+                  <StyledOption value="vinos">Vinos</StyledOption>
+                  <StyledOption value="espumosos">Espumosos</StyledOption>
+                  <StyledOption value="destilados">Destilados</StyledOption>
+                </StyledField>
+                <ErrorMessage name="type" component={StyledErrorMessage} />
+              </Label>
+              <Label>
+                SubType *
+                <StyledField
+                  as="select"
+                  name="subType"
+                  defaultValue=""
+                  disabled={!typeValue}
+                  onChange={e => {
+                    props.setFieldValue('subType', e.target.value);
+                    setSubTypeValue(e.target.value);
+                  }}
+                  $isvalid={isValid('subType')}
+                >
+                  {typeValue === 'vinos' && (
+                    <>
+                      <StyledOption value="" disabled hidden></StyledOption>
+                      <StyledOption value="tinto">Tinto</StyledOption>
+                      <StyledOption value="blanco">Blanco</StyledOption>
+                      <StyledOption value="rosado">Rosado</StyledOption>
+                      <StyledOption value="generoso">Generoso</StyledOption>
+                      <StyledOption value="dulce">Dulce</StyledOption>
+                      <StyledOption value="aranja">Naranja</StyledOption>
+                      <StyledOption value="vermut">Vermut</StyledOption>
+                    </>
+                  )}
+                  {typeValue === 'espumosos' && (
+                    <>
+                      <StyledOption value="" disabled hidden></StyledOption>
+                      <StyledOption value="champagne">Champagne</StyledOption>
+                      <StyledOption value="cava">Cava</StyledOption>
+                      <StyledOption value="corpinnat">Corpinnat</StyledOption>
+                      <StyledOption value="prosecco">Prosecco</StyledOption>
+                      <StyledOption value="otrosEspumosos">
+                        Otros Espumosos
+                      </StyledOption>
+                    </>
+                  )}
 
-            <Label>
-              SubType *
-              <StyledField
-                as="select"
-                name="subType"
-                defaultValue=""
-                disabled={!typeValue}
-                onChange={e => {
-                  props.setFieldValue('subType', e.target.value);
-                  setSubTypeValue(e.target.value);
-                }}
-                $isvalid={isValid('subType')}
-              >
-                {typeValue === 'vinos' && (
-                  <>
-                    <StyledOption value="" disabled hidden></StyledOption>
-                    <StyledOption value="tinto">Tinto</StyledOption>
-                    <StyledOption value="blanco">Blanco</StyledOption>
-                    <StyledOption value="rosado">Rosado</StyledOption>
-                    <StyledOption value="generoso">Generoso</StyledOption>
-                    <StyledOption value="dulce">Dulce</StyledOption>
-                    <StyledOption value="aranja">Naranja</StyledOption>
-                    <StyledOption value="vermut">Vermut</StyledOption>
-                  </>
-                )}
-                {typeValue === 'espumosos' && (
-                  <>
-                    <StyledOption value="" disabled hidden></StyledOption>
-                    <StyledOption value="champagne">Champagne</StyledOption>
-                    <StyledOption value="cava">Cava</StyledOption>
-                    <StyledOption value="corpinnat">Corpinnat</StyledOption>
-                    <StyledOption value="prosecco">Prosecco</StyledOption>
-                    <StyledOption value="otrosEspumosos">
-                      Otros Espumosos
-                    </StyledOption>
-                  </>
-                )}
-
-                {typeValue === 'destilados' && (
-                  <>
-                    {' '}
-                    <StyledOption value="" disabled hidden></StyledOption>
-                    <StyledOption value="ron">Ron</StyledOption>
-                    <StyledOption value="ginebra">Ginebra</StyledOption>
-                    <StyledOption value="whisky">Whisky</StyledOption>
-                    <StyledOption value="vodka">Vodka</StyledOption>
-                    <StyledOption value="cognac">Cognac</StyledOption>
-                    <StyledOption value="brandy">Brandy</StyledOption>
-                    <StyledOption value="pastis">Pastis</StyledOption>
-                    <StyledOption value="tequilaYMezcal">
-                      TequilaYMezcal
-                    </StyledOption>
-                    <StyledOption value="grappaYAguardiente">
-                      GrappaYAguardiente
-                    </StyledOption>
-                    <StyledOption value="calvados">Calvados</StyledOption>
-                    <StyledOption value="licores">Licores</StyledOption>
-                    <StyledOption value="pacharan">Pacharan</StyledOption>
-                    <StyledOption value="aperitivos">Aperitivos</StyledOption>
-                  </>
-                )}
-              </StyledField>
-              <ErrorMessage name="subType" component={StyledErrorMessage} />
-            </Label>
+                  {typeValue === 'destilados' && (
+                    <>
+                      {' '}
+                      <StyledOption value="" disabled hidden></StyledOption>
+                      <StyledOption value="ron">Ron</StyledOption>
+                      <StyledOption value="ginebra">Ginebra</StyledOption>
+                      <StyledOption value="whisky">Whisky</StyledOption>
+                      <StyledOption value="vodka">Vodka</StyledOption>
+                      <StyledOption value="cognac">Cognac</StyledOption>
+                      <StyledOption value="brandy">Brandy</StyledOption>
+                      <StyledOption value="pastis">Pastis</StyledOption>
+                      <StyledOption value="tequilaYMezcal">
+                        TequilaYMezcal
+                      </StyledOption>
+                      <StyledOption value="grappaYAguardiente">
+                        GrappaYAguardiente
+                      </StyledOption>
+                      <StyledOption value="calvados">Calvados</StyledOption>
+                      <StyledOption value="licores">Licores</StyledOption>
+                      <StyledOption value="pacharan">Pacharan</StyledOption>
+                      <StyledOption value="aperitivos">Aperitivos</StyledOption>
+                    </>
+                  )}
+                </StyledField>
+                <ErrorMessage name="subType" component={StyledErrorMessage} />
+              </Label>
+            </FieldWrapper>
 
             {/* {typeValue === 'espumosos' && (
               <Label>
@@ -233,19 +243,43 @@ const AddProductForm = ({ onModalClose }) => {
               />
               <ErrorMessage name="discount" component={StyledErrorMessage} />
             </Label>
+            <ImageText>Add image</ImageText>
+            <Wrapper>
+              <ImageLabel>
+                <input
+                  style={{ display: 'none' }}
+                  type="file"
+                  name="image"
+                  onChange={event =>
+                    handleFileChange(event, props.setFieldValue)
+                  }
+                />
 
-            <ImageLabel>
-              <input
-                style={{ display: 'none' }}
-                type="file"
-                name="image"
-                onChange={event => handleFileChange(event, props.setFieldValue)}
-              />
-              <AddIconWrapper>
-                <IoIosAddCircle size={40} />
-              </AddIconWrapper>
-              <ImageText>Add image</ImageText>
-            </ImageLabel>
+                <AddIconWrapper>
+                  {previewImage ? (
+                    <BsArrowClockwise size={40} />
+                  ) : (
+                    <IoAddSharp size={40} />
+                  )}
+                </AddIconWrapper>
+              </ImageLabel>
+              <ImageWrapper>
+                {previewImage && (
+                  <DeleteIconWrapper
+                    onClick={() => {
+                      setPreviewImage(null);
+                      props.setFieldValue('image', null);
+                    }}
+                  >
+                    <MdDelete size={30} />
+                  </DeleteIconWrapper>
+                )}
+                <img
+                  src={previewImage ? previewImage : zaglushka}
+                  alt="preview img"
+                />
+              </ImageWrapper>
+            </Wrapper>
             <SubmitButton type="submit">Add product</SubmitButton>
           </StyledForm>
         );
