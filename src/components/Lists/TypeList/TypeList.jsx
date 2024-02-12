@@ -10,7 +10,7 @@ const TypeList = () => {
   const backLink = location?.state?.from ?? '/';
   const dispatch = useDispatch();
   const { subType } = useParams();
-  const { products } = useProducts();
+  const { isProductsLoading, products } = useProducts();
   console.log(products.products);
   //   console.log(subType);
   useEffect(() => {
@@ -19,15 +19,17 @@ const TypeList = () => {
 
   return (
     <>
-      <ul>
-        {products.products.map(({ title }) => {
-          return (
-            <li>
-              <h2>{title}</h2>
-            </li>
-          );
-        })}
-      </ul>
+      {!isProductsLoading && (
+        <ul>
+          {products.products.map(({ title }) => {
+            return (
+              <li>
+                <h2>{title}</h2>
+              </li>
+            );
+          })}
+        </ul>
+      )}
       <BackBtn backLink={backLink} />
     </>
   );
