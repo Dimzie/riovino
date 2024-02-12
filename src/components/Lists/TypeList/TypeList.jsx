@@ -11,19 +11,19 @@ const TypeList = () => {
   const dispatch = useDispatch();
   const { subType } = useParams();
   const { isProductsLoading, products } = useProducts();
-  console.log(products.products);
-  //   console.log(subType);
+
   useEffect(() => {
     dispatch(getProducts(subType));
   }, [dispatch, subType]);
 
   return (
     <>
+      <h2>Total products: {products.totalProducts}</h2>
       {!isProductsLoading && (
         <ul>
-          {products.products.map(({ title }) => {
+          {products.products.map(({ _id, title }) => {
             return (
-              <li>
+              <li key={_id}>
                 <h2>{title}</h2>
               </li>
             );

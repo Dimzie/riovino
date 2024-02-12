@@ -22,7 +22,10 @@ const handleRejected = (state, { payload }) => {
 };
 
 const initialState = {
-  products: [],
+  products: {
+    products: [],
+    totalProducts: 0,
+  },
   productById: {},
   countByType: {},
   vinosCount: {},
