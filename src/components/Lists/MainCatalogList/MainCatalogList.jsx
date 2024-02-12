@@ -37,9 +37,9 @@ const MainCatalogList = () => {
         })}
       </List>
 
-      <Modal>
+      {/* <Modal>
         <AddProductForm />
-      </Modal>
+      </Modal> */}
     </>
   );
 };

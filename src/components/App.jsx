@@ -15,9 +15,9 @@ export const App = () => {
           <Route path="/vinos" element={<VinosCatalogPage />} />
           <Route path="/espumosos" element={<EspumososCatalogPage />} />
           <Route path="/destilados" element={<DestiladosCatalogPage />} />
-          <Route path="/vinos/:type" element={<TypePage />} />
-          <Route path="/espumosos/:type" element={<TypePage />} />
-          <Route path="/destilados/:type" element={<TypePage />} />
+          <Route path="/vinos/:subType" element={<TypePage />} />
+          <Route path="/espumosos/:subType" element={<TypePage />} />
+          <Route path="/destilados/:subType" element={<TypePage />} />
         </Route>
       </Routes>
     </>
