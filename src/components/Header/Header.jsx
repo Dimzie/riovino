@@ -49,6 +49,7 @@ const Header = () => {
             <img src={headerLogo3} alt="Rio Vino Logo" wight="55" height="55" />
           </LogoImgContainer>
           <HeaderBtnList>
+            <button type="button">Add</button>
             <LogInBtn type="button">Log In</LogInBtn>
             <SignUpBtn type="button">Sign Up</SignUpBtn>
           </HeaderBtnList>

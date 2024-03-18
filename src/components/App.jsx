@@ -5,8 +5,23 @@ import VinosCatalogPage from 'pages/VinosCatalogPage/VinosCatalogPage';
 import DestiladosCatalogPage from 'pages/DestiladosCatalogPage/DestiladosCatalogPage';
 import EspumososCatalogPage from 'pages/EspumososCatalogPage/EspumososCatalogPage';
 import TypePage from 'pages/TypePage/TypePage';
+// import { useEffect } from 'react';
 
 export const App = () => {
+  // useEffect(() => {
+  //   const handleVisibilityChange = () => {
+  //     document.title = document.hidden
+  //       ? 'Come back...😔'
+  //       : 'Rio Vino';
+  //   };
+
+  //   document.addEventListener('visibilitychange', handleVisibilityChange);
+
+  //   return () => {
+  //     document.removeEventListener('visibilitychange', handleVisibilityChange);
+  //   };
+  // }, []);
+
   return (
     <>
       <Routes>
@@ -17,7 +32,7 @@ export const App = () => {
           <Route path="/destilados" element={<DestiladosCatalogPage />} />
           <Route path="/vinos/:subType" element={<TypePage />} />
           <Route path="/espumosos/:subType" element={<TypePage />} />
-          <Route path="/destilados/:subType" element={<TypePage />} />
+          <Route path="/destilados/:subType  " element={<TypePage />} />
         </Route>
       </Routes>
     </>
