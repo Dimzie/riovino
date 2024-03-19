@@ -10,6 +10,7 @@ import {
   ImageText,
   ImageWrapper,
   Label,
+  Span,
   StyledErrorMessage,
   StyledField,
   StyledForm,
@@ -23,7 +24,7 @@ import { BsArrowClockwise } from 'react-icons/bs';
 import { MdDelete } from 'react-icons/md';
 import { zaglushka } from '../../images/images.index';
 
-const AddProductForm = ({ onModalClose }) => {
+const AddProductForm = ({ onCloseModal }) => {
   const [previewImage, setPreviewImage] = useState(null);
   const [typeValue, setTypeValue] = useState(null);
   // eslint-disable-next-line no-unused-vars
@@ -55,6 +56,7 @@ const AddProductForm = ({ onModalClose }) => {
     console.log('values', values);
     dispatch(addProduct(values));
     actions.resetForm();
+    onCloseModal();
   };
 
   return (
@@ -70,7 +72,7 @@ const AddProductForm = ({ onModalClose }) => {
         return (
           <StyledForm autoComplete="on">
             <Label>
-              Title *
+              Title <Span>*</Span>
               <StyledField
                 type="text"
                 name="title"
@@ -79,14 +81,14 @@ const AddProductForm = ({ onModalClose }) => {
               <ErrorMessage name="title" component={StyledErrorMessage} />
             </Label>
             <FieldWrapper>
-              {' '}
               <Label>
-                Type *
+                Type <Span>*</Span>
                 <StyledField
                   onChange={e => {
+                    setTypeValue(e.target.value);
+                    setSubTypeValue('');
                     props.setFieldValue('type', e.target.value);
                     props.setFieldValue('subType', '');
-                    setTypeValue(e.target.value);
                   }}
                   $isvalid={isValid('type')}
                   as="select"
@@ -101,11 +103,11 @@ const AddProductForm = ({ onModalClose }) => {
                 <ErrorMessage name="type" component={StyledErrorMessage} />
               </Label>
               <Label>
-                SubType *
+                SubType <Span>*</Span>
                 <StyledField
                   as="select"
                   name="subType"
-                  defaultValue=""
+                  defaultValue={subTypeValue}
                   disabled={!typeValue}
                   onChange={e => {
                     props.setFieldValue('subType', e.target.value);
@@ -115,7 +117,9 @@ const AddProductForm = ({ onModalClose }) => {
                 >
                   {typeValue === 'vinos' && (
                     <>
-                      <StyledOption value="" disabled hidden></StyledOption>
+                      <StyledOption value="" hidden>
+                        Select sub type
+                      </StyledOption>
                       <StyledOption value="tinto">Tinto</StyledOption>
                       <StyledOption value="blanco">Blanco</StyledOption>
                       <StyledOption value="rosado">Rosado</StyledOption>
@@ -127,7 +131,9 @@ const AddProductForm = ({ onModalClose }) => {
                   )}
                   {typeValue === 'espumosos' && (
                     <>
-                      <StyledOption value="" disabled hidden></StyledOption>
+                      <StyledOption value="" hidden>
+                        Select sub type
+                      </StyledOption>
                       <StyledOption value="champagne">Champagne</StyledOption>
                       <StyledOption value="cava">Cava</StyledOption>
                       <StyledOption value="corpinnat">Corpinnat</StyledOption>
@@ -140,8 +146,9 @@ const AddProductForm = ({ onModalClose }) => {
 
                   {typeValue === 'destilados' && (
                     <>
-                      {' '}
-                      <StyledOption value="" disabled hidden></StyledOption>
+                      <StyledOption value="" hidden>
+                        Select sub type
+                      </StyledOption>
                       <StyledOption value="ron">Ron</StyledOption>
                       <StyledOption value="ginebra">Ginebra</StyledOption>
                       <StyledOption value="whisky">Whisky</StyledOption>
@@ -199,7 +206,7 @@ const AddProductForm = ({ onModalClose }) => {
               </Label>
             )} */}
             <Label>
-              Region *
+              Region <Span>*</Span>
               <StyledField
                 type="text"
                 name="region"
@@ -208,7 +215,7 @@ const AddProductForm = ({ onModalClose }) => {
               <ErrorMessage name="region" component={StyledErrorMessage} />
             </Label>
             <Label>
-              Alcohol*
+              Alcohol <Span>*</Span>
               <StyledField
                 type="text"
                 name="alcohol"
@@ -217,7 +224,7 @@ const AddProductForm = ({ onModalClose }) => {
               <ErrorMessage name="alcohol" component={StyledErrorMessage} />
             </Label>
             <Label>
-              Capacity *
+              Capacity <Span>*</Span>
               <StyledField
                 type="text"
                 name="capacity"
@@ -226,7 +233,7 @@ const AddProductForm = ({ onModalClose }) => {
               <ErrorMessage name="capacity" component={StyledErrorMessage} />
             </Label>
             <Label>
-              Price *
+              Price <Span>*</Span>
               <StyledField
                 type="text"
                 name="price"

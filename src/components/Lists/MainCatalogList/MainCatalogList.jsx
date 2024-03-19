@@ -3,8 +3,6 @@ import { H1Title, List } from './MainCatalogList.styled';
 import { mainCatalogList } from 'data/data';
 import MainCatalogItem from 'components/Items/MainCatalogItem/MainCatalogItem';
 import { useLocation } from 'react-router-dom';
-// import Modal from 'components/Modal/Modal';
-// import AddProductForm from 'components/AddProductForm/AddProductForm';
 import { useDispatch } from 'react-redux';
 import { useProducts } from 'hooks/useProducts';
 import { getCountByType } from '../../../redux/products/operations';
@@ -36,10 +34,6 @@ const MainCatalogList = () => {
           );
         })}
       </List>
-
-      {/* <Modal>
-        <AddProductForm />
-      </Modal> */}
     </>
   );
 };
