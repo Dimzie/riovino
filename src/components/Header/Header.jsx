@@ -18,9 +18,17 @@ import { headerLogo3 } from 'images/images.index';
 import BurgerMenu from 'components/BurgerMenu/BurgerMenu';
 import Loader from 'components/Loader/Loader';
 import { useProducts } from 'hooks/useProducts';
+import Modal from 'components/Modal/Modal';
+import AddProductForm from 'components/AddProductForm/AddProductForm';
+import { useState } from 'react';
 
 const Header = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { isProductsLoading } = useProducts();
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
   return (
     <HeaderSection>
       {isProductsLoading && <Loader />}
@@ -49,7 +57,14 @@ const Header = () => {
             <img src={headerLogo3} alt="Rio Vino Logo" wight="55" height="55" />
           </LogoImgContainer>
           <HeaderBtnList>
-            <button type="button">Add</button>
+            <button type="button" onClick={toggleModal}>
+              Add
+            </button>
+            {isModalOpen && (
+              <Modal onCloseModal={toggleModal}>
+                <AddProductForm onCloseModal={toggleModal} />
+              </Modal>
+            )}
             <LogInBtn type="button">Log In</LogInBtn>
             <SignUpBtn type="button">Sign Up</SignUpBtn>
           </HeaderBtnList>

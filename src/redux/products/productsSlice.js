@@ -72,9 +72,16 @@ const productsSlice = createSlice({
         state.error = null;
       })
       .addCase(addProduct.fulfilled, (state, { payload }) => {
-        state.products.push(payload);
+        state.products.products.push(payload);
         state.isLoading = false;
         state.error = null;
+        // if (payload.type === 'vinos') {
+        //   state.countByType.totalVinos += 1;
+        // } else if (payload.type === 'espumosos') {
+        //   state.countByType.totalEspumosos += 1;
+        // } else if (payload.type === 'destilados') {
+        //   state.countByType.totalDestilados += 1;
+        // }
       })
       .addCase(updateProduct.fulfilled, (state, { payload }) => {
         const index = state.products.findIndex(

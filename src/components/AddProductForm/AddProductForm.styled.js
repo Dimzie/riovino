@@ -89,4 +89,8 @@ export const DeleteIconWrapper = styled.div`
   color: #000;
 `;
 
+export const Span = styled.span`
+  color: red;
+`;
+
 export const SubmitButton = styled.button``;
