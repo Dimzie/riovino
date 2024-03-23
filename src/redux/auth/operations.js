@@ -13,10 +13,63 @@ const setAccessToken = accessToken => {
   return (instance.defaults.headers.common.Authorization = '');
 };
 
-export const register = '';
+export const register = createAsyncThunk(
+  'auth/register',
+  async ({ email, password }, thunkAPI) => {
+    try {
+      const response = await instance.post('/auth/register', {
+        email,
+        password,
+      });
+      setAccessToken(response.data.accessToken);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
-export const login = '';
+export const login = createAsyncThunk(
+  'auth/login',
+  async ({ email, password }, thunkAPI) => {
+    try {
+      const response = await instance.post('/auth/login', { email, password });
+      setAccessToken(response.data.accessToken);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
-export const getCurrent = '';
+export const getCurrent = createAsyncThunk(
+  'auth/getCurrent',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.rioAccessToken;
 
-export const logout = '';
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+
+    try {
+      setAccessToken(persistedToken);
+      const response = await instance.get('/auth/current');
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    await instance.post('/auth/logout');
+    setAccessToken();
+  } catch (error) {
+    if (error.response.status === 401) {
+      setAccessToken();
+    }
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
