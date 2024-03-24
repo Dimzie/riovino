@@ -6,7 +6,7 @@ import {
   selectRioAccessToken,
   selectUser,
   selectUserError,
-} from 'redux/auth/selectors';
+} from '../redux/auth/selectors';
 
 export const useAuth = () => {
   const user = useSelector(selectUser);
