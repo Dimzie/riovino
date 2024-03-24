@@ -13,7 +13,6 @@ import {
 
 const handlePending = state => {
   state.isLoading = true;
-  state.error = false;
 };
 
 const handleRejected = (state, { payload }) => {

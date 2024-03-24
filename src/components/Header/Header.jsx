@@ -9,8 +9,9 @@ import {
   LogoImgContainer,
   HeaderWrapper,
   HeaderBtnList,
-  LogInBtn,
-  SignUpBtn,
+  // LogInBtn,
+  // SignUpBtn,
+  AuthBtn,
 } from './Header.styled';
 import Container from 'components/GlobalContainer/GlobalContainer';
 import { LocationIcon, PhoneIcon } from 'helpers/Icons/Icons.styled';
@@ -21,10 +22,13 @@ import { useProducts } from 'hooks/useProducts';
 import Modal from 'components/Modal/Modal';
 import AddProductForm from 'components/AddProductForm/AddProductForm';
 import { useState } from 'react';
+import { useAuth } from '../../hooks/useAuth';
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isProductsLoading } = useProducts();
+
+  const { user, isLoggedIn } = useAuth();
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -65,8 +69,13 @@ const Header = () => {
                 <AddProductForm onCloseModal={toggleModal} />
               </Modal>
             )}
-            <LogInBtn type="button">Log In</LogInBtn>
-            <SignUpBtn type="button">Sign Up</SignUpBtn>
+            {isLoggedIn ? (
+              <p>{user.email}</p>
+            ) : (
+              <AuthBtn to={'/auth'}>Sign In / Sign Up</AuthBtn>
+            )}
+            {/* <LogInBtn type="button">Log In</LogInBtn>
+            <SignUpBtn type="button">Sign Up</SignUpBtn> */}
           </HeaderBtnList>
           <BurgerMenu />
         </HeaderWrapper>

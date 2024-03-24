@@ -5,6 +5,7 @@ import VinosCatalogPage from 'pages/VinosCatalogPage/VinosCatalogPage';
 import DestiladosCatalogPage from 'pages/DestiladosCatalogPage/DestiladosCatalogPage';
 import EspumososCatalogPage from 'pages/EspumososCatalogPage/EspumososCatalogPage';
 import TypePage from 'pages/TypePage/TypePage';
+import Authpage from 'pages/AuthPage/Authpage';
 // import { useEffect } from 'react';
 
 export const App = () => {
@@ -27,6 +28,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<MainCatalogPage />} />
+          <Route path="/auth" element={<Authpage />} />
           <Route path="/vinos" element={<VinosCatalogPage />} />
           <Route path="/espumosos" element={<EspumososCatalogPage />} />
           <Route path="/destilados" element={<DestiladosCatalogPage />} />
