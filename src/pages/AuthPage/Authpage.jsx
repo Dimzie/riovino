@@ -1,6 +1,8 @@
 import { Section } from 'pages/Common.styled';
 import React, { useState } from 'react';
 import { Background, Btn, BtnWrapper } from './Authpage.styled';
+import LoginForm from 'components/LoginForm/LoginForm';
+import RegisterForm from 'components/RegisterForm/RegisterForm';
 
 const Authpage = () => {
   const [activeBtn, setActiveBtn] = useState('in');
@@ -23,7 +25,7 @@ const Authpage = () => {
         </Btn>
       </BtnWrapper>
 
-      {activeBtn === 'in' ? <p>LOGIN FORM</p> : <p>REGISTER FORM</p>}
+      {activeBtn === 'in' ? <LoginForm /> : <RegisterForm />}
     </Section>
   );
 };
