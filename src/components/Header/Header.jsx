@@ -23,10 +23,15 @@ import Modal from 'components/Modal/Modal';
 import AddProductForm from 'components/AddProductForm/AddProductForm';
 import { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/auth/operations';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isProductsLoading } = useProducts();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { user, isLoggedIn } = useAuth();
 
@@ -70,7 +75,17 @@ const Header = () => {
               </Modal>
             )}
             {isLoggedIn ? (
-              <p>{user.email}</p>
+              <div>
+                <p>{user.email}</p>
+                <button
+                  onClick={() => {
+                    dispatch(logout());
+                    navigate('/');
+                  }}
+                >
+                  Log out
+                </button>
+              </div>
             ) : (
               <AuthBtn to={'/auth'}>Sign In / Sign Up</AuthBtn>
             )}
