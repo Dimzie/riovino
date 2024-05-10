@@ -1,5 +1,31 @@
 import * as Yup from 'yup';
 
+export const RegisterSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email address').required('Required'),
+  password: Yup.string()
+    .min(6, 'Minimum 6 characters long')
+    .matches(
+      /^[A-Za-z0-9!@#$%^&*()_+{}[\]:;<>,.?~\\/`"'-=|]*$/,
+      'You can only use Latin letters, numbers and symbols!'
+    )
+    .required('Required'),
+  repeatPassword: Yup.string()
+    .min(6, 'Minimum 6 characters long')
+    .oneOf([Yup.ref('password'), undefined], 'Passwords must match')
+    .required('Required'),
+});
+
+export const LoginSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email address').required('Required'),
+  password: Yup.string()
+    .min(6, 'Minimum 6 characters long')
+    .matches(
+      /^[A-Za-z0-9!@#$%^&*()_+{}[\]:;<>,.?~\\/`"'-=|]*$/,
+      'You can only use Latin letters, numbers and symbols!'
+    )
+    .required('Required'),
+});
+
 export const ProductSchema = Yup.object().shape({
   title: Yup.string().required('Required'),
   type: Yup.string()
