@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
 import { getProducts } from '../../../redux/products/operations';
 import { useProducts } from 'hooks/useProducts';
+import TypeItem from 'components/Items/TypeItem/TypeItem';
+import { H2Title, List } from './TypeList.styled';
 
 const TypeList = () => {
   const location = useLocation();
@@ -18,17 +20,23 @@ const TypeList = () => {
 
   return (
     <>
-      <h2>Total products: {products.totalProducts}</h2>
+      <H2Title>{products.subType}</H2Title>
       {!isProductsLoading && (
-        <ul>
-          {products.products.map(({ _id, title }) => {
-            return (
-              <li key={_id}>
-                <h2>{title}</h2>
-              </li>
-            );
-          })}
-        </ul>
+        <List>
+          {products.products.map(
+            ({ _id, title, alcohol, imageURL, imageID }) => {
+              return (
+                <TypeItem
+                  key={_id}
+                  title={title}
+                  alcohol={alcohol}
+                  imageURL={imageURL}
+                  imageID={imageID}
+                />
+              );
+            }
+          )}
+        </List>
       )}
       <BackBtn backLink={backLink} />
     </>
