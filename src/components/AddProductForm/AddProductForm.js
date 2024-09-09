@@ -26,9 +26,12 @@ import { zaglushka } from '../../images/images.index';
 
 const AddProductForm = ({ onCloseModal }) => {
   const [previewImage, setPreviewImage] = useState(null);
-  const [typeValue, setTypeValue] = useState(null);
+  const [typeValue, setTypeValue] = useState('');
   // eslint-disable-next-line no-unused-vars
   const [subTypeValue, setSubTypeValue] = useState('');
+  const [critic, setCritic] = useState('');
+  const [criticRate, setCriticRate] = useState('');
+  const [criticsList, setCriticsList] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -41,6 +44,7 @@ const AddProductForm = ({ onCloseModal }) => {
     price: '',
     region: '',
     discount: '',
+    critics: [],
     image: null,
   };
 
@@ -52,11 +56,30 @@ const AddProductForm = ({ onCloseModal }) => {
     }
   };
 
+  const handleAddCritic = (setFieldValue, critics) => {
+    if (critic && criticRate) {
+      // Create a critic object and add it to the list
+      const newCritic = { critic, criticRate };
+      setCriticsList(prev => [...prev, newCritic]);
+      const updatedCritics = [...critics, newCritic];
+      setFieldValue('critics', updatedCritics); // Update Formik's values
+
+      // Reset critic fields
+      setCritic('');
+      setCriticRate('');
+    }
+  };
+
+  const handleResetCritics = setFieldValue => {
+    setCriticsList([]);
+    setFieldValue('critics', []);
+  };
+
   const handleSubmit = async (values, actions) => {
     console.log('values', values);
-    dispatch(addProduct(values));
-    actions.resetForm();
-    onCloseModal();
+    // dispatch(addProduct(values));
+    // actions.resetForm();
+    // onCloseModal();
   };
 
   return (
@@ -95,7 +118,9 @@ const AddProductForm = ({ onCloseModal }) => {
                   name="type"
                   defaultValue=""
                 >
-                  <StyledOption value="" disabled hidden></StyledOption>
+                  <StyledOption value="" hidden>
+                    Select type
+                  </StyledOption>
                   <StyledOption value="vinos">Vinos</StyledOption>
                   <StyledOption value="espumosos">Espumosos</StyledOption>
                   <StyledOption value="destilados">Destilados</StyledOption>
@@ -172,39 +197,6 @@ const AddProductForm = ({ onCloseModal }) => {
                 <ErrorMessage name="subType" component={StyledErrorMessage} />
               </Label>
             </FieldWrapper>
-
-            {/* {typeValue === 'espumosos' && (
-              <Label>
-                SubType
-                <StyledField
-                  as="select"
-                  name="subType"
-                  defaultValue=""
-                  onChange={e => {
-                    props.setFieldValue('subType', e.target.value);
-                    setSubTypeValue(e.target.value);
-                  }}
-                  $isvalid={isValid('subType')}
-                ></StyledField>
-                <ErrorMessage name="subType" component={StyledErrorMessage} />
-              </Label>
-            )} */}
-            {/* {typeValue === 'destilados' && (
-              <Label>
-                SubType
-                <StyledField
-                  as="select"
-                  name="subType"
-                  defaultValue=""
-                  onChange={e => {
-                    props.setFieldValue('subType', e.target.value);
-                    setSubTypeValue(e.target.value);
-                  }}
-                  $isvalid={isValid('subType')}
-                ></StyledField>
-                <ErrorMessage name="subType" component={StyledErrorMessage} />
-              </Label>
-            )} */}
             <Label>
               Region <Span>*</Span>
               <StyledField
@@ -250,6 +242,71 @@ const AddProductForm = ({ onCloseModal }) => {
               />
               <ErrorMessage name="discount" component={StyledErrorMessage} />
             </Label>
+            <FieldWrapper>
+              <Label>
+                Critic
+                <StyledField
+                  as="select"
+                  name="critic"
+                  defaultValue={''}
+                  onChange={e => setCritic(e.target.value)}
+                  $isvalid={isValid('critics')}
+                >
+                  <StyledOption value="" hidden>
+                    Select critic
+                  </StyledOption>
+                  <StyledOption value="1">1</StyledOption>
+                  <StyledOption value="2">2</StyledOption>
+                  <StyledOption value="3">3</StyledOption>
+                  <StyledOption value="4">4</StyledOption>
+                  <StyledOption value="5">5</StyledOption>
+                </StyledField>
+                <ErrorMessage name="critic" component={StyledErrorMessage} />
+              </Label>
+
+              <Label>
+                Critic Rate
+                <StyledField
+                  type="number"
+                  name="criticRate"
+                  value={criticRate}
+                  onChange={e => setCriticRate(e.target.value)}
+                  min="1"
+                  max="10"
+                  disabled={!critic}
+                  $isvalid={isValid('critics')}
+                />
+                <ErrorMessage
+                  name="criticRate"
+                  component={StyledErrorMessage}
+                />
+              </Label>
+            </FieldWrapper>
+
+            <button
+              type="button"
+              onClick={() =>
+                handleAddCritic(props.setFieldValue, props.values.critics)
+              }
+            >
+              Add critic
+            </button>
+            <button
+              type="button"
+              onClick={() => handleResetCritics(props.setFieldValue)}
+            >
+              Reset
+            </button>
+
+            {/* Display Added Critics */}
+            <ul style={{ backgroundColor: 'black' }}>
+              {criticsList.map((item, index) => (
+                <li key={index}>
+                  Critic: {item.critic}, Rate: {item.criticRate}
+                </li>
+              ))}
+            </ul>
+
             <ImageText>Add image</ImageText>
             <Wrapper>
               <ImageLabel>

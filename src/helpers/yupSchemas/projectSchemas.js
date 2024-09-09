@@ -63,6 +63,9 @@ export const ProductSchema = Yup.object().shape({
       'Wrong subType'
     )
     .required('Required'),
+  critics: Yup.array(),
+  critic: Yup.string(),
+  criticRate: Yup.number(),
   alcohol: Yup.string()
     .matches(/^[0-9]+$/, 'Only numbers')
     .required('Required'),
