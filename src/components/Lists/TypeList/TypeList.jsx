@@ -5,7 +5,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { getProducts } from '../../../redux/products/operations';
 import { useProducts } from 'hooks/useProducts';
 import TypeItem from 'components/Items/TypeItem/TypeItem';
-import { H2Title, List, TotalTypes } from './TypeList.styled';
+import { H2Title, List } from './TypeList.styled';
 
 const TypeList = () => {
   const location = useLocation();
@@ -18,15 +18,9 @@ const TypeList = () => {
     dispatch(getProducts(subType));
   }, [dispatch, subType]);
 
-  const total = products.totalProducts;
-  const type = products.subType;
-
   return (
     <>
       <H2Title>{products.subType}</H2Title>
-      <TotalTypes>
-        Total {type}: {total}
-      </TotalTypes>
       {!isProductsLoading && (
         <List>
           {products.products.map(

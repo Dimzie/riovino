@@ -26,10 +26,10 @@ const EspumososCatalogList = () => {
             <EspumososCatalogItem
               title={title}
               img={img}
-              type={type}
               key={id}
               alt={alt}
               qty={totalCount}
+              type={type}
               state={{ from: location }}
             />
           );
