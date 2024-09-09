@@ -20,7 +20,7 @@ const TypeList = () => {
 
   return (
     <>
-      <H2Title>{products.subType}</H2Title>
+      <H2Title>{}</H2Title>
       {!isProductsLoading && (
         <List>
           {products.products.map(
