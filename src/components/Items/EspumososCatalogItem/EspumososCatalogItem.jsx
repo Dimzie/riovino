@@ -8,9 +8,10 @@ import {
 } from './EspumososCatalogItem.styled';
 
 const EspumososCatalogItem = ({ title, type, img, alt, qty, state }) => {
+  console.log(type);
   return (
     <Li>
-      <Link to={`/vinos/${type}`} state={state}>
+      <Link to={`/espumosos/${type}`} state={state}>
         <ImgContainer>
           <img src={img} alt={alt} />
         </ImgContainer>

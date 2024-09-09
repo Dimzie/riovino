@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 const DestiladosCatalogItem = ({ title, type, img, alt, qty, state }) => {
   return (
     <Li>
-      <Link to={`/vinos/${type}`} state={state}>
+      <Link to={`/destilados/${type}`} state={state}>
         <ImgContainer>
           <img src={img} alt={alt} />
         </ImgContainer>

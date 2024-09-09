@@ -14,8 +14,3 @@ export const List = styled.ul`
   gap: 20px;
   margin-bottom: 70px; 
 `;
-
-export const TotalTypes = styled.p`
-  text-align: center;
-  margin-bottom: 25px;
-`
