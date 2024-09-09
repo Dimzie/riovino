@@ -62,7 +62,6 @@ export const addProduct = createAsyncThunk(
       formData.append('price', price);
       formData.append('region', region);
       formData.append('capacity', capacity);
-      formData.append('critics', critics);
       if (discount) {
         formData.append('discount', discount);
       }
@@ -72,6 +71,17 @@ export const addProduct = createAsyncThunk(
           'Content-Type': 'multipart/form-data',
         },
       });
+
+      if (critics.length > 0) {
+        console.log('response.data._id', response.data._id);
+        const secondaryResponse = await instance.patch(
+          `/products/${response.data._id}`,
+          { critics }
+        );
+        console.log('secondaryResponse.data', secondaryResponse.data);
+        return secondaryResponse.data;
+      }
+
       console.log('response.data', response.data);
       return response.data;
     } catch (error) {
