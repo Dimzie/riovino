@@ -3,9 +3,13 @@ import React, { useState } from 'react';
 import { Background, Btn, BtnWrapper } from './Authpage.styled';
 import LoginForm from 'components/LoginForm/LoginForm';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
+import BackBtn from 'components/BackBtn/BackBtn';
+import { useLocation } from 'react-router-dom';
 
 const Authpage = () => {
   const [activeBtn, setActiveBtn] = useState('in');
+  const location = useLocation();
+  const backLink = location?.state?.from ?? '/';
 
   const handleClickSignIn = () => {
     setActiveBtn('in');
@@ -26,6 +30,7 @@ const Authpage = () => {
       </BtnWrapper>
 
       {activeBtn === 'in' ? <LoginForm /> : <RegisterForm />}
+      <BackBtn backLink={backLink} />
     </Section>
   );
 };
