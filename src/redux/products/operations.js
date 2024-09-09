@@ -36,7 +36,18 @@ export const getProductById = createAsyncThunk(
 export const addProduct = createAsyncThunk(
   'products/addProduct',
   async (
-    { image, title, type, subType, alcohol, price, region, capacity, discount },
+    {
+      image,
+      title,
+      type,
+      subType,
+      alcohol,
+      price,
+      region,
+      capacity,
+      discount,
+      critics,
+    },
     thunkAPI
   ) => {
     try {
@@ -51,6 +62,7 @@ export const addProduct = createAsyncThunk(
       formData.append('price', price);
       formData.append('region', region);
       formData.append('capacity', capacity);
+      formData.append('critics', critics);
       if (discount) {
         formData.append('discount', discount);
       }

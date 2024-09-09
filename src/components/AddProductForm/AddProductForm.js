@@ -23,6 +23,13 @@ import { IoAddSharp } from 'react-icons/io5';
 import { BsArrowClockwise } from 'react-icons/bs';
 import { MdDelete } from 'react-icons/md';
 import { zaglushka } from '../../images/images.index';
+import {
+  critics,
+  productDestilados,
+  productEspumosos,
+  productType,
+  productVinos,
+} from 'data/data';
 
 const AddProductForm = ({ onCloseModal }) => {
   const [previewImage, setPreviewImage] = useState(null);
@@ -77,9 +84,9 @@ const AddProductForm = ({ onCloseModal }) => {
 
   const handleSubmit = async (values, actions) => {
     console.log('values', values);
-    // dispatch(addProduct(values));
-    // actions.resetForm();
-    // onCloseModal();
+    dispatch(addProduct(values));
+    actions.resetForm();
+    onCloseModal();
   };
 
   return (
@@ -121,9 +128,11 @@ const AddProductForm = ({ onCloseModal }) => {
                   <StyledOption value="" hidden>
                     Select type
                   </StyledOption>
-                  <StyledOption value="vinos">Vinos</StyledOption>
-                  <StyledOption value="espumosos">Espumosos</StyledOption>
-                  <StyledOption value="destilados">Destilados</StyledOption>
+                  {productType.map(type => (
+                    <StyledOption key={type.value} value={type.value}>
+                      {type.name}
+                    </StyledOption>
+                  ))}
                 </StyledField>
                 <ErrorMessage name="type" component={StyledErrorMessage} />
               </Label>
@@ -145,13 +154,11 @@ const AddProductForm = ({ onCloseModal }) => {
                       <StyledOption value="" hidden>
                         Select sub type
                       </StyledOption>
-                      <StyledOption value="tinto">Tinto</StyledOption>
-                      <StyledOption value="blanco">Blanco</StyledOption>
-                      <StyledOption value="rosado">Rosado</StyledOption>
-                      <StyledOption value="generoso">Generoso</StyledOption>
-                      <StyledOption value="dulce">Dulce</StyledOption>
-                      <StyledOption value="aranja">Naranja</StyledOption>
-                      <StyledOption value="vermut">Vermut</StyledOption>
+                      {productVinos.map(vinos => (
+                        <StyledOption key={vinos.value} value={vinos.value}>
+                          {vinos.name}
+                        </StyledOption>
+                      ))}
                     </>
                   )}
                   {typeValue === 'espumosos' && (
@@ -159,13 +166,14 @@ const AddProductForm = ({ onCloseModal }) => {
                       <StyledOption value="" hidden>
                         Select sub type
                       </StyledOption>
-                      <StyledOption value="champagne">Champagne</StyledOption>
-                      <StyledOption value="cava">Cava</StyledOption>
-                      <StyledOption value="corpinnat">Corpinnat</StyledOption>
-                      <StyledOption value="prosecco">Prosecco</StyledOption>
-                      <StyledOption value="otrosEspumosos">
-                        Otros Espumosos
-                      </StyledOption>
+                      {productEspumosos.map(espumosos => (
+                        <StyledOption
+                          key={espumosos.value}
+                          value={espumosos.value}
+                        >
+                          {espumosos.name}
+                        </StyledOption>
+                      ))}
                     </>
                   )}
 
@@ -174,23 +182,14 @@ const AddProductForm = ({ onCloseModal }) => {
                       <StyledOption value="" hidden>
                         Select sub type
                       </StyledOption>
-                      <StyledOption value="ron">Ron</StyledOption>
-                      <StyledOption value="ginebra">Ginebra</StyledOption>
-                      <StyledOption value="whisky">Whisky</StyledOption>
-                      <StyledOption value="vodka">Vodka</StyledOption>
-                      <StyledOption value="cognac">Cognac</StyledOption>
-                      <StyledOption value="brandy">Brandy</StyledOption>
-                      <StyledOption value="pastis">Pastis</StyledOption>
-                      <StyledOption value="tequilaYMezcal">
-                        TequilaYMezcal
-                      </StyledOption>
-                      <StyledOption value="grappaYAguardiente">
-                        GrappaYAguardiente
-                      </StyledOption>
-                      <StyledOption value="calvados">Calvados</StyledOption>
-                      <StyledOption value="licores">Licores</StyledOption>
-                      <StyledOption value="pacharan">Pacharan</StyledOption>
-                      <StyledOption value="aperitivos">Aperitivos</StyledOption>
+                      {productDestilados.map(destilados => (
+                        <StyledOption
+                          key={destilados.value}
+                          value={destilados.value}
+                        >
+                          {destilados.name}
+                        </StyledOption>
+                      ))}
                     </>
                   )}
                 </StyledField>
@@ -255,11 +254,11 @@ const AddProductForm = ({ onCloseModal }) => {
                   <StyledOption value="" hidden>
                     Select critic
                   </StyledOption>
-                  <StyledOption value="1">1</StyledOption>
-                  <StyledOption value="2">2</StyledOption>
-                  <StyledOption value="3">3</StyledOption>
-                  <StyledOption value="4">4</StyledOption>
-                  <StyledOption value="5">5</StyledOption>
+                  {critics.map(critic => (
+                    <StyledOption key={critic} value={critic}>
+                      {critic}
+                    </StyledOption>
+                  ))}
                 </StyledField>
                 <ErrorMessage name="critic" component={StyledErrorMessage} />
               </Label>
