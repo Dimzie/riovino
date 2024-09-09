@@ -6,7 +6,7 @@ import {
   Address,
   AddressText,
   HeaderSection,
-  LogoImgContainer,
+  // LogoImgContainer,
   HeaderWrapper,
   HeaderBtnList,
   // LogInBtn,
@@ -15,7 +15,7 @@ import {
 } from './Header.styled';
 import Container from 'components/GlobalContainer/GlobalContainer';
 import { LocationIcon, PhoneIcon } from 'helpers/Icons/Icons.styled';
-import { headerLogo3 } from 'images/images.index';
+// import { headerLogo3 } from 'images/images.index';
 import BurgerMenu from 'components/BurgerMenu/BurgerMenu';
 import Loader from 'components/Loader/Loader';
 import { useProducts } from 'hooks/useProducts';
@@ -62,9 +62,9 @@ const Header = () => {
               </AddressItem>
             </AddressList>
           </Address>
-          <LogoImgContainer>
+          {/* <LogoImgContainer>
             <img src={headerLogo3} alt="Rio Vino Logo" wight="55" height="55" />
-          </LogoImgContainer>
+          </LogoImgContainer> */}
           <HeaderBtnList>
             <button type="button" onClick={toggleModal}>
               Add

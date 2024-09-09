@@ -12,4 +12,10 @@ export const List = styled.ul`
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+  margin-bottom: 70px; 
 `;
+
+export const TotalTypes = styled.p`
+  text-align: center;
+  margin-bottom: 25px;
+`

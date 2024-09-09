@@ -4,11 +4,8 @@ import { register } from '../../redux/auth/operations';
 import { ErrorMessage, Field, Formik } from 'formik';
 import { RegisterSchema } from 'helpers/yupSchemas/projectSchemas';
 import { Label, StyledForm } from './RegisterForm.styled';
-import { useLocation } from 'react-router-dom';
 
 const RegisterForm = () => {
-  const location = useLocation();
-  const backLink = location?.state?.from ?? '/';
   //   const [passVisible, setPassVisible] = useState(false);
   //   const [repeatePassVisible, setRepeatePassVisible] = useState(false);
   const dispatch = useDispatch();
