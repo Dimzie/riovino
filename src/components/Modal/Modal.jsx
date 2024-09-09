@@ -4,15 +4,6 @@ import { createPortal } from 'react-dom';
 import { GrClose } from 'react-icons/gr';
 
 const Modal = ({ children, onCloseModal }) => {
-  const handleOverlayClick = useCallback(
-    event => {
-      if (event.target === event.currentTarget) {
-        onCloseModal();
-      }
-    },
-    [onCloseModal]
-  );
-
   const handleEscapePress = useCallback(
     e => {
       if (e.key === 'Escape') {
@@ -30,7 +21,7 @@ const Modal = ({ children, onCloseModal }) => {
   }, [handleEscapePress]);
 
   return createPortal(
-    <Overlay onClick={handleOverlayClick}>
+    <Overlay>
       <ModalContainer>
         <CloseBtn type="button" onClick={onCloseModal}>
           <GrClose size={25} />

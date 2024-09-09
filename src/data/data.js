@@ -53,7 +53,7 @@ export const vinosCatalogList = [
     countKey: 'totalRosados',
   },
   {
-    title: 'Vino Generosos',
+    title: 'Vinos Generosos',
     img: zaglushka,
     alt: 'Imagen de vinos generosos',
     type: 'vinos-generosos',
@@ -61,7 +61,7 @@ export const vinosCatalogList = [
     countKey: 'totalGeneroso',
   },
   {
-    title: 'Vino Dulces',
+    title: 'Vinos Dulces',
     img: zaglushka,
     alt: 'Imagen de vinos dulces',
     type: 'vinos-dulces',
@@ -69,7 +69,7 @@ export const vinosCatalogList = [
     countKey: 'totalDulces',
   },
   {
-    title: 'Vino Naranjas',
+    title: 'Vinos Naranjas',
     img: zaglushka,
     alt: 'Imagen de vinos naranjas',
     type: 'vinos-naranjas',
@@ -123,8 +123,8 @@ export const espumososCatalogList = [
     title: 'Otros Espumosos',
     img: zaglushka,
     alt: 'Imagen de otro espumosos',
-    type: 'otro-espumosos',
-    id: 'otro-espumosos',
+    type: 'otros-espumosos',
+    id: 'otros-espumosos',
     countKey: 'totalOtrosEspumosos',
   },
 ];
