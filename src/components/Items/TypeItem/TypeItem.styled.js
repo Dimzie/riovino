@@ -21,6 +21,8 @@ export const Li = styled.li`
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Title = styled.h2`
@@ -76,9 +78,18 @@ export const Iva = styled.p`
 `;
 
 export const EditBtn = styled.button`
+  font-family: 'Roboto';
   text-align: center;
-  width: 50px;
-  margin: 0 auto;
   margin-top: 15px;
-  
+  padding: 0;
+  width: 50px;
+  height: 35px;
+  background-color: rgba(46, 47, 66, 1);
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  transition: color 100ms ease-in;
+  &:hover {
+    color: #c0aa41;
+  }
 `;
