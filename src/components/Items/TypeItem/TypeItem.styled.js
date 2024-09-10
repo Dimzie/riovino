@@ -82,7 +82,7 @@ export const EditBtn = styled.button`
   text-align: center;
   margin-top: 15px;
   padding: 0;
-  width: 50px;
+  width: 75px;
   height: 35px;
   background-color: rgba(46, 47, 66, 1);
   border: none;

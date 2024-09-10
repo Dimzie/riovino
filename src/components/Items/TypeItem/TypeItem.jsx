@@ -75,7 +75,7 @@ const TypeItem = ({
           <Iva>IVA incl.</Iva>
         </PriceContainer>
         <AddCartForm />
-        <EditBtn type="button">Edit</EditBtn>
+        <EditBtn type="button">Delete</EditBtn>
       </Container>
     </Li>
   );
