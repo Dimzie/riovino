@@ -14,7 +14,7 @@ const AddCartForm = () => {
   const increaseValue = () => {
     setQuantity(prevQuantity => {
       if (prevQuantity === '' || isNaN(prevQuantity)) {
-        return 1; // If input is empty, start from 1
+        return 1;
       }
       return prevQuantity + 1;
     });
