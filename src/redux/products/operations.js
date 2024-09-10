@@ -36,7 +36,18 @@ export const getProductById = createAsyncThunk(
 export const addProduct = createAsyncThunk(
   'products/addProduct',
   async (
-    { image, title, type, subType, alcohol, price, region, capacity, discount },
+    {
+      image,
+      title,
+      type,
+      subType,
+      alcohol,
+      price,
+      region,
+      capacity,
+      discount,
+      critics,
+    },
     thunkAPI
   ) => {
     try {
@@ -60,6 +71,17 @@ export const addProduct = createAsyncThunk(
           'Content-Type': 'multipart/form-data',
         },
       });
+
+      if (critics.length > 0) {
+        console.log('response.data._id', response.data._id);
+        const secondaryResponse = await instance.patch(
+          `/products/${response.data._id}`,
+          { critics }
+        );
+        console.log('secondaryResponse.data', secondaryResponse.data);
+        return secondaryResponse.data;
+      }
+
       console.log('response.data', response.data);
       return response.data;
     } catch (error) {

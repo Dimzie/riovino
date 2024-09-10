@@ -23,12 +23,22 @@ import { IoAddSharp } from 'react-icons/io5';
 import { BsArrowClockwise } from 'react-icons/bs';
 import { MdDelete } from 'react-icons/md';
 import { zaglushka } from '../../images/images.index';
+import {
+  critics,
+  productDestilados,
+  productEspumosos,
+  productType,
+  productVinos,
+} from 'data/data';
 
 const AddProductForm = ({ onCloseModal }) => {
   const [previewImage, setPreviewImage] = useState(null);
-  const [typeValue, setTypeValue] = useState(null);
+  const [typeValue, setTypeValue] = useState('');
   // eslint-disable-next-line no-unused-vars
   const [subTypeValue, setSubTypeValue] = useState('');
+  const [critic, setCritic] = useState('');
+  const [criticRate, setCriticRate] = useState('');
+  const [criticsList, setCriticsList] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -41,6 +51,7 @@ const AddProductForm = ({ onCloseModal }) => {
     price: '',
     region: '',
     discount: '',
+    critics: [],
     image: null,
   };
 
@@ -50,6 +61,25 @@ const AddProductForm = ({ onCloseModal }) => {
       setPreviewImage(URL.createObjectURL(file));
       setFieldValue('image', file);
     }
+  };
+
+  const handleAddCritic = (setFieldValue, critics) => {
+    if (critic && criticRate) {
+      // Create a critic object and add it to the list
+      const newCritic = { critic, criticRate };
+      setCriticsList(prev => [...prev, newCritic]);
+      const updatedCritics = [...critics, newCritic];
+      setFieldValue('critics', updatedCritics); // Update Formik's values
+
+      // Reset critic fields
+      setCritic('');
+      setCriticRate('');
+    }
+  };
+
+  const handleResetCritics = setFieldValue => {
+    setCriticsList([]);
+    setFieldValue('critics', []);
   };
 
   const handleSubmit = async (values, actions) => {
@@ -95,10 +125,14 @@ const AddProductForm = ({ onCloseModal }) => {
                   name="type"
                   defaultValue=""
                 >
-                  <StyledOption value="" disabled hidden></StyledOption>
-                  <StyledOption value="vinos">Vinos</StyledOption>
-                  <StyledOption value="espumosos">Espumosos</StyledOption>
-                  <StyledOption value="destilados">Destilados</StyledOption>
+                  <StyledOption value="" hidden>
+                    Select type
+                  </StyledOption>
+                  {productType.map(type => (
+                    <StyledOption key={type.value} value={type.value}>
+                      {type.name}
+                    </StyledOption>
+                  ))}
                 </StyledField>
                 <ErrorMessage name="type" component={StyledErrorMessage} />
               </Label>
@@ -120,13 +154,11 @@ const AddProductForm = ({ onCloseModal }) => {
                       <StyledOption value="" hidden>
                         Select sub type
                       </StyledOption>
-                      <StyledOption value="tinto">Tinto</StyledOption>
-                      <StyledOption value="blanco">Blanco</StyledOption>
-                      <StyledOption value="rosado">Rosado</StyledOption>
-                      <StyledOption value="generoso">Generoso</StyledOption>
-                      <StyledOption value="dulce">Dulce</StyledOption>
-                      <StyledOption value="aranja">Naranja</StyledOption>
-                      <StyledOption value="vermut">Vermut</StyledOption>
+                      {productVinos.map(vinos => (
+                        <StyledOption key={vinos.value} value={vinos.value}>
+                          {vinos.name}
+                        </StyledOption>
+                      ))}
                     </>
                   )}
                   {typeValue === 'espumosos' && (
@@ -134,13 +166,14 @@ const AddProductForm = ({ onCloseModal }) => {
                       <StyledOption value="" hidden>
                         Select sub type
                       </StyledOption>
-                      <StyledOption value="champagne">Champagne</StyledOption>
-                      <StyledOption value="cava">Cava</StyledOption>
-                      <StyledOption value="corpinnat">Corpinnat</StyledOption>
-                      <StyledOption value="prosecco">Prosecco</StyledOption>
-                      <StyledOption value="otrosEspumosos">
-                        Otros Espumosos
-                      </StyledOption>
+                      {productEspumosos.map(espumosos => (
+                        <StyledOption
+                          key={espumosos.value}
+                          value={espumosos.value}
+                        >
+                          {espumosos.name}
+                        </StyledOption>
+                      ))}
                     </>
                   )}
 
@@ -149,62 +182,20 @@ const AddProductForm = ({ onCloseModal }) => {
                       <StyledOption value="" hidden>
                         Select sub type
                       </StyledOption>
-                      <StyledOption value="ron">Ron</StyledOption>
-                      <StyledOption value="ginebra">Ginebra</StyledOption>
-                      <StyledOption value="whisky">Whisky</StyledOption>
-                      <StyledOption value="vodka">Vodka</StyledOption>
-                      <StyledOption value="cognac">Cognac</StyledOption>
-                      <StyledOption value="brandy">Brandy</StyledOption>
-                      <StyledOption value="pastis">Pastis</StyledOption>
-                      <StyledOption value="tequilaYMezcal">
-                        TequilaYMezcal
-                      </StyledOption>
-                      <StyledOption value="grappaYAguardiente">
-                        GrappaYAguardiente
-                      </StyledOption>
-                      <StyledOption value="calvados">Calvados</StyledOption>
-                      <StyledOption value="licores">Licores</StyledOption>
-                      <StyledOption value="pacharan">Pacharan</StyledOption>
-                      <StyledOption value="aperitivos">Aperitivos</StyledOption>
+                      {productDestilados.map(destilados => (
+                        <StyledOption
+                          key={destilados.value}
+                          value={destilados.value}
+                        >
+                          {destilados.name}
+                        </StyledOption>
+                      ))}
                     </>
                   )}
                 </StyledField>
                 <ErrorMessage name="subType" component={StyledErrorMessage} />
               </Label>
             </FieldWrapper>
-
-            {/* {typeValue === 'espumosos' && (
-              <Label>
-                SubType
-                <StyledField
-                  as="select"
-                  name="subType"
-                  defaultValue=""
-                  onChange={e => {
-                    props.setFieldValue('subType', e.target.value);
-                    setSubTypeValue(e.target.value);
-                  }}
-                  $isvalid={isValid('subType')}
-                ></StyledField>
-                <ErrorMessage name="subType" component={StyledErrorMessage} />
-              </Label>
-            )} */}
-            {/* {typeValue === 'destilados' && (
-              <Label>
-                SubType
-                <StyledField
-                  as="select"
-                  name="subType"
-                  defaultValue=""
-                  onChange={e => {
-                    props.setFieldValue('subType', e.target.value);
-                    setSubTypeValue(e.target.value);
-                  }}
-                  $isvalid={isValid('subType')}
-                ></StyledField>
-                <ErrorMessage name="subType" component={StyledErrorMessage} />
-              </Label>
-            )} */}
             <Label>
               Region <Span>*</Span>
               <StyledField
@@ -250,6 +241,71 @@ const AddProductForm = ({ onCloseModal }) => {
               />
               <ErrorMessage name="discount" component={StyledErrorMessage} />
             </Label>
+            <FieldWrapper>
+              <Label>
+                Critic
+                <StyledField
+                  as="select"
+                  name="critic"
+                  defaultValue={''}
+                  onChange={e => setCritic(e.target.value)}
+                  $isvalid={isValid('critics')}
+                >
+                  <StyledOption value="" hidden>
+                    Select critic
+                  </StyledOption>
+                  {critics.map(critic => (
+                    <StyledOption key={critic} value={critic}>
+                      {critic}
+                    </StyledOption>
+                  ))}
+                </StyledField>
+                <ErrorMessage name="critic" component={StyledErrorMessage} />
+              </Label>
+
+              <Label>
+                Critic Rate
+                <StyledField
+                  type="number"
+                  name="criticRate"
+                  value={criticRate}
+                  onChange={e => setCriticRate(e.target.value)}
+                  min="1"
+                  max="10"
+                  disabled={!critic}
+                  $isvalid={isValid('critics')}
+                />
+                <ErrorMessage
+                  name="criticRate"
+                  component={StyledErrorMessage}
+                />
+              </Label>
+            </FieldWrapper>
+
+            <button
+              type="button"
+              onClick={() =>
+                handleAddCritic(props.setFieldValue, props.values.critics)
+              }
+            >
+              Add critic
+            </button>
+            <button
+              type="button"
+              onClick={() => handleResetCritics(props.setFieldValue)}
+            >
+              Reset
+            </button>
+
+            {/* Display Added Critics */}
+            <ul style={{ backgroundColor: 'black' }}>
+              {criticsList.map((item, index) => (
+                <li key={index}>
+                  Critic: {item.critic}, Rate: {item.criticRate}
+                </li>
+              ))}
+            </ul>
+
             <ImageText>Add image</ImageText>
             <Wrapper>
               <ImageLabel>

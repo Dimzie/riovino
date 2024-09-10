@@ -235,3 +235,52 @@ export const destiladosCatalogList = [
     countKey: 'totalAperitivos',
   },
 ];
+
+export const productType = [
+  { value: 'vinos', name: 'Vinos' },
+  { value: 'espumosos', name: 'Espumosos' },
+  { value: 'destilados', name: 'Destilados' },
+];
+
+export const productVinos = [
+  { value: 'tinto', name: 'Tinto' },
+  { value: 'blanco', name: 'Blanco' },
+  { value: 'rosado', name: 'Rosado' },
+  { value: 'generoso', name: 'Generoso' },
+  { value: 'dulce', name: 'Dulce' },
+  { value: 'aranja', name: 'Aranja' },
+  { value: 'vermut', name: 'Vermut' },
+];
+
+export const productEspumosos = [
+  { value: 'champagne', name: 'Champagne' },
+  { value: 'cava', name: 'Cava' },
+  { value: 'corpinnat', name: 'Corpinnat' },
+  { value: 'prosecco', name: 'Prosecco' },
+  { value: 'otrosEspumosos', name: 'OtrosEspumosos' },
+];
+
+export const productDestilados = [
+  { value: 'ron', name: 'Ron' },
+  { value: 'ginebra', name: 'Ginebra' },
+  { value: 'whisky', name: 'Whisky' },
+  { value: 'vodka', name: 'Vodka' },
+  { value: 'cognac', name: 'Cognac' },
+  { value: 'brandy', name: 'Brandy' },
+  { value: 'pastis', name: 'Pastis' },
+  { value: 'tequilaYMezcal', name: 'TequilaYMezcal' },
+  { value: 'grappaYAguardiente', name: 'GrappaYAguardiente' },
+  { value: 'calvados', name: 'Calvados' },
+  { value: 'licores', name: 'Licores' },
+  { value: 'pacharan', name: 'Pacharan' },
+  { value: 'aperitivos', name: 'Aperitivos' },
+];
+
+export const critics = [
+  'Rio Vino',
+  'Peñín',
+  'Parker',
+  'Suckling',
+  'Atkin',
+  'Decanter',
+];
