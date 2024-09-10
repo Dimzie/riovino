@@ -243,36 +243,36 @@ export const productType = [
 ];
 
 export const productVinos = [
-  { value: 'tinto', name: 'Tinto' },
-  { value: 'blanco', name: 'Blanco' },
-  { value: 'rosado', name: 'Rosado' },
-  { value: 'generoso', name: 'Generoso' },
-  { value: 'dulce', name: 'Dulce' },
-  { value: 'aranja', name: 'Aranja' },
-  { value: 'vermut', name: 'Vermut' },
+  { value: 'vinos-tintos', name: 'Vinos Tintos' },
+  { value: 'vinos-blancos', name: 'Vinos Blancos' },
+  { value: 'vinos-rosados', name: 'Vinos Rosados' },
+  { value: 'vinos-generosos', name: 'Vinos Generosos' },
+  { value: 'vinos-dulces', name: 'Vinos Dulces' },
+  { value: 'vinos-naranjas', name: 'Vinos Naranjas' },
+  { value: 'vinos-vermuts', name: 'Vinos Vermuts' },
 ];
 
 export const productEspumosos = [
-  { value: 'champagne', name: 'Champagne' },
-  { value: 'cava', name: 'Cava' },
-  { value: 'corpinnat', name: 'Corpinnat' },
-  { value: 'prosecco', name: 'Prosecco' },
-  { value: 'otrosEspumosos', name: 'OtrosEspumosos' },
+  { value: 'champagnes', name: 'Champagnes' },
+  { value: 'cavas', name: 'Cavas' },
+  { value: 'corpinnats', name: 'Corpinnats' },
+  { value: 'proseccos', name: 'Proseccos' },
+  { value: 'otros-espumosos', name: 'Otros Espumosos' },
 ];
 
 export const productDestilados = [
-  { value: 'ron', name: 'Ron' },
-  { value: 'ginebra', name: 'Ginebra' },
-  { value: 'whisky', name: 'Whisky' },
-  { value: 'vodka', name: 'Vodka' },
-  { value: 'cognac', name: 'Cognac' },
-  { value: 'brandy', name: 'Brandy' },
+  { value: 'rones', name: 'Rones' },
+  { value: 'ginebras', name: 'Ginebras' },
+  { value: 'whiskys', name: 'Whiskys' },
+  { value: 'vodkas', name: 'Vodkas' },
+  { value: 'cognacs', name: 'Cognacs' },
+  { value: 'brandys', name: 'Brandys' },
   { value: 'pastis', name: 'Pastis' },
-  { value: 'tequilaYMezcal', name: 'TequilaYMezcal' },
-  { value: 'grappaYAguardiente', name: 'GrappaYAguardiente' },
+  { value: 'tequilas-y-mezcales', name: 'Tequilas y Mezcales' },
+  { value: 'grappa-y-aguardientes', name: 'Grappas y Aguardientes' },
   { value: 'calvados', name: 'Calvados' },
   { value: 'licores', name: 'Licores' },
-  { value: 'pacharan', name: 'Pacharan' },
+  { value: 'pacharanes', name: 'Pacharanes' },
   { value: 'aperitivos', name: 'Aperitivos' },
 ];
 

@@ -31,38 +31,7 @@ export const ProductSchema = Yup.object().shape({
   type: Yup.string()
     .oneOf(['vinos', 'destilados', 'espumosos'], 'Wrong type')
     .required('Required'),
-  subType: Yup.string()
-    .oneOf(
-      [
-        'tinto',
-        'blanco',
-        'rosado',
-        'generoso',
-        'dulce',
-        'aranja',
-        'vermut',
-        'champagne',
-        'cava',
-        'corpinnat',
-        'prosecco',
-        'otrosEspumosos',
-        'ron',
-        'ginebra',
-        'whisky',
-        'vodka',
-        'cognac',
-        'brandy',
-        'pastis',
-        'tequilaYMezcal',
-        'grappaYAguardiente',
-        'calvados',
-        'licores',
-        'pacharan',
-        'aperitivos',
-      ],
-      'Wrong subType'
-    )
-    .required('Required'),
+  subType: Yup.string().required('Required'),
   critics: Yup.array(),
   critic: Yup.string(),
   criticRate: Yup.number(),
