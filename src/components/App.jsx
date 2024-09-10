@@ -37,7 +37,7 @@ export const App = () => {
             <Route path="/destilados" element={<DestiladosCatalogPage />} />
             <Route path="/vinos/:subType" element={<TypePage />} />
             <Route path="/espumosos/:subType" element={<TypePage />} />
-            <Route path="/destilados/:subType  " element={<TypePage />} />
+            <Route path="/destilados/:subType" element={<TypePage />} />
           </Route>
         </Routes>
       )}

@@ -58,7 +58,7 @@ export const vinosCatalogList = [
     alt: 'Imagen de vinos generosos',
     type: 'vinos-generosos',
     id: 'vinos-generosos',
-    countKey: 'totalGeneroso',
+    countKey: 'totalGenerosos',
   },
   {
     title: 'Vinos Dulces',
