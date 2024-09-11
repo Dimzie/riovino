@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   CriticList,
@@ -17,6 +17,8 @@ import {
 import zagl from '../../../images/no-photo.png';
 import { spainFlag } from 'images/images.index';
 import AddCartForm from 'components/AddCartForm/AddCartForm';
+import Modal from 'components/Modal/Modal';
+import UpdateProductForm from 'components/UpdateProductForm/UpdateProductForm';
 
 const TypeItem = ({
   _id,
@@ -28,6 +30,12 @@ const TypeItem = ({
   region,
   capacity,
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   const regionFlagCheck = region => {
     if (
       region.includes('Ribera del Duero') ||
@@ -76,6 +84,14 @@ const TypeItem = ({
         </PriceContainer>
         <AddCartForm />
         <EditBtn type="button">Delete</EditBtn>
+        <EditBtn type="button" onClick={toggleModal}>
+          Update
+        </EditBtn>
+        {isModalOpen && (
+          <Modal onCloseModal={toggleModal}>
+            <UpdateProductForm />
+          </Modal>
+        )}
       </Container>
     </Li>
   );
