@@ -82,6 +82,19 @@ const AddProductForm = ({ onCloseModal }) => {
     setFieldValue('critics', []);
   };
 
+  const handleDeleteCritic = (criticToDelete, setFieldValue) => {
+    // Filter out the critic that needs to be deleted
+    const updatedCriticsList = criticsList.filter(
+      item => item.critic !== criticToDelete
+    );
+
+    // Update the state
+    setCriticsList(updatedCriticsList);
+
+    // Update Formik's values
+    setFieldValue('critics', updatedCriticsList);
+  };
+
   const handleSubmit = async (values, actions) => {
     console.log('values', values);
     dispatch(addProduct(values));
@@ -98,7 +111,6 @@ const AddProductForm = ({ onCloseModal }) => {
       {props => {
         const isValid = field =>
           props.touched[field] && props.errors[field] ? false : true;
-
         return (
           <StyledForm autoComplete="on">
             <Label>
@@ -247,9 +259,10 @@ const AddProductForm = ({ onCloseModal }) => {
                 <StyledField
                   as="select"
                   name="critic"
+                  value={critic}
                   defaultValue={''}
                   onChange={e => setCritic(e.target.value)}
-                  $isvalid={isValid('critics')}
+                  $isvalid={isValid('critic')}
                 >
                   <StyledOption value="" hidden>
                     Select critic
@@ -270,10 +283,8 @@ const AddProductForm = ({ onCloseModal }) => {
                   name="criticRate"
                   value={criticRate}
                   onChange={e => setCriticRate(e.target.value)}
-                  min="1"
-                  max="10"
                   disabled={!critic}
-                  $isvalid={isValid('critics')}
+                  $isvalid={isValid('criticRate')}
                 />
                 <ErrorMessage
                   name="criticRate"
@@ -283,25 +294,40 @@ const AddProductForm = ({ onCloseModal }) => {
             </FieldWrapper>
 
             <button
+              disabled={
+                criticsList.length >= 4 ||
+                criticRate < 0 ||
+                criticRate > 100 ||
+                !Number.isInteger(+criticRate) ||
+                criticRate === ''
+              }
               type="button"
               onClick={() =>
                 handleAddCritic(props.setFieldValue, props.values.critics)
               }
             >
-              Add critic
+              {criticsList.length >= 4
+                ? 'Maximum limit'
+                : criticRate < 0 ||
+                  criticRate > 100 ||
+                  !Number.isInteger(+criticRate)
+                ? 'Wrong number'
+                : 'Add critic'}
             </button>
-            <button
-              type="button"
-              onClick={() => handleResetCritics(props.setFieldValue)}
-            >
-              Reset
-            </button>
-
-            {/* Display Added Critics */}
             <ul style={{ backgroundColor: 'black' }}>
               {criticsList.map((item, index) => (
                 <li key={index}>
-                  Critic: {item.critic}, Rate: {item.criticRate}
+                  <p>
+                    Critic: {item.critic}, Rate: {item.criticRate}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      handleDeleteCritic(item.critic, props.setFieldValue)
+                    }
+                  >
+                    X
+                  </button>
                 </li>
               ))}
             </ul>
