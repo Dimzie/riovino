@@ -1,4 +1,4 @@
-export const formatString = str => {
+export const formatTitleString = str => {
   if (typeof str !== 'string') {
     return '';
   }

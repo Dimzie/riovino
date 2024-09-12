@@ -4,6 +4,7 @@ import headerLogo2 from './Header/riovino-header-logo-2.png';
 import headerLogo3 from './Header/riovino-header-logo-3.png';
 import zaglushka from './no-photo.png';
 import spainFlag from './Flags/spain.webp';
+import franceFlag from './Flags/france.webp';
 
 export {
   headerLogo,
@@ -12,4 +13,5 @@ export {
   headerLogo3,
   zaglushka,
   spainFlag,
+  franceFlag,
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BackBtnLink, BackBtnSpan } from './BackBtn.styled';
-import { BackIcon } from 'helpers/Icons/Icons.styled';
+import { BackIcon } from 'helpers/icons/Icons.styled';
 
 const BackBtn = ({ backLink }) => {
   return (

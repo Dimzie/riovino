@@ -91,8 +91,10 @@ const productsSlice = createSlice({
         state.error = null;
       })
       .addCase(removeProduct.fulfilled, (state, { payload }) => {
-        const index = state.products.map(product => product._id === payload);
-        state.products.splice(index, 1);
+        const index = state.products.products.map(product => product._id === payload);
+        state.products.products.splice(index, 1);
+        state.isLoading = false;
+        state.error = null;
       })
       .addCase(getCountByType.fulfilled, (state, { payload }) => {
         state.countByType = payload;

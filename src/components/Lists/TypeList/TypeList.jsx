@@ -6,7 +6,7 @@ import { getProducts } from '../../../redux/products/operations';
 import { useProducts } from 'hooks/useProducts';
 import TypeItem from 'components/Items/TypeItem/TypeItem';
 import { H2Title, List } from './TypeList.styled';
-import { formatString } from 'helpers/additional/formatString';
+import { formatTitleString } from 'helpers/functions/formatTitleString';
 
 const TypeList = () => {
   const location = useLocation();
@@ -21,7 +21,7 @@ const TypeList = () => {
 
   return (
     <>
-      <H2Title>{formatString(products.subType)}</H2Title>
+      <H2Title>{formatTitleString(products.subType)}</H2Title>
       {!isProductsLoading && (
         <List>
           {products.products.map(
@@ -34,6 +34,7 @@ const TypeList = () => {
               price,
               region,
               capacity,
+              critics,
             }) => {
               return (
                 <TypeItem
@@ -45,6 +46,8 @@ const TypeList = () => {
                   price={price}
                   region={region}
                   capacity={capacity}
+                  id={_id}
+                  critics={critics}
                 />
               );
             }
