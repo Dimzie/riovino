@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { CloseBtn, ModalContainer, Overlay } from './Modal.styled';
 import { createPortal } from 'react-dom';
-import { GrClose } from 'react-icons/gr';
+import { CloseIcon } from 'helpers/Icons/Icons.styled';
 
 const Modal = ({ children, onCloseModal }) => {
   const handleEscapePress = useCallback(
@@ -24,7 +24,7 @@ const Modal = ({ children, onCloseModal }) => {
     <Overlay>
       <ModalContainer>
         <CloseBtn type="button" onClick={onCloseModal}>
-          <GrClose size={25} />
+          <CloseIcon />
         </CloseBtn>
         {children}
       </ModalContainer>

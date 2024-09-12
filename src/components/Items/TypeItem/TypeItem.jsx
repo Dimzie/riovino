@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {
   CartContainer,
   Container,
-  DeleteBtn,
+  TypeBtn,
   ImgContainer,
   InfoContainer,
   Iva,
@@ -12,6 +12,7 @@ import {
   Region,
   RegionContainer,
   Title,
+  TypeBtnContainer,
 } from './TypeItem.styled';
 import zagl from '../../../images/no-photo.png';
 import AddCartForm from 'components/AddCartForm/AddCartForm';
@@ -22,7 +23,7 @@ import { removeProduct } from '../../../redux/products/operations';
 import CriticsList from 'components/Lists/CriticsList/CriticsList';
 import { regionFlagCheck } from 'helpers/functions/regionFlagCheck';
 import { ivaInclude } from 'helpers/functions/ivaIncludeCalculate';
-import DeleteConfirm from 'components/DeleteConfirm/DeleteConfirm';
+import DeleteForm from 'components/DeleteForm/DeleteForm';
 
 const TypeItem = ({
   title,
@@ -74,15 +75,17 @@ const TypeItem = ({
           </PriceContainer>
           <AddCartForm />
         </CartContainer>
-        <DeleteBtn type="button" onClick={toggleDeleteModal}>
-          Delete
-        </DeleteBtn>
-        <DeleteBtn type="button" onClick={toggleUpdateModal}>
-          Update
-        </DeleteBtn>
+        <TypeBtnContainer>
+          <TypeBtn type="button" onClick={toggleDeleteModal}>
+            Borrar
+          </TypeBtn>
+          <TypeBtn type="button" onClick={toggleUpdateModal}>
+            Сambiar
+          </TypeBtn>
+        </TypeBtnContainer>
         {isDeleteModalOpen && (
           <Modal onCloseModal={toggleDeleteModal}>
-            <DeleteConfirm
+            <DeleteForm
               onDelete={onHandleDelete}
               onCloseModal={toggleDeleteModal}
             />

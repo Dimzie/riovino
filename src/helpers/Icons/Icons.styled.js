@@ -5,6 +5,7 @@ import { LiaTelegram } from 'react-icons/lia';
 import { FaInstagram } from 'react-icons/fa';
 import { BiArrowBack } from 'react-icons/bi';
 import { RxHamburgerMenu } from 'react-icons/rx';
+import { GrClose } from 'react-icons/gr';
 
 export const LocationIcon = styled(IoLocationOutline)`
   width: 16px;
@@ -36,4 +37,9 @@ export const BurgerIcon = styled(RxHamburgerMenu)`
   height: 40px;
   color: #ffffff;
   transition: color 150ms ease-in;
+`;
+
+export const CloseIcon = styled(GrClose)`
+  width: 28px;
+  height: 28px;
 `;

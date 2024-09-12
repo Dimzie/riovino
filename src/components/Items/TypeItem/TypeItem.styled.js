@@ -80,10 +80,15 @@ export const Iva = styled.p`
   font-family: 'Roboto';
 `;
 
-export const DeleteBtn = styled.button`
+export const TypeBtnContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+`
+
+export const TypeBtn = styled.button`
   font-family: 'Roboto';
   text-align: center;
-  margin-top: 20px;
   padding: 0;
   width: 75px;
   height: 35px;
