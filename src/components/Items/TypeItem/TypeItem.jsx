@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import {
+  CartContainer,
   Container,
-  CriticList,
-  EditBtn,
+  DeleteBtn,
   ImgContainer,
   InfoContainer,
   Iva,
@@ -11,17 +11,19 @@ import {
   PriceContainer,
   Region,
   RegionContainer,
-  RegionImg,
   Title,
 } from './TypeItem.styled';
 import zagl from '../../../images/no-photo.png';
-import { spainFlag } from 'images/images.index';
 import AddCartForm from 'components/AddCartForm/AddCartForm';
 import Modal from 'components/Modal/Modal';
 import UpdateProductForm from 'components/UpdateProductForm/UpdateProductForm';
+import { useDispatch } from 'react-redux';
+import { removeProduct } from '../../../redux/products/operations';
+import CriticsList from 'components/Lists/CriticsList/CriticsList';
+import { regionFlagCheck } from 'helpers/functions/regionFlagCheck';
+import { ivaInclude } from 'helpers/functions/ivaIncludeCalculate';
 
 const TypeItem = ({
-  _id,
   title,
   alcohol,
   imageURL,
@@ -29,6 +31,8 @@ const TypeItem = ({
   price,
   region,
   capacity,
+  id,
+  critics,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -36,54 +40,36 @@ const TypeItem = ({
     setIsModalOpen(!isModalOpen);
   };
 
-  const regionFlagCheck = region => {
-    if (
-      region.includes('Ribera del Duero') ||
-      region.includes('Rioja') ||
-      region.includes('Rías Baixas') ||
-      region.includes('Rueda') ||
-      region.includes('Navarra') ||
-      region.includes('Jerez') ||
-      region.includes('Málaga') ||
-      region.includes('Huelva')
-    ) {
-      return spainFlag;
-    }
-  };
+  const disptach = useDispatch();
 
-  const ivaInclude = (price, iva) => {
-    const priceToNumb = Number(price);
-    const result = priceToNumb + (price / 100) * 21;
-    if (!iva) {
-      return result.toFixed(2);
-    } else {
-      return priceToNumb.toFixed(2);
-    }
+  const onHandleDelete = () => {
+    disptach(removeProduct(id));
   };
 
   return (
-    <Li key={_id}>
+    <Li>
       <Container>
         <InfoContainer>
           <Title>{title}</Title>
           <RegionContainer>
-            <RegionImg src={regionFlagCheck(region)} alt={region} height="13" />
+            {regionFlagCheck(region)}
             <Region> {region}</Region>
           </RegionContainer>
         </InfoContainer>
         <ImgContainer>
           <img src={imageURL ? imageURL : zagl} alt={imageID} />
         </ImgContainer>
-        <CriticList>
-          <li></li>
-          <li></li>
-        </CriticList>
-        <PriceContainer>
-          <Price>{ivaInclude(price)}€</Price>
-          <Iva>IVA incl.</Iva>
-        </PriceContainer>
-        <AddCartForm />
-        <EditBtn type="button">Delete</EditBtn>
+        <CriticsList critics={critics} />
+        <CartContainer>
+          <PriceContainer>
+            <Price>{ivaInclude(price)}€</Price>
+            <Iva>IVA incl.</Iva>
+          </PriceContainer>
+          <AddCartForm />
+        </CartContainer>
+        <DeleteBtn type="button" onClick={onHandleDelete}>
+          Delete
+        </DeleteBtn>
         <EditBtn type="button" onClick={toggleModal}>
           Update
         </EditBtn>

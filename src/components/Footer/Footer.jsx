@@ -9,6 +9,7 @@ import {
 import Container from 'components/GlobalContainer/GlobalContainer';
 import { InstagramIcon, TelegramIcon } from 'helpers/Icons/Icons.styled';
 
+
 const Footer = () => {
   return (
     <FooterSection>

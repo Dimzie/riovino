@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Li = styled.li`
   /* Responsive, Mobile Li */
   position: relative;
-  padding: 20px;
+  padding: 20px 10px;
   background-color: rgba(1, 1, 1, 0.4);
   width: 100%;
 
@@ -36,6 +36,7 @@ export const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 80px;
+  margin-bottom: 5px;
 `;
 
 export const RegionContainer = styled.div`
@@ -45,8 +46,8 @@ export const RegionContainer = styled.div`
 `;
 
 export const RegionImg = styled.img`
-  height: 13px;
-  margin-right: 5px;
+  height: 10px;
+  margin-right: 3px;
 `;
 
 export const Region = styled.p`
@@ -54,17 +55,19 @@ export const Region = styled.p`
   font-size: 14px;
 `;
 
-export const ImgContainer = styled.div``;
-
-export const CriticList = styled.ul``;
-
-export const CriticItem = styled.li``;
+export const ImgContainer = styled.div`
+  margin-bottom: 10px;
+`;
 
 export const PriceContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
   margin-bottom: 10px;
+`;
+
+export const CartContainer = styled.div`
+  min-height: 80px;
 `;
 
 export const Price = styled.p`
@@ -77,10 +80,10 @@ export const Iva = styled.p`
   font-family: 'Roboto';
 `;
 
-export const EditBtn = styled.button`
+export const DeleteBtn = styled.button`
   font-family: 'Roboto';
   text-align: center;
-  margin-top: 15px;
+  margin-top: 20px;
   padding: 0;
   width: 75px;
   height: 35px;

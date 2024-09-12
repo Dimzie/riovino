@@ -13,7 +13,7 @@ export const Li = styled.li`
 
   /* Laptops, Desctops, Televisors Li */
   @media screen and (min-width: 769px) {
-    width: calc((100% - 40px) / 3);
+    width: calc((100% - 40px) / 4);
   }
 `;
 
