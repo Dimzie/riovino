@@ -77,11 +77,6 @@ const AddProductForm = ({ onCloseModal }) => {
     }
   };
 
-  const handleResetCritics = setFieldValue => {
-    setCriticsList([]);
-    setFieldValue('critics', []);
-  };
-
   const handleDeleteCritic = (criticToDelete, setFieldValue) => {
     // Filter out the critic that needs to be deleted
     const updatedCriticsList = criticsList.filter(
