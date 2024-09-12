@@ -7,7 +7,7 @@ import {
   FooterWarningText,
 } from './Footer.styled';
 import Container from 'components/GlobalContainer/GlobalContainer';
-import { InstagramIcon, TelegramIcon } from 'helpers/icons/Icons.styled';
+import { InstagramIcon, TelegramIcon } from '../../helpers/icons/Icons.styled';
 
 
 const Footer = () => {
