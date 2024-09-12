@@ -82,6 +82,19 @@ const AddProductForm = ({ onCloseModal }) => {
     setFieldValue('critics', []);
   };
 
+  const handleDeleteCritic = (criticToDelete, setFieldValue) => {
+    // Filter out the critic that needs to be deleted
+    const updatedCriticsList = criticsList.filter(
+      item => item.critic !== criticToDelete
+    );
+
+    // Update the state
+    setCriticsList(updatedCriticsList);
+
+    // Update Formik's values
+    setFieldValue('critics', updatedCriticsList);
+  };
+
   const handleSubmit = async (values, actions) => {
     console.log('values', values);
     dispatch(addProduct(values));
@@ -246,6 +259,7 @@ const AddProductForm = ({ onCloseModal }) => {
                 <StyledField
                   as="select"
                   name="critic"
+                  value={critic}
                   defaultValue={''}
                   onChange={e => setCritic(e.target.value)}
                   $isvalid={isValid('critic')}
@@ -265,9 +279,6 @@ const AddProductForm = ({ onCloseModal }) => {
               <Label>
                 Critic Rate
                 <StyledField
-                  min="0"
-                  max="100"
-                  step="1"
                   type="number"
                   name="criticRate"
                   value={criticRate}
@@ -287,7 +298,8 @@ const AddProductForm = ({ onCloseModal }) => {
                 criticsList.length >= 4 ||
                 criticRate < 0 ||
                 criticRate > 100 ||
-                !Number.isInteger(+criticRate)
+                !Number.isInteger(+criticRate) ||
+                criticRate === ''
               }
               type="button"
               onClick={() =>
@@ -302,19 +314,20 @@ const AddProductForm = ({ onCloseModal }) => {
                 ? 'Wrong number'
                 : 'Add critic'}
             </button>
-            <button
-              disabled={criticsList.length === 0}
-              type="button"
-              onClick={() => handleResetCritics(props.setFieldValue)}
-            >
-              Reset
-            </button>
-
-            {/* Display Added Critics */}
             <ul style={{ backgroundColor: 'black' }}>
               {criticsList.map((item, index) => (
                 <li key={index}>
-                  Critic: {item.critic}, Rate: {item.criticRate}
+                  <p>
+                    Critic: {item.critic}, Rate: {item.criticRate}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      handleDeleteCritic(item.critic, props.setFieldValue)
+                    }
+                  >
+                    X
+                  </button>
                 </li>
               ))}
             </ul>
