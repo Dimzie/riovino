@@ -294,9 +294,11 @@ const AddProductForm = ({ onCloseModal }) => {
                 handleAddCritic(props.setFieldValue, props.values.critics)
               }
             >
-              {criticRate < 0 ||
-              criticRate > 100 ||
-              !Number.isInteger(+criticRate)
+              {criticsList.length >= 4
+                ? 'Maximum limit'
+                : criticRate < 0 ||
+                  criticRate > 100 ||
+                  !Number.isInteger(+criticRate)
                 ? 'Wrong number'
                 : 'Add critic'}
             </button>
