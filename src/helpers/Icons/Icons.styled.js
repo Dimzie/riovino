@@ -6,6 +6,8 @@ import { FaInstagram } from 'react-icons/fa';
 import { BiArrowBack } from 'react-icons/bi';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { GrClose } from 'react-icons/gr';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { GrUpdate } from 'react-icons/gr';
 
 export const LocationIcon = styled(IoLocationOutline)`
   width: 16px;
@@ -40,6 +42,16 @@ export const BurgerIcon = styled(RxHamburgerMenu)`
 `;
 
 export const CloseIcon = styled(GrClose)`
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
+`;
+
+export const TrashIcon = styled(AiOutlineDelete)`
+  width: 22px;
+  height: 22px;
+`;
+
+export const UpdateIcon = styled(GrUpdate)`
+  width: 16px;
+  height: 16px;
 `;

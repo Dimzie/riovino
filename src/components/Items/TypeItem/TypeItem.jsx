@@ -12,7 +12,8 @@ import {
   Region,
   RegionContainer,
   Title,
-  TypeBtnContainer,
+  TypeBtnList,
+  TypeBtnLi,
 } from './TypeItem.styled';
 import zagl from '../../../images/no-photo.png';
 import AddCartForm from 'components/AddCartForm/AddCartForm';
@@ -24,6 +25,8 @@ import CriticsList from 'components/Lists/CriticsList/CriticsList';
 import { regionFlagCheck } from 'helpers/functions/regionFlagCheck';
 import { ivaInclude } from 'helpers/functions/ivaIncludeCalculate';
 import DeleteForm from 'components/DeleteForm/DeleteForm';
+import { TrashIcon, UpdateIcon } from 'helpers/Icons/Icons.styled';
+import { useAuth } from 'hooks/useAuth';
 
 const TypeItem = ({
   title,
@@ -38,6 +41,7 @@ const TypeItem = ({
 }) => {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const { user } = useAuth();
 
   const toggleUpdateModal = () => {
     setIsUpdateModalOpen(!isUpdateModalOpen);
@@ -75,14 +79,20 @@ const TypeItem = ({
           </PriceContainer>
           <AddCartForm />
         </CartContainer>
-        <TypeBtnContainer>
-          <TypeBtn type="button" onClick={toggleDeleteModal}>
-            Borrar
-          </TypeBtn>
-          <TypeBtn type="button" onClick={toggleUpdateModal}>
-            Сambiar
-          </TypeBtn>
-        </TypeBtnContainer>
+        {user.userType === 'admin' && (
+          <TypeBtnList>
+            <TypeBtnLi>
+              <TypeBtn type="button" onClick={toggleDeleteModal}>
+                <TrashIcon />
+              </TypeBtn>
+            </TypeBtnLi>
+            <TypeBtnLi>
+              <TypeBtn type="button" onClick={toggleUpdateModal}>
+                <UpdateIcon />
+              </TypeBtn>
+            </TypeBtnLi>
+          </TypeBtnList>
+        )}
         {isDeleteModalOpen && (
           <Modal onCloseModal={toggleDeleteModal}>
             <DeleteForm

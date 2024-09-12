@@ -16,7 +16,7 @@ const AddCartForm = () => {
       if (prevQuantity === '' || isNaN(prevQuantity)) {
         return 1;
       }
-      return prevQuantity + 1;
+      return prevQuantity < 1000 ? prevQuantity + 1 : 1000;
     });
   };
 
@@ -34,8 +34,10 @@ const AddCartForm = () => {
 
     if (value === '') {
       setQuantity('');
-    } else if (Number(value) > 0) {
+    } else if (Number(value) > 0 && Number(value) <= 1000) {
       setQuantity(Number(value));
+    } else if (Number(value) > 1000) {
+      setQuantity(1000);
     }
   };
 
@@ -49,6 +51,7 @@ const AddCartForm = () => {
         value={quantity}
         onChange={handleInputChange}
         min="1"
+        max="1000"
       />
       <FormIncreaseBtn type="button" onClick={increaseValue}>
         +

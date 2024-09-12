@@ -21,13 +21,15 @@ export const DeleteFormYesBtn = styled.button`
   font-family: 'Roboto';
   text-align: center;
   padding: 0px 20px;
+  width: 80px;
   height: 35px;
   background-color: rgba(46, 47, 66, 1);
-  border: none;
+  border: transparent;
   color: #ffffff;
   cursor: pointer;
-  transition: color 100ms ease-in;
+  transition: color 100ms ease-in, border 100ms ease-in;
   &:hover {
+    border: 1px solid #c0aa41;
     color: #c0aa41;
   }
 `;
@@ -35,7 +37,8 @@ export const DeleteFormYesBtn = styled.button`
 export const DeleteFormNoBtn = styled.button`
   font-family: 'Roboto';
   height: 35px;
-  border: none;
+  width: 80px;
+  border: 1px solid #c0aa41;
   background-color: #c0aa41;
   color: #ffffff;
   padding: 0px 20px;

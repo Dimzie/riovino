@@ -80,24 +80,29 @@ export const Iva = styled.p`
   font-family: 'Roboto';
 `;
 
-export const TypeBtnContainer = styled.div`
+export const TypeBtnList = styled.ul`
   display: flex;
   gap: 10px;
   margin-top: 20px;
-`
+`;
+
+export const TypeBtnLi = styled.li``
 
 export const TypeBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Roboto';
-  text-align: center;
   padding: 0;
-  width: 75px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   background-color: rgba(46, 47, 66, 1);
-  border: none;
+  border: transparent;
   color: #ffffff;
   cursor: pointer;
-  transition: color 100ms ease-in;
+  transition: color 100ms ease-in, border 100ms ease-in;
   &:hover {
+    border: 1px solid #c0aa41;
     color: #c0aa41;
   }
 `;
