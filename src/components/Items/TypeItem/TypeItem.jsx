@@ -22,6 +22,7 @@ import { removeProduct } from '../../../redux/products/operations';
 import CriticsList from 'components/Lists/CriticsList/CriticsList';
 import { regionFlagCheck } from 'helpers/functions/regionFlagCheck';
 import { ivaInclude } from 'helpers/functions/ivaIncludeCalculate';
+import DeleteConfirm from 'components/DeleteConfirm/DeleteConfirm';
 
 const TypeItem = ({
   title,
@@ -34,16 +35,22 @@ const TypeItem = ({
   id,
   critics,
 }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+  const toggleUpdateModal = () => {
+    setIsUpdateModalOpen(!isUpdateModalOpen);
+  };
+
+  const toggleDeleteModal = () => {
+    setIsDeleteModalOpen(!isDeleteModalOpen);
   };
 
   const disptach = useDispatch();
 
   const onHandleDelete = () => {
     disptach(removeProduct(id));
+    setIsDeleteModalOpen(false);
   };
 
   return (
@@ -67,14 +74,22 @@ const TypeItem = ({
           </PriceContainer>
           <AddCartForm />
         </CartContainer>
-        <DeleteBtn type="button" onClick={onHandleDelete}>
+        <DeleteBtn type="button" onClick={toggleDeleteModal}>
           Delete
         </DeleteBtn>
-        <EditBtn type="button" onClick={toggleModal}>
+        <DeleteBtn type="button" onClick={toggleUpdateModal}>
           Update
-        </EditBtn>
-        {isModalOpen && (
-          <Modal onCloseModal={toggleModal}>
+        </DeleteBtn>
+        {isDeleteModalOpen && (
+          <Modal onCloseModal={toggleDeleteModal}>
+            <DeleteConfirm
+              onDelete={onHandleDelete}
+              onCloseModal={toggleDeleteModal}
+            />
+          </Modal>
+        )}
+        {isUpdateModalOpen && (
+          <Modal onCloseModal={toggleUpdateModal}>
             <UpdateProductForm />
           </Modal>
         )}

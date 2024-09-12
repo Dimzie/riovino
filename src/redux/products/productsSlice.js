@@ -91,7 +91,9 @@ const productsSlice = createSlice({
         state.error = null;
       })
       .addCase(removeProduct.fulfilled, (state, { payload }) => {
-        const index = state.products.products.map(product => product._id === payload);
+        const index = state.products.products.findIndex(
+          product => product._id === payload
+        );
         state.products.products.splice(index, 1);
         state.isLoading = false;
         state.error = null;
