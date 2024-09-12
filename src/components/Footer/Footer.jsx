@@ -7,7 +7,8 @@ import {
   FooterWarningText,
 } from './Footer.styled';
 import Container from 'components/GlobalContainer/GlobalContainer';
-// import { InstagramIcon, TelegramIcon } from 'helpers/icons/Icons.styled';
+import { InstagramIcon, TelegramIcon } from 'helpers/Icons/Icons.styled';
+
 
 const Footer = () => {
   return (
@@ -16,12 +17,12 @@ const Footer = () => {
         <FooterList>
           <FooterItem>
             <FooterSocialLink href="#">
-              {/* <TelegramIcon /> */}
+              <TelegramIcon />
             </FooterSocialLink>
           </FooterItem>
           <FooterItem>
             <FooterSocialLink href="#">
-              {/* <InstagramIcon /> */}
+              <InstagramIcon />
             </FooterSocialLink>
           </FooterItem>
         </FooterList>

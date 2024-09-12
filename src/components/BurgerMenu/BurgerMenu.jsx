@@ -1,4 +1,4 @@
-import { BurgerIcon } from 'helpers/icons/Icons.styled';
+import { BurgerIcon } from 'helpers/Icons/Icons.styled';
 import React from 'react';
 import { BurgerBtn } from './BurgerMenu.styled';
 

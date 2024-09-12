@@ -14,7 +14,7 @@ import {
   AuthBtn,
 } from './Header.styled';
 import Container from 'components/GlobalContainer/GlobalContainer';
-import { LocationIcon, PhoneIcon } from 'helpers/icons/Icons.styled';
+import { LocationIcon, PhoneIcon } from 'helpers/Icons/Icons.styled';
 // import { headerLogo3 } from 'images/images.index';
 import BurgerMenu from 'components/BurgerMenu/BurgerMenu';
 import Loader from 'components/Loader/Loader';
