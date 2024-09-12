@@ -34,7 +34,10 @@ export const ProductSchema = Yup.object().shape({
   subType: Yup.string().required('Required'),
   critics: Yup.array(),
   critic: Yup.string(),
-  criticRate: Yup.number(),
+  criticRate: Yup.number()
+    .min(0, 'Minimum is 0')
+    .max(100, 'Maximum is 100')
+    .integer('Only integers are allowed'),
   alcohol: Yup.string()
     .matches(/^[0-9]+$/, 'Only numbers')
     .required('Required'),

@@ -98,7 +98,6 @@ const AddProductForm = ({ onCloseModal }) => {
       {props => {
         const isValid = field =>
           props.touched[field] && props.errors[field] ? false : true;
-
         return (
           <StyledForm autoComplete="on">
             <Label>
@@ -249,7 +248,7 @@ const AddProductForm = ({ onCloseModal }) => {
                   name="critic"
                   defaultValue={''}
                   onChange={e => setCritic(e.target.value)}
-                  $isvalid={isValid('critics')}
+                  $isvalid={isValid('critic')}
                 >
                   <StyledOption value="" hidden>
                     Select critic
@@ -266,14 +265,15 @@ const AddProductForm = ({ onCloseModal }) => {
               <Label>
                 Critic Rate
                 <StyledField
+                  min="0"
+                  max="100"
+                  step="1"
                   type="number"
                   name="criticRate"
                   value={criticRate}
                   onChange={e => setCriticRate(e.target.value)}
-                  min="1"
-                  max="10"
                   disabled={!critic}
-                  $isvalid={isValid('critics')}
+                  $isvalid={isValid('criticRate')}
                 />
                 <ErrorMessage
                   name="criticRate"
@@ -283,14 +283,25 @@ const AddProductForm = ({ onCloseModal }) => {
             </FieldWrapper>
 
             <button
+              disabled={
+                criticsList.length >= 4 ||
+                criticRate < 0 ||
+                criticRate > 100 ||
+                !Number.isInteger(+criticRate)
+              }
               type="button"
               onClick={() =>
                 handleAddCritic(props.setFieldValue, props.values.critics)
               }
             >
-              Add critic
+              {criticRate < 0 ||
+              criticRate > 100 ||
+              !Number.isInteger(+criticRate)
+                ? 'Wrong number'
+                : 'Add critic'}
             </button>
             <button
+              disabled={criticsList.length === 0}
               type="button"
               onClick={() => handleResetCritics(props.setFieldValue)}
             >
