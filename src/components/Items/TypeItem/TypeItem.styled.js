@@ -56,7 +56,12 @@ export const Region = styled.p`
 `;
 
 export const ImgContainer = styled.div`
+  /* max-height: 380px; */
   margin-bottom: 10px;
+`;
+
+export const Img = styled.img`
+  max-height: 380px;
 `;
 
 export const PriceContainer = styled.div`
@@ -86,7 +91,7 @@ export const TypeBtnList = styled.ul`
   margin-top: 20px;
 `;
 
-export const TypeBtnLi = styled.li``
+export const TypeBtnLi = styled.li``;
 
 export const TypeBtn = styled.button`
   display: flex;

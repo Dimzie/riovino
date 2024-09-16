@@ -8,6 +8,7 @@ import { RxHamburgerMenu } from 'react-icons/rx';
 import { GrClose } from 'react-icons/gr';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { GrUpdate } from 'react-icons/gr';
+import { IoAddSharp } from 'react-icons/io5';
 
 export const LocationIcon = styled(IoLocationOutline)`
   width: 16px;
@@ -54,4 +55,9 @@ export const TrashIcon = styled(AiOutlineDelete)`
 export const UpdateIcon = styled(GrUpdate)`
   width: 16px;
   height: 16px;
+`;
+
+export const AddIcon = styled(IoAddSharp)`
+  width: 28px;
+  height: 28px;
 `;

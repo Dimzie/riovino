@@ -3,26 +3,30 @@ import { Formik, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { ProductSchema } from 'helpers/yupSchemas/projectSchemas';
 import {
+  AddCriticBtn,
   AddIconWrapper,
+  CriticContainer,
+  CriticDeleteBtn,
+  CriticName,
   DeleteIconWrapper,
   FieldWrapper,
   ImageLabel,
   ImageText,
   ImageWrapper,
   Label,
-  Span,
+  Li,
+  List,
+  SpanSymbol,
+  SpanText,
   StyledErrorMessage,
   StyledField,
   StyledForm,
   StyledOption,
   SubmitButton,
+  Title,
   Wrapper,
 } from './AddProductForm.styled';
 import { addProduct } from '../../redux/products/operations';
-import { IoAddSharp } from 'react-icons/io5';
-import { BsArrowClockwise } from 'react-icons/bs';
-import { MdDelete } from 'react-icons/md';
-import { zaglushka } from '../../images/images.index';
 import {
   critics,
   productDestilados,
@@ -30,11 +34,13 @@ import {
   productType,
   productVinos,
 } from 'data/data';
+import { CriticScore } from 'components/Items/CriticsItem/CriticsItem.styled';
+import { sortedCritics } from 'helpers/functions/sortedCriticsAZ';
+import { AddIcon, CloseIcon } from 'helpers/Icons/Icons.styled';
 
 const AddProductForm = ({ onCloseModal }) => {
   const [previewImage, setPreviewImage] = useState(null);
   const [typeValue, setTypeValue] = useState('');
-  // eslint-disable-next-line no-unused-vars
   const [subTypeValue, setSubTypeValue] = useState('');
   const [critic, setCritic] = useState('');
   const [criticRate, setCriticRate] = useState('');
@@ -65,28 +71,20 @@ const AddProductForm = ({ onCloseModal }) => {
 
   const handleAddCritic = (setFieldValue, critics) => {
     if (critic && criticRate) {
-      // Create a critic object and add it to the list
       const newCritic = { critic, criticRate };
       setCriticsList(prev => [...prev, newCritic]);
       const updatedCritics = [...critics, newCritic];
-      setFieldValue('critics', updatedCritics); // Update Formik's values
-
-      // Reset critic fields
+      setFieldValue('critics', updatedCritics);
       setCritic('');
       setCriticRate('');
     }
   };
 
   const handleDeleteCritic = (criticToDelete, setFieldValue) => {
-    // Filter out the critic that needs to be deleted
     const updatedCriticsList = criticsList.filter(
       item => item.critic !== criticToDelete
     );
-
-    // Update the state
     setCriticsList(updatedCriticsList);
-
-    // Update Formik's values
     setFieldValue('critics', updatedCriticsList);
   };
 
@@ -96,6 +94,8 @@ const AddProductForm = ({ onCloseModal }) => {
     actions.resetForm();
     onCloseModal();
   };
+
+  const hasItems = criticsList.length > 0;
 
   return (
     <Formik
@@ -107,265 +107,264 @@ const AddProductForm = ({ onCloseModal }) => {
         const isValid = field =>
           props.touched[field] && props.errors[field] ? false : true;
         return (
-          <StyledForm autoComplete="on">
-            <Label>
-              Title <Span>*</Span>
-              <StyledField
-                type="text"
-                name="title"
-                $isvalid={isValid('title')}
-              />
-              <ErrorMessage name="title" component={StyledErrorMessage} />
-            </Label>
-            <FieldWrapper>
+          <>
+            <Title>Agregar un nuevo producto:</Title>
+            <StyledForm autoComplete="on">
               <Label>
-                Type <Span>*</Span>
+                <SpanText>Nombre </SpanText>
+                <SpanSymbol>*</SpanSymbol>
                 <StyledField
-                  onChange={e => {
-                    setTypeValue(e.target.value);
-                    setSubTypeValue('');
-                    props.setFieldValue('type', e.target.value);
-                    props.setFieldValue('subType', '');
-                  }}
-                  $isvalid={isValid('type')}
-                  as="select"
-                  name="type"
-                  defaultValue=""
-                >
-                  <StyledOption value="" hidden>
-                    Select type
-                  </StyledOption>
-                  {productType.map(type => (
-                    <StyledOption key={type.value} value={type.value}>
-                      {type.name}
-                    </StyledOption>
-                  ))}
-                </StyledField>
-                <ErrorMessage name="type" component={StyledErrorMessage} />
-              </Label>
-              <Label>
-                SubType <Span>*</Span>
-                <StyledField
-                  as="select"
-                  name="subType"
-                  defaultValue={subTypeValue}
-                  disabled={!typeValue}
-                  onChange={e => {
-                    props.setFieldValue('subType', e.target.value);
-                    setSubTypeValue(e.target.value);
-                  }}
-                  $isvalid={isValid('subType')}
-                >
-                  {typeValue === 'vinos' && (
-                    <>
-                      <StyledOption value="" hidden>
-                        Select sub type
-                      </StyledOption>
-                      {productVinos.map(vinos => (
-                        <StyledOption key={vinos.value} value={vinos.value}>
-                          {vinos.name}
-                        </StyledOption>
-                      ))}
-                    </>
-                  )}
-                  {typeValue === 'espumosos' && (
-                    <>
-                      <StyledOption value="" hidden>
-                        Select sub type
-                      </StyledOption>
-                      {productEspumosos.map(espumosos => (
-                        <StyledOption
-                          key={espumosos.value}
-                          value={espumosos.value}
-                        >
-                          {espumosos.name}
-                        </StyledOption>
-                      ))}
-                    </>
-                  )}
-
-                  {typeValue === 'destilados' && (
-                    <>
-                      <StyledOption value="" hidden>
-                        Select sub type
-                      </StyledOption>
-                      {productDestilados.map(destilados => (
-                        <StyledOption
-                          key={destilados.value}
-                          value={destilados.value}
-                        >
-                          {destilados.name}
-                        </StyledOption>
-                      ))}
-                    </>
-                  )}
-                </StyledField>
-                <ErrorMessage name="subType" component={StyledErrorMessage} />
-              </Label>
-            </FieldWrapper>
-            <Label>
-              Region <Span>*</Span>
-              <StyledField
-                type="text"
-                name="region"
-                $isvalid={isValid('region')}
-              />
-              <ErrorMessage name="region" component={StyledErrorMessage} />
-            </Label>
-            <Label>
-              Alcohol <Span>*</Span>
-              <StyledField
-                type="text"
-                name="alcohol"
-                $isvalid={isValid('alcohol')}
-              />
-              <ErrorMessage name="alcohol" component={StyledErrorMessage} />
-            </Label>
-            <Label>
-              Capacity <Span>*</Span>
-              <StyledField
-                type="text"
-                name="capacity"
-                $isvalid={isValid('capacity')}
-              />
-              <ErrorMessage name="capacity" component={StyledErrorMessage} />
-            </Label>
-            <Label>
-              Price <Span>*</Span>
-              <StyledField
-                type="text"
-                name="price"
-                $isvalid={isValid('price')}
-              />
-              <ErrorMessage name="price" component={StyledErrorMessage} />
-            </Label>
-            <Label>
-              Discount
-              <StyledField
-                type="text"
-                name="discount"
-                $isvalid={isValid('discount')}
-              />
-              <ErrorMessage name="discount" component={StyledErrorMessage} />
-            </Label>
-            <FieldWrapper>
-              <Label>
-                Critic
-                <StyledField
-                  as="select"
-                  name="critic"
-                  value={critic}
-                  defaultValue={''}
-                  onChange={e => setCritic(e.target.value)}
-                  $isvalid={isValid('critic')}
-                >
-                  <StyledOption value="" hidden>
-                    Select critic
-                  </StyledOption>
-                  {critics.map(critic => (
-                    <StyledOption key={critic} value={critic}>
-                      {critic}
-                    </StyledOption>
-                  ))}
-                </StyledField>
-                <ErrorMessage name="critic" component={StyledErrorMessage} />
-              </Label>
-
-              <Label>
-                Critic Rate
-                <StyledField
-                  type="number"
-                  name="criticRate"
-                  value={criticRate}
-                  onChange={e => setCriticRate(e.target.value)}
-                  disabled={!critic}
-                  $isvalid={isValid('criticRate')}
+                  type="text"
+                  name="title"
+                  $isvalid={isValid('title')}
                 />
-                <ErrorMessage
-                  name="criticRate"
-                  component={StyledErrorMessage}
-                />
+                <ErrorMessage name="title" component={StyledErrorMessage} />
               </Label>
-            </FieldWrapper>
-
-            <button
-              disabled={
-                criticsList.length >= 4 ||
-                criticRate < 0 ||
-                criticRate > 100 ||
-                !Number.isInteger(+criticRate) ||
-                criticRate === ''
-              }
-              type="button"
-              onClick={() =>
-                handleAddCritic(props.setFieldValue, props.values.critics)
-              }
-            >
-              {criticsList.length >= 4
-                ? 'Maximum limit'
-                : criticRate < 0 ||
-                  criticRate > 100 ||
-                  !Number.isInteger(+criticRate)
-                ? 'Wrong number'
-                : 'Add critic'}
-            </button>
-            <ul style={{ backgroundColor: 'black' }}>
-              {criticsList.map((item, index) => (
-                <li key={index}>
-                  <p>
-                    Critic: {item.critic}, Rate: {item.criticRate}
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      handleDeleteCritic(item.critic, props.setFieldValue)
-                    }
-                  >
-                    X
-                  </button>
-                </li>
-              ))}
-            </ul>
-
-            <ImageText>Add image</ImageText>
-            <Wrapper>
-              <ImageLabel>
-                <input
-                  style={{ display: 'none' }}
-                  type="file"
-                  name="image"
-                  onChange={event =>
-                    handleFileChange(event, props.setFieldValue)
-                  }
-                />
-
-                <AddIconWrapper>
-                  {previewImage ? (
-                    <BsArrowClockwise size={40} />
-                  ) : (
-                    <IoAddSharp size={40} />
-                  )}
-                </AddIconWrapper>
-              </ImageLabel>
-              <ImageWrapper>
-                {previewImage && (
-                  <DeleteIconWrapper
-                    onClick={() => {
-                      setPreviewImage(null);
-                      props.setFieldValue('image', null);
+              <FieldWrapper>
+                <Label>
+                  Categoría <SpanSymbol>*</SpanSymbol>
+                  <StyledField
+                    onChange={e => {
+                      setTypeValue(e.target.value);
+                      setSubTypeValue('');
+                      props.setFieldValue('type', e.target.value);
+                      props.setFieldValue('subType', '');
                     }}
+                    $isvalid={isValid('type')}
+                    as="select"
+                    name="type"
+                    defaultValue=""
                   >
-                    <MdDelete size={30} />
-                  </DeleteIconWrapper>
-                )}
-                <img
-                  src={previewImage ? previewImage : zaglushka}
-                  alt="preview img"
+                    <StyledOption value="" hidden>
+                      Seleccionar сategoría
+                    </StyledOption>
+                    {productType.map(type => (
+                      <StyledOption key={type.value} value={type.value}>
+                        {type.name}
+                      </StyledOption>
+                    ))}
+                  </StyledField>
+                  <ErrorMessage name="type" component={StyledErrorMessage} />
+                </Label>
+                <Label>
+                  Tipo <SpanSymbol>*</SpanSymbol>
+                  <StyledField
+                    as="select"
+                    name="subType"
+                    defaultValue={subTypeValue}
+                    disabled={!typeValue}
+                    onChange={e => {
+                      props.setFieldValue('subType', e.target.value);
+                      setSubTypeValue(e.target.value);
+                    }}
+                    $isvalid={isValid('subType')}
+                  >
+                    {typeValue === 'vinos' && (
+                      <>
+                        <StyledOption value="" hidden>
+                          Seleccionar tipo
+                        </StyledOption>
+                        {productVinos.map(vinos => (
+                          <StyledOption key={vinos.value} value={vinos.value}>
+                            {vinos.name}
+                          </StyledOption>
+                        ))}
+                      </>
+                    )}
+                    {typeValue === 'espumosos' && (
+                      <>
+                        <StyledOption value="" hidden>
+                          Seleccionar tipo
+                        </StyledOption>
+                        {productEspumosos.map(espumosos => (
+                          <StyledOption
+                            key={espumosos.value}
+                            value={espumosos.value}
+                          >
+                            {espumosos.name}
+                          </StyledOption>
+                        ))}
+                      </>
+                    )}
+
+                    {typeValue === 'destilados' && (
+                      <>
+                        <StyledOption value="" hidden>
+                          Seleccionar tipo
+                        </StyledOption>
+                        {productDestilados.map(destilados => (
+                          <StyledOption
+                            key={destilados.value}
+                            value={destilados.value}
+                          >
+                            {destilados.name}
+                          </StyledOption>
+                        ))}
+                      </>
+                    )}
+                  </StyledField>
+                  <ErrorMessage name="subType" component={StyledErrorMessage} />
+                </Label>
+              </FieldWrapper>
+              <Label>
+                Región <SpanSymbol>*</SpanSymbol>
+                <StyledField
+                  type="text"
+                  name="region"
+                  $isvalid={isValid('region')}
                 />
-              </ImageWrapper>
-            </Wrapper>
-            <SubmitButton type="submit">Add product</SubmitButton>
-          </StyledForm>
+                <ErrorMessage name="region" component={StyledErrorMessage} />
+              </Label>
+              <Label>
+                Alcohol % <SpanSymbol>*</SpanSymbol>
+                <StyledField
+                  type="text"
+                  name="alcohol"
+                  $isvalid={isValid('alcohol')}
+                />
+                <ErrorMessage name="alcohol" component={StyledErrorMessage} />
+              </Label>
+              <Label>
+                Capacidad <SpanSymbol>*</SpanSymbol>
+                <StyledField
+                  type="text"
+                  name="capacity"
+                  $isvalid={isValid('capacity')}
+                />
+                <ErrorMessage name="capacity" component={StyledErrorMessage} />
+              </Label>
+              <Label>
+                Precio <SpanSymbol>*</SpanSymbol>
+                <StyledField
+                  type="text"
+                  name="price"
+                  $isvalid={isValid('price')}
+                />
+                <ErrorMessage name="price" component={StyledErrorMessage} />
+              </Label>
+              <Label>
+                Descuento
+                <StyledField
+                  type="text"
+                  name="discount"
+                  $isvalid={isValid('discount')}
+                />
+                <ErrorMessage name="discount" component={StyledErrorMessage} />
+              </Label>
+              <FieldWrapper>
+                <Label>
+                  Críticos
+                  <StyledField
+                    as="select"
+                    name="critic"
+                    value={critic}
+                    defaultValue={''}
+                    onChange={e => setCritic(e.target.value)}
+                    $isvalid={isValid('critic')}
+                  >
+                    <StyledOption value="" hidden>
+                      Seleccionar crítico
+                    </StyledOption>
+                    {critics.map(critic => (
+                      <StyledOption key={critic} value={critic}>
+                        {critic}
+                      </StyledOption>
+                    ))}
+                  </StyledField>
+                  <ErrorMessage name="critic" component={StyledErrorMessage} />
+                </Label>
+
+                <Label>
+                  Tasa crítica
+                  <StyledField
+                    type="number"
+                    name="criticRate"
+                    value={criticRate}
+                    onChange={e => setCriticRate(e.target.value)}
+                    disabled={!critic}
+                    $isvalid={isValid('criticRate')}
+                  />
+                  <ErrorMessage
+                    name="criticRate"
+                    component={StyledErrorMessage}
+                  />
+                </Label>
+              </FieldWrapper>
+              <AddCriticBtn
+                disabled={
+                  criticsList.length >= 4 ||
+                  criticRate < 0 ||
+                  criticRate > 100 ||
+                  !Number.isInteger(+criticRate) ||
+                  criticRate === ''
+                }
+                type="button"
+                onClick={() =>
+                  handleAddCritic(props.setFieldValue, props.values.critics)
+                }
+              >
+                {criticsList.length >= 4
+                  ? 'Límite máximo'
+                  : criticRate < 0 ||
+                    criticRate > 100 ||
+                    !Number.isInteger(+criticRate)
+                  ? 'Número equivocado'
+                  : 'Agregar crítico'}
+              </AddCriticBtn>
+              <List hasItems={hasItems}>
+                {sortedCritics(criticsList).map((item, index) => (
+                  <Li key={index}>
+                    <CriticContainer>
+                      <CriticScore>{item.criticRate}</CriticScore>
+                      <CriticDeleteBtn
+                        type="button"
+                        onClick={() =>
+                          handleDeleteCritic(item.critic, props.setFieldValue)
+                        }
+                      >
+                        X
+                      </CriticDeleteBtn>
+                    </CriticContainer>
+                    <CriticName isSpecial={item.critic === 'Rio Vino'}>
+                      {item.critic}
+                    </CriticName>
+                  </Li>
+                ))}
+              </List>
+              <ImageText>Añadir una imagen:</ImageText>
+              <Wrapper>
+                {!previewImage && (
+                  <ImageLabel>
+                    <input
+                      style={{ display: 'none' }}
+                      type="file"
+                      name="image"
+                      onChange={event =>
+                        handleFileChange(event, props.setFieldValue)
+                      }
+                    />
+                    <AddIconWrapper>
+                      <AddIcon />
+                    </AddIconWrapper>
+                  </ImageLabel>
+                )}
+                {previewImage && (
+                  <ImageWrapper>
+                    <DeleteIconWrapper
+                      onClick={() => {
+                        setPreviewImage(null);
+                        props.setFieldValue('image', null);
+                      }}
+                    >
+                      <CloseIcon />
+                    </DeleteIconWrapper>
+                    <img src={previewImage} alt="preview img" />
+                  </ImageWrapper>
+                )}
+              </Wrapper>
+              <SubmitButton type="submit">Añadir un producto</SubmitButton>
+            </StyledForm>
+          </>
         );
       }}
     </Formik>

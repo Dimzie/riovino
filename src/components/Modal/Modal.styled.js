@@ -10,11 +10,12 @@ export const Overlay = styled.div`
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 1000;
 `;
 
 export const ModalContainer = styled.div`
+  font-family: 'Roboto';
   position: relative;
   padding: 60px 20px;
   max-width: 90%;
