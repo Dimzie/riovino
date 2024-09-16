@@ -20,7 +20,10 @@ import AddCartForm from 'components/AddCartForm/AddCartForm';
 import Modal from 'components/Modal/Modal';
 import UpdateProductForm from 'components/UpdateProductForm/UpdateProductForm';
 import { useDispatch } from 'react-redux';
-import { removeProduct } from '../../../redux/products/operations';
+import {
+  getProductById,
+  removeProduct,
+} from '../../../redux/products/operations';
 import CriticsList from 'components/Lists/CriticsList/CriticsList';
 import { regionFlagCheck } from 'helpers/functions/regionFlagCheck';
 import { ivaInclude } from 'helpers/functions/ivaIncludeCalculate';
@@ -41,20 +44,20 @@ const TypeItem = ({
 }) => {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const dispatch = useDispatch();
   const { user } = useAuth();
 
   const toggleUpdateModal = () => {
     setIsUpdateModalOpen(!isUpdateModalOpen);
+    dispatch(getProductById(id));
   };
 
   const toggleDeleteModal = () => {
     setIsDeleteModalOpen(!isDeleteModalOpen);
   };
 
-  const disptach = useDispatch();
-
   const onHandleDelete = () => {
-    disptach(removeProduct(id));
+    dispatch(removeProduct(id));
     setIsDeleteModalOpen(false);
   };
 
