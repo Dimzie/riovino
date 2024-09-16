@@ -31,6 +31,7 @@ const initialState = {
   espumososCount: {},
   destiladosCount: {},
   isLoading: false,
+  isProductLoading: false,
   error: null,
 };
 
@@ -41,7 +42,9 @@ const productsSlice = createSlice({
     builder
       // PENDING
       .addCase(getProducts.pending, handlePending)
-      .addCase(getProductById.pending, handlePending)
+      .addCase(getProductById.pending, state => {
+        state.isProductLoading = true;
+      })
       .addCase(addProduct.pending, handlePending)
       .addCase(updateProduct.pending, handlePending)
       .addCase(removeProduct.pending, handlePending)
@@ -51,7 +54,10 @@ const productsSlice = createSlice({
       .addCase(getDestiladosCount.pending, handlePending)
       // REJECTED
       .addCase(getProducts.rejected, handleRejected)
-      .addCase(getProductById.rejected, handleRejected)
+      .addCase(getProductById.rejected, (state, { payload }) => {
+        state.isProductLoading = false;
+        state.error = payload;
+      })
       .addCase(addProduct.rejected, handleRejected)
       .addCase(updateProduct.rejected, handleRejected)
       .addCase(removeProduct.rejected, handleRejected)
@@ -67,7 +73,7 @@ const productsSlice = createSlice({
       })
       .addCase(getProductById.fulfilled, (state, { payload }) => {
         state.productById = payload;
-        state.isLoading = false;
+        state.isProductLoading = false;
         state.error = null;
       })
       .addCase(addProduct.fulfilled, (state, { payload }) => {

@@ -20,10 +20,7 @@ import AddCartForm from 'components/AddCartForm/AddCartForm';
 import Modal from 'components/Modal/Modal';
 import UpdateProductForm from 'components/UpdateProductForm/UpdateProductForm';
 import { useDispatch } from 'react-redux';
-import {
-  getProductById,
-  removeProduct,
-} from '../../../redux/products/operations';
+import { removeProduct } from '../../../redux/products/operations';
 import CriticsList from 'components/Lists/CriticsList/CriticsList';
 import { regionFlagCheck } from 'helpers/functions/regionFlagCheck';
 import { ivaInclude } from 'helpers/functions/ivaIncludeCalculate';
@@ -49,7 +46,6 @@ const TypeItem = ({
 
   const toggleUpdateModal = () => {
     setIsUpdateModalOpen(!isUpdateModalOpen);
-    dispatch(getProductById(id));
   };
 
   const toggleDeleteModal = () => {
@@ -106,7 +102,7 @@ const TypeItem = ({
         )}
         {isUpdateModalOpen && (
           <Modal onCloseModal={toggleUpdateModal}>
-            <UpdateProductForm />
+            <UpdateProductForm id={id} onCloseModal={toggleUpdateModal} />
           </Modal>
         )}
       </Container>

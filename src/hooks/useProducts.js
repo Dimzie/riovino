@@ -8,6 +8,7 @@ import {
   selectVinosCount,
   selectEspumososCount,
   selectDestiladosCount,
+  selectIsProductLoading,
 } from '../redux/products/selectors';
 
 export const useProducts = () => {
@@ -18,6 +19,7 @@ export const useProducts = () => {
   const espumososCount = useSelector(selectEspumososCount);
   const destiladosCount = useSelector(selectDestiladosCount);
   const isProductsLoading = useSelector(selectIsLoading);
+  const isProductLoading = useSelector(selectIsProductLoading);
   const productError = useSelector(selectError);
 
   return {
@@ -28,6 +30,7 @@ export const useProducts = () => {
     espumososCount,
     destiladosCount,
     isProductsLoading,
+    isProductLoading,
     productError,
   };
 };

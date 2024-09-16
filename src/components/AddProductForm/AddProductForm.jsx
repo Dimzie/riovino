@@ -255,7 +255,7 @@ const AddProductForm = ({ onCloseModal }) => {
                   as="select"
                   name="critic"
                   value={critic}
-                  defaultValue={''}
+                  // defaultValue={''}
                   onChange={e => setCritic(e.target.value)}
                   $isvalid={isValid('critic')}
                 >
