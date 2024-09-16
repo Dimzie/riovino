@@ -52,6 +52,7 @@ export const StyledErrorMessage = styled.p`
   top: 0;
   right: 0;
   color: red;
+  transition: color 100ms ease-in;
 `;
 
 export const ImageLabel = styled.label`
