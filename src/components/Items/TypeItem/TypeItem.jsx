@@ -18,7 +18,6 @@ import {
 import zagl from '../../../images/no-photo.png';
 import AddCartForm from 'components/AddCartForm/AddCartForm';
 import Modal from 'components/Modal/Modal';
-import UpdateProductForm from 'components/UpdateProductForm/UpdateProductForm';
 import { useDispatch } from 'react-redux';
 import { removeProduct } from '../../../redux/products/operations';
 import CriticsList from 'components/Lists/CriticsList/CriticsList';
@@ -27,6 +26,7 @@ import { ivaInclude } from 'helpers/functions/ivaIncludeCalculate';
 import DeleteForm from 'components/DeleteForm/DeleteForm';
 import { TrashIcon, UpdateIcon } from 'helpers/Icons/Icons.styled';
 import { useAuth } from 'hooks/useAuth';
+import UpdateProductModal from 'components/UpdateProductForm/UpdateProductModal';
 
 const TypeItem = ({
   title,
@@ -102,7 +102,7 @@ const TypeItem = ({
         )}
         {isUpdateModalOpen && (
           <Modal onCloseModal={toggleUpdateModal}>
-            <UpdateProductForm id={id} onCloseModal={toggleUpdateModal} />
+            <UpdateProductModal id={id} onCloseModal={toggleUpdateModal} />
           </Modal>
         )}
       </Container>
