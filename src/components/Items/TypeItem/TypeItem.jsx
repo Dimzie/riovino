@@ -19,7 +19,6 @@ import {
 import zagl from '../../../images/no-photo.png';
 import AddCartForm from 'components/AddCartForm/AddCartForm';
 import Modal from 'components/Modal/Modal';
-import UpdateProductForm from 'components/UpdateProductForm/UpdateProductForm';
 import { useDispatch } from 'react-redux';
 import { removeProduct } from '../../../redux/products/operations';
 import CriticsList from 'components/Lists/CriticsList/CriticsList';
@@ -28,6 +27,7 @@ import { ivaInclude } from 'helpers/functions/ivaIncludeCalculate';
 import DeleteForm from 'components/DeleteForm/DeleteForm';
 import { TrashIcon, UpdateIcon } from 'helpers/Icons/Icons.styled';
 import { useAuth } from 'hooks/useAuth';
+import UpdateProductModal from 'components/UpdateProductForm/UpdateProductModal';
 
 const TypeItem = ({
   title,
@@ -42,6 +42,7 @@ const TypeItem = ({
 }) => {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const dispatch = useDispatch();
   const { user } = useAuth();
 
   const toggleUpdateModal = () => {
@@ -52,10 +53,8 @@ const TypeItem = ({
     setIsDeleteModalOpen(!isDeleteModalOpen);
   };
 
-  const disptach = useDispatch();
-
   const onHandleDelete = () => {
-    disptach(removeProduct(id));
+    dispatch(removeProduct(id));
     setIsDeleteModalOpen(false);
   };
 
@@ -104,7 +103,7 @@ const TypeItem = ({
         )}
         {isUpdateModalOpen && (
           <Modal onCloseModal={toggleUpdateModal}>
-            <UpdateProductForm />
+            <UpdateProductModal id={id} onCloseModal={toggleUpdateModal} />
           </Modal>
         )}
       </Container>

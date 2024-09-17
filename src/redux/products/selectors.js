@@ -5,4 +5,5 @@ export const selectVinosCount = state => state.products.vinosCount;
 export const selectEspumososCount = state => state.products.espumososCount;
 export const selectDestiladosCount = state => state.products.destiladosCount;
 export const selectIsLoading = state => state.products.isLoading;
+export const selectIsProductLoading = state => state.products.isProductLoading;
 export const selectError = state => state.products.error;

@@ -2,6 +2,10 @@ import * as Yup from 'yup';
 
 export const RegisterSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email address').required('Required'),
+  name: Yup.string()
+    .min(2, 'At least 2 characters long')
+    .max(10, 'At most 10 characters long')
+    .required('Required'),
   password: Yup.string()
     .min(6, 'Minimum 6 characters long')
     .matches(

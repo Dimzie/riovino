@@ -93,7 +93,19 @@ export const addProduct = createAsyncThunk(
 export const updateProduct = createAsyncThunk(
   'products/updateProduct',
   async (
-    { id, image, title, type, subType, alcohol, price, region, capacity },
+    {
+      id,
+      image,
+      title,
+      type,
+      subType,
+      alcohol,
+      price,
+      region,
+      capacity,
+      discount,
+      critics,
+    },
     thunkAPI
   ) => {
     try {
@@ -108,12 +120,16 @@ export const updateProduct = createAsyncThunk(
       formData.append('price', price);
       formData.append('region', region);
       formData.append('capacity', capacity);
+      if (discount) {
+        formData.append('discount', discount);
+      }
 
-      const response = await instance.patch(`/products/${id}`, formData, {
+      await instance.patch(`/products/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
+      const response = await instance.patch(`/products/${id}`, { critics });
       console.log('response.data', response.data);
       return response.data;
     } catch (error) {
