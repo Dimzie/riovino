@@ -97,9 +97,9 @@ const UpdateProductForm = ({ onCloseModal }) => {
   const handleSubmit = async (values, actions) => {
     console.log('values', values);
     const id = productById._id;
-    // dispatch(updateProduct({ id, ...values }));
-    // actions.resetForm();
-    // onCloseModal();
+    dispatch(updateProduct({ id, ...values }));
+    actions.resetForm();
+    onCloseModal();
   };
 
   return (

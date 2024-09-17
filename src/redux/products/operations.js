@@ -124,21 +124,12 @@ export const updateProduct = createAsyncThunk(
         formData.append('discount', discount);
       }
 
-      const response = await instance.patch(`/products/${id}`, formData, {
+      await instance.patch(`/products/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-
-      if (critics.length > 0) {
-        console.log('response.data._id', response.data._id);
-        const secondaryResponse = await instance.patch(
-          `/products/${response.data._id}`,
-          { critics }
-        );
-        console.log('secondaryResponse.data', secondaryResponse.data);
-        return secondaryResponse.data;
-      }
+      const response = await instance.patch(`/products/${id}`, { critics });
       console.log('response.data', response.data);
       return response.data;
     } catch (error) {
