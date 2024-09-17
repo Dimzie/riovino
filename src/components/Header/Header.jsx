@@ -6,16 +6,20 @@ import {
   Address,
   AddressText,
   HeaderSection,
-  // LogoImgContainer,
   HeaderWrapper,
   HeaderBtnList,
-  // LogInBtn,
-  // SignUpBtn,
   AuthBtn,
+  LogOutBtn,
+  AddBtn,
+  UserWrapper,
+  UserImgWrapper,
 } from './Header.styled';
 import Container from 'components/GlobalContainer/GlobalContainer';
-import { LocationIcon, PhoneIcon } from 'helpers/Icons/Icons.styled';
-// import { headerLogo3 } from 'images/images.index';
+import {
+  AddIcon,
+  LocationIcon,
+  PhoneIcon,
+} from 'helpers/Icons/Icons.styled';
 import BurgerMenu from 'components/BurgerMenu/BurgerMenu';
 import Loader from 'components/Loader/Loader';
 import { useProducts } from 'hooks/useProducts';
@@ -67,9 +71,9 @@ const Header = () => {
           </LogoImgContainer> */}
           <HeaderBtnList>
             {user.userType === 'admin' && (
-              <button type="button" onClick={toggleModal}>
-                Add
-              </button>
+              <AddBtn type="button" onClick={toggleModal}>
+                <AddIcon />
+              </AddBtn>
             )}
             {isModalOpen && (
               <Modal onCloseModal={toggleModal}>
@@ -77,22 +81,22 @@ const Header = () => {
               </Modal>
             )}
             {isLoggedIn ? (
-              <div>
-                <p>{user.email}</p>
-                <button
+              <UserWrapper>
+                <UserImgWrapper>
+                  <img src="" alt="" />
+                </UserImgWrapper>
+                <LogOutBtn
                   onClick={() => {
                     dispatch(logout());
                     navigate('/');
                   }}
                 >
-                  Log out
-                </button>
-              </div>
+                  Salir
+                </LogOutBtn>
+              </UserWrapper>
             ) : (
               <AuthBtn to={'/auth'}>Sign In / Sign Up</AuthBtn>
             )}
-            {/* <LogInBtn type="button">Log In</LogInBtn>
-            <SignUpBtn type="button">Sign Up</SignUpBtn> */}
           </HeaderBtnList>
           <BurgerMenu />
         </HeaderWrapper>

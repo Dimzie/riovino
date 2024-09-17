@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { BsCart4 } from 'react-icons/bs';
 
 export const CartForm = styled.form`
   display: flex;
@@ -73,8 +72,4 @@ export const AddBtn = styled.button`
     border-color: #c0aa41;
     background-color: #ffffff;
   }
-`;
-
-export const AddBtnIcon = styled(BsCart4)`
-  font-size: 24px;
 `;

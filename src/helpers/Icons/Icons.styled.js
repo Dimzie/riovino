@@ -9,6 +9,8 @@ import { GrClose } from 'react-icons/gr';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { GrUpdate } from 'react-icons/gr';
 import { IoAddSharp } from 'react-icons/io5';
+import { BsCart4 } from 'react-icons/bs';
+import { GrLogout } from 'react-icons/gr';
 
 export const LocationIcon = styled(IoLocationOutline)`
   width: 16px;
@@ -60,4 +62,14 @@ export const UpdateIcon = styled(GrUpdate)`
 export const AddIcon = styled(IoAddSharp)`
   width: 28px;
   height: 28px;
+`;
+
+export const AddBtnIcon = styled(BsCart4)`
+  width: 24px;
+  height: 24px;
+`;
+
+export const LogOutIcon = styled(GrLogout)`
+  width: 20px;
+  height: 20px;
 `;

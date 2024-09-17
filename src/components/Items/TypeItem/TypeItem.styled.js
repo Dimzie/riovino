@@ -56,12 +56,11 @@ export const Region = styled.p`
 `;
 
 export const ImgContainer = styled.div`
-  /* max-height: 380px; */
   margin-bottom: 10px;
 `;
 
 export const Img = styled.img`
-  max-height: 380px;
+  height: 380px;
 `;
 
 export const PriceContainer = styled.div`
@@ -102,7 +101,7 @@ export const TypeBtn = styled.button`
   width: 40px;
   height: 40px;
   background-color: rgba(46, 47, 66, 1);
-  border: transparent;
+  border: 1px solid #ffffff;
   color: #ffffff;
   cursor: pointer;
   transition: color 100ms ease-in, border 100ms ease-in;

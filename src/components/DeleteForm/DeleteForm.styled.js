@@ -24,7 +24,7 @@ export const DeleteFormYesBtn = styled.button`
   width: 80px;
   height: 35px;
   background-color: rgba(46, 47, 66, 1);
-  border: transparent;
+  border: 1px solid #ffffff;
   color: #ffffff;
   cursor: pointer;
   transition: color 100ms ease-in, border 100ms ease-in;

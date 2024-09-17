@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import {
   AddBtn,
-  AddBtnIcon,
   CartForm,
   FormDecreaseBtn,
   FormIncreaseBtn,
   FormInput,
 } from './AddCartForm.styled';
+import { AddBtnIcon } from 'helpers/Icons/Icons.styled';
 
 const AddCartForm = () => {
   const [quantity, setQuantity] = useState(1);

@@ -82,35 +82,56 @@ export const HeaderBtnList = styled.ul`
   }
 `;
 
-export const LogInBtn = styled.button`
-  border: 1px solid #ffffff;
-  background-color: transparent;
-  color: #ffffff;
-  padding: 0px 8px;
-  cursor: pointer;
-  transition: color 100ms ease-in, border-color 100ms ease-in;
+export const UserWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
 
+export const UserImgWrapper = styled.div`
+  height: 55px;
+  width: 55px;
+  border: 1px solid #ffffff;
+`;
+
+export const AddBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto';
+  height: 40px;
+  width: 40px;
+  background-color: rgba(46, 47, 66, 1);
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  cursor: pointer;
+  transition: color 100ms ease-in, border 100ms ease-in;
   &:hover,
   &:focus {
+    border: 1px solid #c0aa41;
     color: #c0aa41;
-    border-color: #c0aa41;
   }
 `;
 
-export const SignUpBtn = styled.button`
-  border: 1px solid #c0aa41;
-  background-color: #c0aa41;
-  color: #ffffff;
+export const LogOutBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Roboto';
+  text-align: center;
   padding: 0px 12px;
+  height: 40px;
+  background-color: rgba(46, 47, 66, 1);
+  border: 1px solid #ffffff;
+  color: #ffffff;
   cursor: pointer;
-  transition: color 100ms ease-in, border-color 100ms ease-in,
-    background-color 100ms ease-in;
-
+  transition: color 100ms ease-in, border 100ms ease-in;
   &:hover,
   &:focus {
+    border: 1px solid #c0aa41;
     color: #c0aa41;
-    border-color: #c0aa41;
-    background-color: #ffffff;
   }
 `;
 
@@ -125,7 +146,6 @@ export const AuthBtn = styled(Link)`
   cursor: pointer;
   transition: color 100ms ease-in, border-color 100ms ease-in,
     background-color 100ms ease-in;
-
   &:hover,
   &:focus {
     color: #c0aa41;
