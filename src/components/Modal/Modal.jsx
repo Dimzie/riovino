@@ -14,8 +14,11 @@ const Modal = ({ children, onCloseModal }) => {
   );
 
   useEffect(() => {
+    document.body.style.overflow = 'hidden';
     document.addEventListener('keydown', handleEscapePress);
+
     return () => {
+      document.body.style.overflow = '';
       document.removeEventListener('keydown', handleEscapePress);
     };
   }, [handleEscapePress]);

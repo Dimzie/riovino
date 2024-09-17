@@ -14,6 +14,7 @@ import {
   Title,
   TypeBtnList,
   TypeBtnLi,
+  Img,
 } from './TypeItem.styled';
 import zagl from '../../../images/no-photo.png';
 import AddCartForm from 'components/AddCartForm/AddCartForm';
@@ -68,7 +69,7 @@ const TypeItem = ({
           </RegionContainer>
         </InfoContainer>
         <ImgContainer>
-          <img src={imageURL ? imageURL : zagl} alt={imageID} />
+          <Img src={imageURL ? imageURL : zagl} alt={imageID} />
         </ImgContainer>
         <CriticsList critics={critics} />
         <CartContainer>
