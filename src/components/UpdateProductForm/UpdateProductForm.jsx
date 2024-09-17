@@ -3,19 +3,27 @@ import { Formik, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { ProductSchema } from 'helpers/yupSchemas/projectSchemas';
 import {
+  AddCriticBtn,
   AddIconWrapper,
+  CriticContainer,
+  CriticDeleteBtn,
+  CriticName,
   DeleteIconWrapper,
   FieldWrapper,
   ImageLabel,
   ImageText,
   ImageWrapper,
   Label,
-  Span,
+  Li,
+  List,
+  SpanSymbol,
+  SpanText,
   StyledErrorMessage,
   StyledField,
   StyledForm,
   StyledOption,
   SubmitButton,
+  Title,
   Wrapper,
 } from '../AddProductForm/AddProductForm.styled';
 import { updateProduct } from '../../redux/products/operations';
@@ -115,7 +123,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
           return (
             <StyledForm autoComplete="on">
               <Label>
-                Title <Span>*</Span>
+                Title <SpanSymbol>*</SpanSymbol>
                 <StyledField
                   type="text"
                   name="title"
@@ -125,7 +133,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
               </Label>
               <FieldWrapper>
                 <Label>
-                  Type <Span>*</Span>
+                  Type <SpanSymbol>*</SpanSymbol>
                   <StyledField
                     onChange={e => {
                       setTypeValue(e.target.value);
@@ -150,7 +158,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
                   <ErrorMessage name="type" component={StyledErrorMessage} />
                 </Label>
                 <Label>
-                  SubType <Span>*</Span>
+                  SubType <SpanSymbol>*</SpanSymbol>
                   <StyledField
                     as="select"
                     name="subType"
@@ -210,7 +218,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
                 </Label>
               </FieldWrapper>
               <Label>
-                Region <Span>*</Span>
+                Region <SpanSymbol>*</SpanSymbol>
                 <StyledField
                   type="text"
                   name="region"
@@ -219,7 +227,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
                 <ErrorMessage name="region" component={StyledErrorMessage} />
               </Label>
               <Label>
-                Alcohol <Span>*</Span>
+                Alcohol <SpanSymbol>*</SpanSymbol>
                 <StyledField
                   type="text"
                   name="alcohol"
@@ -228,7 +236,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
                 <ErrorMessage name="alcohol" component={StyledErrorMessage} />
               </Label>
               <Label>
-                Capacity <Span>*</Span>
+                Capacity <SpanSymbol>*</SpanSymbol>
                 <StyledField
                   type="text"
                   name="capacity"
@@ -237,7 +245,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
                 <ErrorMessage name="capacity" component={StyledErrorMessage} />
               </Label>
               <Label>
-                Price <Span>*</Span>
+                Price <SpanSymbol>*</SpanSymbol>
                 <StyledField
                   type="text"
                   name="price"
