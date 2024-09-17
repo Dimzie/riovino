@@ -18,6 +18,7 @@ const RegisterForm = () => {
   //   };
 
   const initialValues = {
+    name: '',
     email: '',
     password: '',
     repeatPassword: '',
@@ -25,6 +26,8 @@ const RegisterForm = () => {
 
   const handleSubmit = async (values, actions) => {
     const { repeatePassword, ...restValues } = values;
+    console.log('restValues', restValues);
+
     dispatch(register(restValues));
     actions.resetForm();
   };
@@ -41,6 +44,11 @@ const RegisterForm = () => {
 
           return (
             <StyledForm autoComplete="on">
+              <Label>
+                Name
+                <Field type="text" name="name" isvalid={isValid('name')} />
+                <ErrorMessage name="name" />
+              </Label>
               <Label>
                 Email
                 <Field type="text" name="email" isvalid={isValid('email')} />

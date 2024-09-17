@@ -15,9 +15,10 @@ const setAccessToken = accessToken => {
 
 export const register = createAsyncThunk(
   'auth/register',
-  async ({ email, password }, thunkAPI) => {
+  async ({ name, email, password }, thunkAPI) => {
     try {
       const response = await instance.post('/auth/register', {
+        name,
         email,
         password,
       });
