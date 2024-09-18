@@ -3,8 +3,12 @@ import { Formik, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { ProductSchema } from 'helpers/yupSchemas/projectSchemas';
 import {
+  AddCriticBtn,
   // AddCriticBtn,
   AddIconWrapper,
+  CriticContainer,
+  CriticDeleteBtn,
+  CriticName,
   // CriticContainer,
   // CriticDeleteBtn,
   // CriticName,
@@ -14,15 +18,19 @@ import {
   ImageText,
   ImageWrapper,
   Label,
+  Li,
+  List,
   // Li,
   // List,
   SpanSymbol,
+  SpanText,
   // SpanText,
   StyledErrorMessage,
   StyledField,
   StyledForm,
   StyledOption,
   SubmitButton,
+  Title,
   // Title,
   Wrapper,
 } from '../AddProductForm/AddProductForm.styled';
@@ -39,6 +47,9 @@ import {
   productVinos,
 } from 'data/data';
 import { useProducts } from 'hooks/useProducts';
+import { AddIcon, CloseIcon } from 'helpers/Icons/Icons.styled';
+import { CriticScore } from 'components/Items/CriticsItem/CriticsItem.styled';
+import { sortedCritics } from 'helpers/functions/sortedCriticsAZ';
 
 const UpdateProductForm = ({ onCloseModal }) => {
   const { productById } = useProducts();
@@ -46,7 +57,6 @@ const UpdateProductForm = ({ onCloseModal }) => {
     productById.imageURL || null
   );
   const [typeValue, setTypeValue] = useState(productById.type || '');
-  // eslint-disable-next-line no-unused-vars
   const [subTypeValue, setSubTypeValue] = useState(productById.subType || '');
   const [critic, setCritic] = useState('');
   const [criticRate, setCriticRate] = useState('');
@@ -110,20 +120,25 @@ const UpdateProductForm = ({ onCloseModal }) => {
     onCloseModal();
   };
 
+  const hasItems = criticsList.length > 0;
+
   return (
     <>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={ProductSchema}
-        onSubmit={handleSubmit}
-      >
-        {props => {
-          const isValid = field =>
-            props.touched[field] && props.errors[field] ? false : true;
-          return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={ProductSchema}
+      onSubmit={handleSubmit}
+    >
+      {props => {
+        const isValid = field =>
+          props.touched[field] && props.errors[field] ? false : true;
+        return (
+          <>
+            <Title>Cambiar el producto seleccionado:</Title>
             <StyledForm autoComplete="on">
               <Label>
-                Title <SpanSymbol>*</SpanSymbol>
+                <SpanText>Nombre </SpanText>
+                <SpanSymbol>*</SpanSymbol>
                 <StyledField
                   type="text"
                   name="title"
@@ -133,7 +148,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
               </Label>
               <FieldWrapper>
                 <Label>
-                  Type <SpanSymbol>*</SpanSymbol>
+                  Categoría <SpanSymbol>*</SpanSymbol>
                   <StyledField
                     onChange={e => {
                       setTypeValue(e.target.value);
@@ -144,10 +159,10 @@ const UpdateProductForm = ({ onCloseModal }) => {
                     $isvalid={isValid('type')}
                     as="select"
                     name="type"
-                    value={typeValue}
+                    defaultValue=""
                   >
                     <StyledOption value="" hidden>
-                      Select type
+                      Seleccionar сategoría
                     </StyledOption>
                     {productType.map(type => (
                       <StyledOption key={type.value} value={type.value}>
@@ -158,7 +173,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
                   <ErrorMessage name="type" component={StyledErrorMessage} />
                 </Label>
                 <Label>
-                  SubType <SpanSymbol>*</SpanSymbol>
+                  Tipo <SpanSymbol>*</SpanSymbol>
                   <StyledField
                     as="select"
                     name="subType"
@@ -173,7 +188,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
                     {typeValue === 'vinos' && (
                       <>
                         <StyledOption value="" hidden>
-                          Select sub type
+                          Seleccionar tipo
                         </StyledOption>
                         {productVinos.map(vinos => (
                           <StyledOption key={vinos.value} value={vinos.value}>
@@ -185,7 +200,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
                     {typeValue === 'espumosos' && (
                       <>
                         <StyledOption value="" hidden>
-                          Select sub type
+                          Seleccionar tipo
                         </StyledOption>
                         {productEspumosos.map(espumosos => (
                           <StyledOption
@@ -201,7 +216,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
                     {typeValue === 'destilados' && (
                       <>
                         <StyledOption value="" hidden>
-                          Select sub type
+                          Seleccionar tipo
                         </StyledOption>
                         {productDestilados.map(destilados => (
                           <StyledOption
@@ -218,7 +233,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
                 </Label>
               </FieldWrapper>
               <Label>
-                Region <SpanSymbol>*</SpanSymbol>
+                Región <SpanSymbol>*</SpanSymbol>
                 <StyledField
                   type="text"
                   name="region"
@@ -227,7 +242,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
                 <ErrorMessage name="region" component={StyledErrorMessage} />
               </Label>
               <Label>
-                Alcohol <SpanSymbol>*</SpanSymbol>
+                Alcohol % <SpanSymbol>*</SpanSymbol>
                 <StyledField
                   type="text"
                   name="alcohol"
@@ -236,7 +251,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
                 <ErrorMessage name="alcohol" component={StyledErrorMessage} />
               </Label>
               <Label>
-                Capacity <SpanSymbol>*</SpanSymbol>
+                Capacidad <SpanSymbol>*</SpanSymbol>
                 <StyledField
                   type="text"
                   name="capacity"
@@ -245,7 +260,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
                 <ErrorMessage name="capacity" component={StyledErrorMessage} />
               </Label>
               <Label>
-                Price <SpanSymbol>*</SpanSymbol>
+                Precio <SpanSymbol>*</SpanSymbol>
                 <StyledField
                   type="text"
                   name="price"
@@ -254,7 +269,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
                 <ErrorMessage name="price" component={StyledErrorMessage} />
               </Label>
               <Label>
-                Discount
+                Descuento
                 <StyledField
                   type="text"
                   name="discount"
@@ -264,17 +279,17 @@ const UpdateProductForm = ({ onCloseModal }) => {
               </Label>
               <FieldWrapper>
                 <Label>
-                  Critic
+                  Críticos
                   <StyledField
                     as="select"
                     name="critic"
                     value={critic}
-                    // defaultValue={''}
+                    defaultValue={''}
                     onChange={e => setCritic(e.target.value)}
                     $isvalid={isValid('critic')}
                   >
                     <StyledOption value="" hidden>
-                      Select critic
+                      Seleccionar crítico
                     </StyledOption>
                     {critics.map(critic => (
                       <StyledOption key={critic} value={critic}>
@@ -286,7 +301,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
                 </Label>
 
                 <Label>
-                  Critic Rate
+                  Tasa crítica
                   <StyledField
                     type="number"
                     name="criticRate"
@@ -301,8 +316,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
                   />
                 </Label>
               </FieldWrapper>
-
-              <button
+              <AddCriticBtn
                 disabled={
                   criticsList.length >= 4 ||
                   criticRate < 0 ||
@@ -316,73 +330,70 @@ const UpdateProductForm = ({ onCloseModal }) => {
                 }
               >
                 {criticsList.length >= 4
-                  ? 'Maximum limit'
+                  ? 'Límite máximo'
                   : criticRate < 0 ||
                     criticRate > 100 ||
                     !Number.isInteger(+criticRate)
-                  ? 'Wrong number'
-                  : 'Add critic'}
-              </button>
-              <ul style={{ backgroundColor: 'black' }}>
-                {criticsList.map((item, index) => (
-                  <li key={index}>
-                    <p>
-                      Critic: {item.critic}, Rate: {item.criticRate}
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        handleDeleteCritic(item.critic, props.setFieldValue)
-                      }
-                    >
-                      X
-                    </button>
-                  </li>
+                  ? 'Número equivocado'
+                  : 'Agregar crítico'}
+              </AddCriticBtn>
+              <List hasItems={hasItems}>
+                {sortedCritics(criticsList).map((item, index) => (
+                  <Li key={index}>
+                    <CriticContainer>
+                      <CriticScore>{item.criticRate}</CriticScore>
+                      <CriticDeleteBtn
+                        type="button"
+                        onClick={() =>
+                          handleDeleteCritic(item.critic, props.setFieldValue)
+                        }
+                      >
+                        X
+                      </CriticDeleteBtn>
+                    </CriticContainer>
+                    <CriticName isSpecial={item.critic === 'Rio Vino'}>
+                      {item.critic}
+                    </CriticName>
+                  </Li>
                 ))}
-              </ul>
-
-              <ImageText>Add image</ImageText>
+              </List>
+              <ImageText>Añadir una imagen:</ImageText>
               <Wrapper>
-                <ImageLabel>
-                  <input
-                    style={{ display: 'none' }}
-                    type="file"
-                    name="image"
-                    onChange={event =>
-                      handleFileChange(event, props.setFieldValue)
-                    }
-                  />
-
-                  <AddIconWrapper>
-                    {previewImage ? (
-                      <BsArrowClockwise size={40} />
-                    ) : (
-                      <IoAddSharp size={40} />
-                    )}
-                  </AddIconWrapper>
-                </ImageLabel>
-                <ImageWrapper>
-                  {previewImage && (
+                {!previewImage && (
+                  <ImageLabel>
+                    <input
+                      style={{ display: 'none' }}
+                      type="file"
+                      name="image"
+                      onChange={event =>
+                        handleFileChange(event, props.setFieldValue)
+                      }
+                    />
+                    <AddIconWrapper>
+                      <AddIcon />
+                    </AddIconWrapper>
+                  </ImageLabel>
+                )}
+                {previewImage && (
+                  <ImageWrapper>
                     <DeleteIconWrapper
                       onClick={() => {
                         setPreviewImage(null);
                         props.setFieldValue('image', null);
                       }}
                     >
-                      <MdDelete size={30} />
+                      <CloseIcon />
                     </DeleteIconWrapper>
-                  )}
-                  <img
-                    src={previewImage ? previewImage : zaglushka}
-                    alt="preview img"
-                  />
-                </ImageWrapper>
+                    <img src={previewImage} alt="preview img" />
+                  </ImageWrapper>
+                )}
               </Wrapper>
-              <SubmitButton type="submit">Update product</SubmitButton>
+              <SubmitButton type="submit">Guardar cambios</SubmitButton>
             </StyledForm>
-          );
-        }}
-      </Formik>
+          </>
+        );
+      }}
+    </Formik>
     </>
   );
 };
