@@ -114,6 +114,25 @@ export const AddBtn = styled.button`
   }
 `;
 
+export const CartBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto';
+  height: 40px;
+  padding: 0 12px;
+  background-color: rgba(46, 47, 66, 1);
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  cursor: pointer;
+  transition: color 100ms ease-in, border 100ms ease-in;
+  &:hover,
+  &:focus {
+    border: 1px solid #c0aa41;
+    color: #c0aa41;
+  }
+`;
+
 export const LogOutBtn = styled.button`
   display: flex;
   justify-content: center;
