@@ -249,7 +249,7 @@ export const productVinos = [
   { value: 'vinos-generosos', name: 'Vinos Generosos' },
   { value: 'vinos-dulces', name: 'Vinos Dulces' },
   { value: 'vinos-naranjas', name: 'Vinos Naranjas' },
-  { value: 'vinos-vermuts', name: 'Vinos Vermuts' },
+  { value: 'vermuts', name: 'Vermuts' },
 ];
 
 export const productEspumosos = [
@@ -269,7 +269,7 @@ export const productDestilados = [
   { value: 'brandys', name: 'Brandys' },
   { value: 'pastis', name: 'Pastis' },
   { value: 'tequilas-y-mezcales', name: 'Tequilas y Mezcales' },
-  { value: 'grappa-y-aguardientes', name: 'Grappas y Aguardientes' },
+  { value: 'grappas-y-aguardientes', name: 'Grappas y Aguardientes' },
   { value: 'calvados', name: 'Calvados' },
   { value: 'licores', name: 'Licores' },
   { value: 'pacharanes', name: 'Pacharanes' },
