@@ -92,9 +92,9 @@ const AddProductForm = ({ onCloseModal }) => {
 
   const handleSubmit = async (values, actions) => {
     console.log('values', values);
-    // dispatch(addProduct(values));
-    // actions.resetForm();
-    // onCloseModal();
+    dispatch(addProduct(values));
+    actions.resetForm();
+    onCloseModal();
   };
 
   const hasItems = criticsList.length > 0;
