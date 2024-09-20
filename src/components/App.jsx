@@ -11,6 +11,7 @@ import { useAuth } from 'hooks/useAuth';
 import { useEffect } from 'react';
 import { getCurrent } from '../redux/auth/operations';
 import RestrictedRoute from './Routes/RestrictedRoute';
+import CartPage from 'pages/CartPage/CartPage';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ export const App = () => {
                 <RestrictedRoute redirectTo="/" component={<Authpage />} />
               }
             />
+            <Route path="/cart" element={<CartPage />} />
             <Route path="/vinos" element={<VinosCatalogPage />} />
             <Route path="/espumosos" element={<EspumososCatalogPage />} />
             <Route path="/destilados" element={<DestiladosCatalogPage />} />

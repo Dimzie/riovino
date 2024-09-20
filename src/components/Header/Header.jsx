@@ -13,9 +13,11 @@ import {
   AddBtn,
   UserWrapper,
   UserImgWrapper,
+  CartBtn,
 } from './Header.styled';
 import Container from 'components/GlobalContainer/GlobalContainer';
 import {
+  AddBtnIcon,
   AddIcon,
   LocationIcon,
   PhoneIcon,
@@ -29,7 +31,7 @@ import { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/auth/operations';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -75,6 +77,11 @@ const Header = () => {
                 <AddIcon />
               </AddBtn>
             )}
+            <Link to={'/cart'}>
+              <CartBtn>
+                <AddBtnIcon />
+              </CartBtn>
+            </Link>
             {isModalOpen && (
               <Modal onCloseModal={toggleModal}>
                 <AddProductForm onCloseModal={toggleModal} />
