@@ -54,10 +54,10 @@ export const addProduct = createAsyncThunk(
     try {
       const formData = new FormData();
       if (image1) {
-        formData.append('image1', image1);
+        formData.append('images', image1);
       }
       if (image2) {
-        formData.append('image2', image2);
+        formData.append('images', image2);
       }
       formData.append('title', title);
       formData.append('type', type);
