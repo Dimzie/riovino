@@ -77,7 +77,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
   };
 
   useEffect(() => {
-    const setImage = (previewImage, productImages, index) => {
+    const setImage = (productImages, index) => {
       return productImages && productImages[index]
         ? productImages[index].imageURL
         : null;
