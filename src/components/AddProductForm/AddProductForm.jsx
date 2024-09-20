@@ -39,7 +39,8 @@ import { sortedCritics } from 'helpers/functions/sortedCriticsAZ';
 import { AddIcon, CloseIcon } from 'helpers/Icons/Icons.styled';
 
 const AddProductForm = ({ onCloseModal }) => {
-  const [previewImage, setPreviewImage] = useState(null);
+  const [previewImage1, setPreviewImage1] = useState(null);
+  const [previewImage2, setPreviewImage2] = useState(null);
   const [typeValue, setTypeValue] = useState('');
   const [subTypeValue, setSubTypeValue] = useState('');
   const [critic, setCritic] = useState('');
@@ -58,14 +59,15 @@ const AddProductForm = ({ onCloseModal }) => {
     region: '',
     discount: '',
     critics: [],
-    image: null,
+    image1: null,
+    image2: null,
   };
 
-  const handleFileChange = (event, setFieldValue) => {
+  const handleFileChange = (event, setFieldValue, setImageState, imageName) => {
     const file = event.currentTarget.files[0];
     if (file) {
-      setPreviewImage(URL.createObjectURL(file));
-      setFieldValue('image', file);
+      setImageState(URL.createObjectURL(file));
+      setFieldValue(imageName, file);
     }
   };
 
@@ -90,9 +92,9 @@ const AddProductForm = ({ onCloseModal }) => {
 
   const handleSubmit = async (values, actions) => {
     console.log('values', values);
-    dispatch(addProduct(values));
-    actions.resetForm();
-    onCloseModal();
+    // dispatch(addProduct(values));
+    // actions.resetForm();
+    // onCloseModal();
   };
 
   const hasItems = criticsList.length > 0;
@@ -333,14 +335,19 @@ const AddProductForm = ({ onCloseModal }) => {
               </List>
               <ImageText>Añadir una imagen:</ImageText>
               <Wrapper>
-                {!previewImage && (
+                {!previewImage1 && (
                   <ImageLabel>
                     <input
                       style={{ display: 'none' }}
                       type="file"
-                      name="image"
+                      name="image1"
                       onChange={event =>
-                        handleFileChange(event, props.setFieldValue)
+                        handleFileChange(
+                          event,
+                          props.setFieldValue,
+                          setPreviewImage1,
+                          'image1'
+                        )
                       }
                     />
                     <AddIconWrapper>
@@ -348,17 +355,50 @@ const AddProductForm = ({ onCloseModal }) => {
                     </AddIconWrapper>
                   </ImageLabel>
                 )}
-                {previewImage && (
+                {previewImage1 && (
                   <ImageWrapper>
                     <DeleteIconWrapper
                       onClick={() => {
-                        setPreviewImage(null);
-                        props.setFieldValue('image', null);
+                        setPreviewImage1(null);
+                        props.setFieldValue('image1', null);
                       }}
                     >
                       <CloseIcon />
                     </DeleteIconWrapper>
-                    <img src={previewImage} alt="preview img" />
+                    <img src={previewImage1} alt="preview img" />
+                  </ImageWrapper>
+                )}
+                {!previewImage2 && (
+                  <ImageLabel>
+                    <input
+                      style={{ display: 'none' }}
+                      type="file"
+                      name="image2"
+                      onChange={event =>
+                        handleFileChange(
+                          event,
+                          props.setFieldValue,
+                          setPreviewImage2,
+                          'image2'
+                        )
+                      }
+                    />
+                    <AddIconWrapper>
+                      <AddIcon />
+                    </AddIconWrapper>
+                  </ImageLabel>
+                )}
+                {previewImage2 && (
+                  <ImageWrapper>
+                    <DeleteIconWrapper
+                      onClick={() => {
+                        setPreviewImage2(null);
+                        props.setFieldValue('image2', null);
+                      }}
+                    >
+                      <CloseIcon />
+                    </DeleteIconWrapper>
+                    <img src={previewImage2} alt="preview img" />
                   </ImageWrapper>
                 )}
               </Wrapper>
