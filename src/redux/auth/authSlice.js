@@ -30,9 +30,7 @@ const authSlice = createSlice({
       .addCase(register.pending, handlePending)
       .addCase(login.pending, handlePending)
       .addCase(logout.pending, handlePending)
-      .addCase(getCurrent.pending, state => {
-        state.isRefreshing = true;
-      })
+      .addCase(getCurrent.pending, handlePending)
       // REJECTED
       .addCase(register.rejected, handleRejected)
       .addCase(login.rejected, handleRejected)

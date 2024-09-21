@@ -37,7 +37,8 @@ export const addProduct = createAsyncThunk(
   'products/addProduct',
   async (
     {
-      image,
+      image1,
+      image2,
       title,
       type,
       subType,
@@ -52,8 +53,11 @@ export const addProduct = createAsyncThunk(
   ) => {
     try {
       const formData = new FormData();
-      if (image) {
-        formData.append('image', image);
+      if (image1) {
+        formData.append('images', image1);
+      }
+      if (image2) {
+        formData.append('images', image2);
       }
       formData.append('title', title);
       formData.append('type', type);
@@ -95,7 +99,8 @@ export const updateProduct = createAsyncThunk(
   async (
     {
       id,
-      image,
+      image1,
+      image2,
       title,
       type,
       subType,
@@ -110,8 +115,11 @@ export const updateProduct = createAsyncThunk(
   ) => {
     try {
       const formData = new FormData();
-      if (image) {
-        formData.append('image', image);
+      if (image1) {
+        formData.append('images', image1);
+      }
+      if (image2) {
+        formData.append('images', image2);
       }
       formData.append('title', title);
       formData.append('type', type);
