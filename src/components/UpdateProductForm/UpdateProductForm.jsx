@@ -65,6 +65,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
     alcohol: productById.alcohol || '',
     capacity: productById.capacity || '',
     price: productById.price || '',
+    year: productById.year || '',
     region: productById.region || '',
     discount: productById.discount || '',
     critics: productById.critics || [],
