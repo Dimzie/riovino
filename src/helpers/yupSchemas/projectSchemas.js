@@ -53,5 +53,6 @@ export const ProductSchema = Yup.object().shape({
     .required('Obligatorio'),
   region: Yup.string().min(2).max(35).required('Obligatorio'),
   discount: Yup.string().matches(/^[0-9.,]+$/, 'Solo numeros, comas y puntos'),
+  year: Yup.string().matches(/^[0-9]+$/, 'Solo numeros'),
   // image: Yup.mixed(),
 });

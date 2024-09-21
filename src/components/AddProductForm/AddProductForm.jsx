@@ -245,6 +245,15 @@ const AddProductForm = ({ onCloseModal }) => {
                 <ErrorMessage name="price" component={StyledErrorMessage} />
               </Label>
               <Label>
+                Año
+                <StyledField
+                  type="text"
+                  name="year"
+                  $isvalid={isValid('year')}
+                />
+                <ErrorMessage name="year" component={StyledErrorMessage} />
+              </Label>
+              <Label>
                 Descuento
                 <StyledField
                   type="text"

@@ -35,10 +35,6 @@ import {
   Wrapper,
 } from '../AddProductForm/AddProductForm.styled';
 import { updateProduct } from '../../redux/products/operations';
-import { IoAddSharp } from 'react-icons/io5';
-import { BsArrowClockwise } from 'react-icons/bs';
-import { MdDelete } from 'react-icons/md';
-import { zaglushka } from '../../images/images.index';
 import {
   critics,
   productDestilados,
