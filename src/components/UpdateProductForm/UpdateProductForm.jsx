@@ -78,8 +78,8 @@ const UpdateProductForm = ({ onCloseModal }) => {
         ? productImages[index].imageURL
         : null;
     };
-    const placeholder1 = setImage(previewImage1, productById.productImages, 0);
-    const placeholder2 = setImage(previewImage2, productById.productImages, 1);
+    const placeholder1 = setImage(productById.productImages, 0);
+    const placeholder2 = setImage(productById.productImages, 1);
     setPreviewImage1(placeholder1);
     setPreviewImage2(placeholder2);
     // eslint-disable-next-line react-hooks/exhaustive-deps
