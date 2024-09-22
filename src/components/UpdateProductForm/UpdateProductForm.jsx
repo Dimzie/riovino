@@ -86,6 +86,11 @@ const UpdateProductForm = ({ onCloseModal }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productById.productImages]);
 
+  const areValuesEqualInitialValues = (values, initialValues) => {
+    console.log(Object.keys(values));
+    return Object.keys(values).every(key => values[key] === initialValues[key]);
+  };
+
   const handleFileChange = (event, setFieldValue, setImageState, imageName) => {
     const file = event.currentTarget.files[0];
     if (file) {
@@ -447,7 +452,15 @@ const UpdateProductForm = ({ onCloseModal }) => {
                     </ImageWrapper>
                   )}
                 </Wrapper>
-                <SubmitButton type="submit">Guardar cambios</SubmitButton>
+                <SubmitButton
+                  type="submit"
+                  disabled={areValuesEqualInitialValues(
+                    props.values,
+                    initialValues
+                  )}
+                >
+                  Guardar cambios
+                </SubmitButton>
               </StyledForm>
             </>
           );
