@@ -65,6 +65,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
     alcohol: productById.alcohol || '',
     capacity: productById.capacity || '',
     price: productById.price || '',
+    year: productById.year || '',
     region: productById.region || '',
     discount: productById.discount || '',
     critics: productById.critics || [],
@@ -84,6 +85,11 @@ const UpdateProductForm = ({ onCloseModal }) => {
     setPreviewImage2(placeholder2);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productById.productImages]);
+
+  const areValuesEqualInitialValues = (values, initialValues) => {
+    console.log(Object.keys(values));
+    return Object.keys(values).every(key => values[key] === initialValues[key]);
+  };
 
   const handleFileChange = (event, setFieldValue, setImageState, imageName) => {
     const file = event.currentTarget.files[0];
@@ -446,7 +452,15 @@ const UpdateProductForm = ({ onCloseModal }) => {
                     </ImageWrapper>
                   )}
                 </Wrapper>
-                <SubmitButton type="submit">Guardar cambios</SubmitButton>
+                <SubmitButton
+                  type="submit"
+                  disabled={areValuesEqualInitialValues(
+                    props.values,
+                    initialValues
+                  )}
+                >
+                  Guardar cambios
+                </SubmitButton>
               </StyledForm>
             </>
           );

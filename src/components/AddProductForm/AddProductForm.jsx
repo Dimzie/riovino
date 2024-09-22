@@ -56,6 +56,7 @@ const AddProductForm = ({ onCloseModal }) => {
     alcohol: '',
     capacity: '',
     price: '',
+    year: '',
     region: '',
     discount: '',
     critics: [],
