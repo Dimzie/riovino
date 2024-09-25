@@ -32,13 +32,12 @@ import UpdateProductModal from 'components/UpdateProductForm/UpdateProductModal'
 const TypeItem = ({
   title,
   alcohol,
-  imageURL,
-  imageID,
   price,
   region,
   capacity,
   id,
   critics,
+  productImages,
 }) => {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -69,7 +68,19 @@ const TypeItem = ({
           </RegionContainer>
         </InfoContainer>
         <ImgContainer>
-          <Img src={imageURL ? imageURL : zagl} alt={imageID} />
+          {productImages.length > 0 ? (
+            productImages.map(({ imageURL, imageID }) => {
+              return (
+                <Img
+                  key={imageID}
+                  src={imageURL ? imageURL : zagl}
+                  alt={imageID}
+                />
+              );
+            })
+          ) : (
+            <Img src={zagl} alt="Sin Foto" />
+          )}
         </ImgContainer>
         <CriticsList critics={critics} />
         <CartContainer>

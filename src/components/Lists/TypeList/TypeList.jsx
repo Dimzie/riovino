@@ -35,6 +35,7 @@ const TypeList = () => {
               region,
               capacity,
               critics,
+              productImages,
             }) => {
               return (
                 <TypeItem
@@ -48,6 +49,7 @@ const TypeList = () => {
                   capacity={capacity}
                   id={_id}
                   critics={critics}
+                  productImages={productImages}
                 />
               );
             }

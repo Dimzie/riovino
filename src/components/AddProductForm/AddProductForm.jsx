@@ -111,7 +111,7 @@ const AddProductForm = ({ onCloseModal }) => {
           props.touched[field] && props.errors[field] ? false : true;
         return (
           <>
-            <Title>Agregar un nuevo producto:</Title>
+            <Title>Agregar una foto frontal:</Title>
             <StyledForm autoComplete="on">
               <Label>
                 <SpanText>Nombre </SpanText>
@@ -343,7 +343,14 @@ const AddProductForm = ({ onCloseModal }) => {
                   </Li>
                 ))}
               </List>
-              <ImageText>Añadir una imagen:</ImageText>
+              <ImageText>
+                {previewImage1 && previewImage2
+                  ? 'Todas las fotos agregadas'
+                  : previewImage1
+                  ? 'Agregar una foto de atrás'
+                  : 'Agregar una foto frontal'}
+                :
+              </ImageText>
               <Wrapper>
                 {!previewImage1 && (
                   <ImageLabel>
@@ -378,7 +385,7 @@ const AddProductForm = ({ onCloseModal }) => {
                     <img src={previewImage1} alt="preview img" />
                   </ImageWrapper>
                 )}
-                {!previewImage2 && (
+                {previewImage1 && !previewImage2 && (
                   <ImageLabel>
                     <input
                       style={{ display: 'none' }}
@@ -398,6 +405,7 @@ const AddProductForm = ({ onCloseModal }) => {
                     </AddIconWrapper>
                   </ImageLabel>
                 )}
+
                 {previewImage2 && (
                   <ImageWrapper>
                     <DeleteIconWrapper

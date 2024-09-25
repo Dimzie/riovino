@@ -383,14 +383,21 @@ const UpdateProductForm = ({ onCloseModal }) => {
                     </Li>
                   ))}
                 </List>
-                <ImageText>Añadir una imagen:</ImageText>
+                <ImageText>
+                  {previewImage1 && previewImage2
+                    ? 'Todas las fotos agregadas'
+                    : previewImage1
+                    ? 'Agregar una foto de atrás'
+                    : 'Agregar una foto frontal'}
+                  :
+                </ImageText>
                 <Wrapper>
                   {!previewImage1 && (
                     <ImageLabel>
                       <input
                         style={{ display: 'none' }}
                         type="file"
-                        name="image"
+                        name="image1"
                         onChange={event =>
                           handleFileChange(
                             event,
@@ -410,7 +417,7 @@ const UpdateProductForm = ({ onCloseModal }) => {
                       <DeleteIconWrapper
                         onClick={() => {
                           setPreviewImage1(null);
-                          props.setFieldValue('image', null);
+                          props.setFieldValue('image1', null);
                         }}
                       >
                         <CloseIcon />
@@ -418,12 +425,12 @@ const UpdateProductForm = ({ onCloseModal }) => {
                       <img src={previewImage1} alt="preview img" />
                     </ImageWrapper>
                   )}
-                  {!previewImage2 && (
+                  {previewImage1 && !previewImage2 && (
                     <ImageLabel>
                       <input
                         style={{ display: 'none' }}
                         type="file"
-                        name="image"
+                        name="image2"
                         onChange={event =>
                           handleFileChange(
                             event,
@@ -438,12 +445,13 @@ const UpdateProductForm = ({ onCloseModal }) => {
                       </AddIconWrapper>
                     </ImageLabel>
                   )}
+
                   {previewImage2 && (
                     <ImageWrapper>
                       <DeleteIconWrapper
                         onClick={() => {
                           setPreviewImage2(null);
-                          props.setFieldValue('image', null);
+                          props.setFieldValue('image2', null);
                         }}
                       >
                         <CloseIcon />
