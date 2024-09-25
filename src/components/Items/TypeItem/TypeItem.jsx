@@ -69,15 +69,11 @@ const TypeItem = ({
         </InfoContainer>
         <ImgContainer>
           {productImages.length > 0 ? (
-            productImages.map(({ imageURL, imageID }) => {
-              return (
-                <Img
-                  key={imageID}
-                  src={imageURL ? imageURL : zagl}
-                  alt={imageID}
-                />
-              );
-            })
+            <Img
+              key={productImages[0].imageID}
+              src={productImages[0].imageURL ? productImages[0].imageURL : zagl}
+              alt={productImages[0].imageID}
+            />
           ) : (
             <Img src={zagl} alt="Sin Foto" />
           )}

@@ -347,9 +347,8 @@ const AddProductForm = ({ onCloseModal }) => {
                 {previewImage1 && previewImage2
                   ? 'Todas las fotos agregadas'
                   : previewImage1
-                  ? 'Agregar una foto de atrás'
-                  : 'Agregar una foto frontal'}
-                :
+                  ? 'Agregar una foto de atrás:'
+                  : 'Agregar una foto frontal:'}
               </ImageText>
               <Wrapper>
                 {!previewImage1 && (
