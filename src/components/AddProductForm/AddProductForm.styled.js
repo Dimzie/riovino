@@ -3,7 +3,13 @@ import styled from 'styled-components';
 
 export const Title = styled.h2`
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
+`;
+
+export const TitleH3 = styled.h3`
+  text-align: center;
+  margin: 10px 0px;
+  color: #c0aa41;
 `;
 
 export const StyledForm = styled(Form)`
@@ -25,7 +31,7 @@ export const StyledField = styled(Field)`
   width: 100%;
   height: 30px;
   padding: 0 10px;
-  padding-bottom: 2px;
+  /* padding-bottom: 2px; */
   color: #ffffff;
   background-color: rgba(46, 47, 66, 1);
   outline: none;
@@ -229,4 +235,9 @@ export const SubmitButton = styled.button`
     border-color: #c0aa41;
     background-color: #ffffff;
   }
+`;
+
+export const ShortDesc = styled.div`
+  display: flex;
+  gap: 20px;
 `;

@@ -31,7 +31,7 @@ export const LoginSchema = Yup.object().shape({
 });
 
 export const ProductSchema = Yup.object().shape({
-  title: Yup.string().min(2, "Mínimo 2 caracteres").required('Obligatorio'),
+  title: Yup.string().min(2, 'Mínimo 2 caracteres').required('Obligatorio'),
   type: Yup.string()
     .oneOf(['vinos', 'destilados', 'espumosos'], 'Tipo no válido')
     .required('Obligatorio'),
@@ -43,13 +43,11 @@ export const ProductSchema = Yup.object().shape({
     .max(100, 'Maximum es 100')
     .integer('Sólo se permiten números enteros!'),
   alcohol: Yup.string()
-    .matches(/^[0-9.,]+$/, 'Solo numeros, comas y puntos')
+    .matches(/^[0-9.,]+$/, 'Solo numeros')
     .required('Obligatorio'),
-  capacity: Yup.string()
-    .matches(/^[0-9.,]+$/, 'Solo numeros, comas y puntos')
-    .required('Obligatorio'),
+  capacity: Yup.string().required('Obligatorio'),
   price: Yup.string()
-    .matches(/^[0-9.,]+(?:\.\d{1,2})?$/, 'Solo numeros, comas y puntos')
+    .matches(/^[0-9.,]+(?:\.\d{1,2})?$/, 'Solo numeros')
     .required('Obligatorio'),
   region: Yup.string().min(2).max(35).required('Obligatorio'),
   discount: Yup.string().matches(/^[0-9.,]+$/, 'Solo numeros, comas y puntos'),

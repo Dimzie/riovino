@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   AddressItem,
   AddressLink,
@@ -14,6 +14,8 @@ import {
   UserWrapper,
   UserImgWrapper,
   CartBtn,
+  QuantNumber,
+  CartBtnWrapper,
 } from './Header.styled';
 import Container from 'components/GlobalContainer/GlobalContainer';
 import {
@@ -38,12 +40,28 @@ const Header = () => {
   const { isProductsLoading } = useProducts();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const { user, isLoggedIn } = useAuth();
+  const [cartQuantity, setCartQuantity] = useState(0);
+
+  const updateCartQuantity = () => {
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const uniqueProductCount = new Set(cartItems.map(item => item.id)).size;
+    setCartQuantity(uniqueProductCount > 99 ? '99+' : uniqueProductCount);
+  };
+
+  useEffect(() => {
+    updateCartQuantity(); // Initial load
+    window.addEventListener('storage', updateCartQuantity); // Listen for changes in localStorage (e.g., from other tabs)
+
+    return () => {
+      window.removeEventListener('storage', updateCartQuantity); // Clean up the event listener when the component unmounts
+    };
+  }, []); // Empty dependency array means this effect runs only once, after the component mounts
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
+
   return (
     <HeaderSection>
       {isProductsLoading && <Loader />}
@@ -78,9 +96,12 @@ const Header = () => {
               </AddBtn>
             )}
             <Link to={'/cart'}>
-              <CartBtn>
-                <AddBtnIcon />
-              </CartBtn>
+              <CartBtnWrapper>
+                <CartBtn>
+                  <AddBtnIcon />
+                </CartBtn>
+                {cartQuantity > 0 && <QuantNumber>{cartQuantity}</QuantNumber>}
+              </CartBtnWrapper>
             </Link>
             {isModalOpen && (
               <Modal onCloseModal={toggleModal}>

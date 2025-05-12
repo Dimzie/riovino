@@ -172,3 +172,18 @@ export const AuthBtn = styled(Link)`
     background-color: #ffffff;
   }
 `;
+
+export const CartBtnWrapper = styled.div`
+  position: relative;
+`;
+
+export const QuantNumber = styled.p`
+  position: absolute;
+  font-size: 14px;
+  right: 0;
+  top: 0;
+  padding: 1px 2px;
+  transform: translate(15%, -15%);
+  background-color: #c0aa41;
+  border: 1px solid white;
+`;

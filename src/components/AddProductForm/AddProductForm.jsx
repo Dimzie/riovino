@@ -16,6 +16,7 @@ import {
   Label,
   Li,
   List,
+  ShortDesc,
   SpanSymbol,
   SpanText,
   StyledErrorMessage,
@@ -24,6 +25,7 @@ import {
   StyledOption,
   SubmitButton,
   Title,
+  TitleH3,
   Wrapper,
 } from './AddProductForm.styled';
 import { addProduct } from '../../redux/products/operations';
@@ -62,6 +64,11 @@ const AddProductForm = ({ onCloseModal }) => {
     critics: [],
     image1: null,
     image2: null,
+    characteristic1: '',
+    characteristic2: '',
+    characteristic3: '',
+    characteristic4: '',
+    characteristic5: '',
   };
 
   const handleFileChange = (event, setFieldValue, setImageState, imageName) => {
@@ -111,14 +118,16 @@ const AddProductForm = ({ onCloseModal }) => {
           props.touched[field] && props.errors[field] ? false : true;
         return (
           <>
-            <Title>Agregar una foto frontal:</Title>
+            <Title>Agregar un nuevo producto:</Title>
             <StyledForm autoComplete="on">
+              <TitleH3>Principal:</TitleH3>
               <Label>
                 <SpanText>Nombre </SpanText>
                 <SpanSymbol>*</SpanSymbol>
                 <StyledField
                   type="text"
                   name="title"
+                  placeholder="Abadia de San Quirce Crianza"
                   $isvalid={isValid('title')}
                 />
                 <ErrorMessage name="title" component={StyledErrorMessage} />
@@ -138,7 +147,11 @@ const AddProductForm = ({ onCloseModal }) => {
                     name="type"
                     defaultValue=""
                   >
-                    <StyledOption value="" hidden>
+                    <StyledOption
+                      value=""
+                      hidden
+                      style={{ color: 'rgba(75, 192, 21, 0.5)' }}
+                    >
                       Seleccionar сategoría
                     </StyledOption>
                     {productType.map(type => (
@@ -209,60 +222,199 @@ const AddProductForm = ({ onCloseModal }) => {
                   <ErrorMessage name="subType" component={StyledErrorMessage} />
                 </Label>
               </FieldWrapper>
-              <Label>
-                Región <SpanSymbol>*</SpanSymbol>
-                <StyledField
-                  type="text"
-                  name="region"
-                  $isvalid={isValid('region')}
-                />
-                <ErrorMessage name="region" component={StyledErrorMessage} />
-              </Label>
-              <Label>
-                Alcohol % <SpanSymbol>*</SpanSymbol>
-                <StyledField
-                  type="text"
-                  name="alcohol"
-                  $isvalid={isValid('alcohol')}
-                />
-                <ErrorMessage name="alcohol" component={StyledErrorMessage} />
-              </Label>
-              <Label>
-                Capacidad <SpanSymbol>*</SpanSymbol>
-                <StyledField
-                  type="text"
-                  name="capacity"
-                  $isvalid={isValid('capacity')}
-                />
-                <ErrorMessage name="capacity" component={StyledErrorMessage} />
-              </Label>
-              <Label>
-                Precio <SpanSymbol>*</SpanSymbol>
-                <StyledField
-                  type="text"
-                  name="price"
-                  $isvalid={isValid('price')}
-                />
-                <ErrorMessage name="price" component={StyledErrorMessage} />
-              </Label>
-              <Label>
-                Año
-                <StyledField
-                  type="text"
-                  name="year"
-                  $isvalid={isValid('year')}
-                />
-                <ErrorMessage name="year" component={StyledErrorMessage} />
-              </Label>
-              <Label>
-                Descuento
-                <StyledField
-                  type="text"
-                  name="discount"
-                  $isvalid={isValid('discount')}
-                />
-                <ErrorMessage name="discount" component={StyledErrorMessage} />
-              </Label>
+              <ShortDesc>
+                <Label>
+                  Año
+                  <StyledField
+                    type="text"
+                    name="year"
+                    maxLength={4}
+                    placeholder="2019"
+                    $isvalid={isValid('year')}
+                  />
+                  <ErrorMessage name="year" component={StyledErrorMessage} />
+                </Label>
+                <Label>
+                  Región <SpanSymbol>*</SpanSymbol>
+                  <StyledField
+                    type="text"
+                    name="region"
+                    $isvalid={isValid('region')}
+                  />
+                  <ErrorMessage name="region" component={StyledErrorMessage} />
+                </Label>
+              </ShortDesc>
+              <ShortDesc>
+                <Label>
+                  Alcohol % <SpanSymbol>*</SpanSymbol>
+                  <StyledField
+                    type="text"
+                    name="alcohol"
+                    placeholder="12"
+                    $isvalid={isValid('alcohol')}
+                  />
+                  <ErrorMessage name="alcohol" component={StyledErrorMessage} />
+                </Label>
+                <Label>
+                  Capacidad <SpanSymbol>*</SpanSymbol>
+                  <StyledField
+                    type="text"
+                    name="capacity"
+                    $isvalid={isValid('capacity')}
+                  />
+                  <ErrorMessage
+                    name="capacity"
+                    component={StyledErrorMessage}
+                  />
+                </Label>
+              </ShortDesc>
+              <ShortDesc>
+                <Label>
+                  Precio <SpanSymbol>*</SpanSymbol>
+                  <StyledField
+                    type="text"
+                    name="price"
+                    placeholder="34.50"
+                    $isvalid={isValid('price')}
+                  />
+                  <ErrorMessage name="price" component={StyledErrorMessage} />
+                </Label>
+                <Label>
+                  Descuento %
+                  <StyledField
+                    type="text"
+                    name="discount"
+                    defaultValue="0"
+                    placeholder="0"
+                    $isvalid={isValid('discount')}
+                  />
+                  <ErrorMessage
+                    name="discount"
+                    component={StyledErrorMessage}
+                  />
+                </Label>
+              </ShortDesc>
+              <TitleH3>Características:</TitleH3>
+              <ShortDesc>
+                <Label>
+                  Suave / Tánico
+                  <StyledField
+                    as="select"
+                    name="characteristic1"
+                    defaultValue="0"
+                    $isvalid={isValid('characteristic1')}
+                    onChange={props.handleChange}
+                  >
+                    <StyledOption value="" hidden>
+                      1
+                    </StyledOption>
+                    {Array.from({ length: 11 }, (_, i) => (
+                      <StyledOption key={i} value={i}>
+                        {i}
+                      </StyledOption>
+                    ))}
+                  </StyledField>
+                  <ErrorMessage
+                    name="characteristic1"
+                    component={StyledErrorMessage}
+                  />
+                </Label>
+                <Label>
+                  Débil / Ácido
+                  <StyledField
+                    as="select"
+                    name="characteristic2"
+                    defaultValue="0"
+                    $isvalid={isValid('characteristic2')}
+                    onChange={props.handleChange}
+                  >
+                    <StyledOption value="" hidden>
+                      1
+                    </StyledOption>
+                    {Array.from({ length: 11 }, (_, i) => (
+                      <StyledOption key={i} value={i}>
+                        {i}
+                      </StyledOption>
+                    ))}
+                  </StyledField>
+                  <ErrorMessage
+                    name="characteristic2"
+                    component={StyledErrorMessage}
+                  />
+                </Label>
+                <Label>
+                  Seco / Dulce
+                  <StyledField
+                    as="select"
+                    name="characteristic3"
+                    defaultValue="0"
+                    $isvalid={isValid('characteristic3')}
+                    onChange={props.handleChange}
+                  >
+                    <StyledOption value="" hidden>
+                      1
+                    </StyledOption>
+                    {Array.from({ length: 11 }, (_, i) => (
+                      <StyledOption key={i} value={i}>
+                        {i}
+                      </StyledOption>
+                    ))}
+                  </StyledField>
+                  <ErrorMessage
+                    name="characteristic3"
+                    component={StyledErrorMessage}
+                  />
+                </Label>
+              </ShortDesc>
+              <ShortDesc>
+                <Label>
+                  Ligero / Poderoso
+                  <StyledField
+                    as="select"
+                    name="characteristic4"
+                    defaultValue="0"
+                    $isvalid={isValid('characteristic4')}
+                    onChange={props.handleChange}
+                  >
+                    <StyledOption value="" hidden>
+                      1
+                    </StyledOption>
+                    {Array.from({ length: 11 }, (_, i) => (
+                      <StyledOption key={i} value={i}>
+                        {i}
+                      </StyledOption>
+                    ))}
+                  </StyledField>
+                  <ErrorMessage
+                    name="characteristic4"
+                    component={StyledErrorMessage}
+                  />
+                </Label>
+                <Label>
+                  Amable / Burbujas
+                  <StyledField
+                    as="select"
+                    name="characteristic5"
+                    defaultValue="0"
+                    $isvalid={isValid('characteristic5')}
+                    onChange={props.handleChange}
+                  >
+                    <StyledOption value="" hidden>
+                      1
+                    </StyledOption>
+                    {Array.from({ length: 11 }, (_, i) => (
+                      <StyledOption key={i} value={i}>
+                        {i}
+                      </StyledOption>
+                    ))}
+                  </StyledField>
+                  <ErrorMessage
+                    name="characteristic5"
+                    component={StyledErrorMessage}
+                  />
+                </Label>
+              </ShortDesc>
+              <TitleH3>Críticos:</TitleH3>
               <FieldWrapper>
                 <Label>
                   Críticos
@@ -343,6 +495,7 @@ const AddProductForm = ({ onCloseModal }) => {
                   </Li>
                 ))}
               </List>
+              <TitleH3>Foto:</TitleH3>
               <ImageText>
                 {previewImage1 && previewImage2
                   ? 'Todas las fotos agregadas'

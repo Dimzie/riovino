@@ -74,6 +74,11 @@ textarea {
   resize: none;
 }
 
+option {
+  margin: 0;
+  padding: 0;
+}
+
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -88,7 +93,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #1c1c28;
+  background-color: rgba(46, 47, 66, 1);
   transition: background-color 100ms ease-in;
 }
 
@@ -97,5 +102,5 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(46, 47, 66, 1);
+  background-color: #1c1c28;
 }

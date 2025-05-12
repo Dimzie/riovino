@@ -57,6 +57,7 @@ const TypeItem = ({
     setIsDeleteModalOpen(false);
   };
 
+
   return (
     <Li>
       <Container>
@@ -84,7 +85,12 @@ const TypeItem = ({
             <Price>{ivaInclude(price)}€</Price>
             <Iva>IVA incl.</Iva>
           </PriceContainer>
-          <AddCartForm />
+          <AddCartForm
+            title={title}
+            id={id}
+            price={price}
+            productImages={productImages}
+          />
         </CartContainer>
         {user.userType === 'admin' && (
           <TypeBtnList>
