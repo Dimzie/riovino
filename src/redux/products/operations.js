@@ -1,21 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { instance } from '../auth/operations';
-import axios from 'axios';
-
-const holdedInstance = axios.create({
-  baseURL: 'https://api.holded.com/api/invoicing/v1',
-  headers: {
-    Accept: 'application/json',
-    Key: '6de95c099cfbcc1429117019793dee73',
-  },
-});
 
 export const getHoldedProducts = createAsyncThunk(
   'products/getHoldedProducts',
   async (_, thunkAPI) => {
     try {
-      const holdedResponse = await holdedInstance.get('/products');
-      console.log('holdedResponse', holdedResponse);
+      await instance.get('/products/holded');
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
