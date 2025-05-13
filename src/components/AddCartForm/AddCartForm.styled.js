@@ -4,6 +4,7 @@ export const CartForm = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
 `;
 
 export const FormDecreaseBtn = styled.button`

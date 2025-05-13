@@ -92,7 +92,7 @@ export const espumososCatalogList = [
     img: zaglushka,
     alt: 'Imagen de champagnes',
     href: 'champagnes',
-    id: 'champagnes',
+    id: 'champagne',
     countKey: 'totalChampagnes',
   },
   {
@@ -100,7 +100,7 @@ export const espumososCatalogList = [
     img: zaglushka,
     alt: 'Imagen de cavas',
     href: 'cavas',
-    id: 'cavas',
+    id: 'cava',
     countKey: 'totalCavas',
   },
   {
@@ -108,7 +108,7 @@ export const espumososCatalogList = [
     img: zaglushka,
     alt: 'Imagen de corpinnats',
     href: 'corpinnats',
-    id: 'corpinnats',
+    id: 'corpinnat',
     countKey: 'totalCorpinnats',
   },
   {
@@ -116,7 +116,7 @@ export const espumososCatalogList = [
     img: zaglushka,
     alt: 'Imagen de proseccos',
     href: 'proseccos',
-    id: 'proseccos',
+    id: 'prosecco',
     countKey: 'totalProseccos',
   },
   {
@@ -135,7 +135,7 @@ export const destiladosCatalogList = [
     img: zaglushka,
     alt: 'Imagen de rones',
     href: 'rones',
-    id: 'rones',
+    id: 'ron',
     countKey: 'totalRones',
   },
   {
@@ -143,7 +143,7 @@ export const destiladosCatalogList = [
     img: zaglushka,
     alt: 'Imagen de ginebras',
     href: 'ginebras',
-    id: 'ginebras',
+    id: 'ginebra',
     countKey: 'totalGinebras',
   },
   {
@@ -151,7 +151,7 @@ export const destiladosCatalogList = [
     img: zaglushka,
     alt: 'Imagen de whiskys',
     href: 'whiskys',
-    id: 'whiskys',
+    id: 'whisky',
     countKey: 'totalWhiskys',
   },
   {
@@ -159,7 +159,7 @@ export const destiladosCatalogList = [
     img: zaglushka,
     alt: 'Imagen de vodkas',
     href: 'vodkas',
-    id: 'vodkas',
+    id: 'vodka',
     countKey: 'totalVodkas',
   },
   {
@@ -167,7 +167,7 @@ export const destiladosCatalogList = [
     img: zaglushka,
     alt: 'Imagen de cognacs',
     href: 'cognacs',
-    id: 'cognacs',
+    id: 'cognac',
     countKey: 'totalCognacs',
   },
   {
@@ -175,7 +175,7 @@ export const destiladosCatalogList = [
     img: zaglushka,
     alt: 'Imagen de brandys',
     href: 'brandys',
-    id: 'brandys',
+    id: 'brandy',
     countKey: 'totalBrandys',
   },
   {
@@ -231,7 +231,7 @@ export const destiladosCatalogList = [
     img: zaglushka,
     alt: 'Imagen de licores',
     href: 'licores',
-    id: 'licores',
+    id: 'licor',
     countKey: 'totalLicores',
   },
   {
@@ -239,7 +239,7 @@ export const destiladosCatalogList = [
     img: zaglushka,
     alt: 'Imagen de pacharanes',
     href: 'pacharanes',
-    id: 'pacharanes',
+    id: 'pacharan',
     countKey: 'totalPacharanes',
   },
   {
@@ -247,7 +247,7 @@ export const destiladosCatalogList = [
     img: zaglushka,
     alt: 'Imagen de aperitivos',
     href: 'aperitivos',
-    id: 'aperitivos',
+    id: 'aperitiv',
     countKey: 'totalAperitivos',
   },
 ];

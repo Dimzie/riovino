@@ -118,3 +118,7 @@ export const TypeBtn = styled.button`
     color: #c0aa41;
   }
 `;
+
+export const LiquidQty = styled.span`
+  font-size: 16px;
+`;

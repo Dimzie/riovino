@@ -10,7 +10,6 @@ import {
   HeaderBtnList,
   AuthBtn,
   LogOutBtn,
-  AddBtn,
   UserWrapper,
   UserImgWrapper,
   CartBtn,
@@ -21,7 +20,6 @@ import {
 import Container from 'components/GlobalContainer/GlobalContainer';
 import {
   AddBtnIcon,
-  AddIcon,
   LocationIcon,
   PhoneIcon,
 } from 'helpers/Icons/Icons.styled';
@@ -42,7 +40,7 @@ const Header = () => {
   const { isProductsLoading } = useProducts();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
   const [cartQuantity, setCartQuantity] = useState(0);
 
   const updateCartQuantity = () => {
@@ -92,11 +90,11 @@ const Header = () => {
             <img src={headerLogo} alt="Rio Vino Logo" height="75" />
           </LogoImgContainer> */}
           <HeaderBtnList>
-            {user.userType === 'admin' && (
+            {/* {user.userType === 'admin' && (
               <AddBtn type="button" onClick={toggleModal}>
                 <AddIcon />
               </AddBtn>
-            )}
+            )} */}
             <Link to={'/cart'}>
               <CartBtnWrapper>
                 <CartBtn>

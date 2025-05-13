@@ -7,14 +7,21 @@ export const regionFlagCheck = name => {
     return (
       <>
         <RegionImg src={spainFlag} alt="spain" height="10" />
-        <Region>Ribera Del Duero</Region>
+        <Region>DO. Ribera Del Duero</Region>
       </>
     );
   } else if (lowerName.includes('rueda')) {
     return (
       <>
         <RegionImg src={spainFlag} alt="spain" height="10" />
-        <Region>Rueda</Region>
+        <Region>DO. Rueda</Region>
+      </>
+    );
+  } else if (lowerName.includes('somontano')) {
+    return (
+      <>
+        <RegionImg src={spainFlag} alt="spain" height="10" />
+        <Region>DO. Somontano</Region>
       </>
     );
   }

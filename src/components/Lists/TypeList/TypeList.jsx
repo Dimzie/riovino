@@ -36,6 +36,8 @@ const TypeList = () => {
               id,
               name,
               price,
+              stock,
+              desc
             }) => {
               return (
                 <TypeItem
@@ -43,6 +45,8 @@ const TypeList = () => {
                   name={name}
                   price={price}
                   id={id}
+                  stock={stock}
+                  desc={desc}
                 />
               );
             }
