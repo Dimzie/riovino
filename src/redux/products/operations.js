@@ -1,6 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { instance } from '../auth/operations';
 
+export const getHoldedProducts = createAsyncThunk(
+  'products/getHoldedProducts',
+  async (_, thunkAPI) => {
+    try {
+      await instance.get('/products/holded');
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const getProducts = createAsyncThunk(
   'products/getProducts',
   async (subType, thunkAPI) => {
