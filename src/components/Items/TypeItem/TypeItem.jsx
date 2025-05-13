@@ -23,22 +23,13 @@ import { useDispatch } from 'react-redux';
 import { removeProduct } from '../../../redux/products/operations';
 import CriticsList from 'components/Lists/CriticsList/CriticsList';
 import { regionFlagCheck } from 'helpers/functions/regionFlagCheck';
-import { ivaInclude } from 'helpers/functions/ivaIncludeCalculate';
 import DeleteForm from 'components/DeleteForm/DeleteForm';
 import { TrashIcon, UpdateIcon } from 'helpers/Icons/Icons.styled';
 import { useAuth } from 'hooks/useAuth';
 import UpdateProductModal from 'components/UpdateProductForm/UpdateProductModal';
+import { formatTitleString } from 'helpers/functions/formatTitleString';
 
-const TypeItem = ({
-  title,
-  alcohol,
-  price,
-  region,
-  capacity,
-  id,
-  critics,
-  productImages,
-}) => {
+const TypeItem = ({ id, name, price }) => {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const dispatch = useDispatch();
@@ -57,19 +48,15 @@ const TypeItem = ({
     setIsDeleteModalOpen(false);
   };
 
-
   return (
     <Li>
       <Container>
         <InfoContainer>
-          <Title>{title}</Title>
-          <RegionContainer>
-            {regionFlagCheck(region)}
-            <Region> {region}</Region>
-          </RegionContainer>
+          <Title>{formatTitleString(name)}</Title>
+          <RegionContainer>{regionFlagCheck(name)}</RegionContainer>
         </InfoContainer>
         <ImgContainer>
-          {productImages.length > 0 ? (
+          {/* {productImages.length > 0 ? (
             <Img
               key={productImages[0].imageID}
               src={productImages[0].imageURL ? productImages[0].imageURL : zagl}
@@ -77,20 +64,16 @@ const TypeItem = ({
             />
           ) : (
             <Img src={zagl} alt="Sin Foto" />
-          )}
+          )} */}
+          <Img src={zagl} alt="Sin Foto" />
         </ImgContainer>
-        <CriticsList critics={critics} />
+        {/* <CriticsList critics={critics} /> */}
         <CartContainer>
           <PriceContainer>
-            <Price>{ivaInclude(price)}€</Price>
+            <Price>{price.toFixed(2)}€</Price>
             <Iva>IVA incl.</Iva>
           </PriceContainer>
-          <AddCartForm
-            title={title}
-            id={id}
-            price={price}
-            productImages={productImages}
-          />
+          <AddCartForm name={name} id={id} price={price} />
         </CartContainer>
         {user.userType === 'admin' && (
           <TypeBtnList>

@@ -6,7 +6,7 @@ import { getProducts } from '../../../redux/products/operations';
 import { useProducts } from 'hooks/useProducts';
 import TypeItem from 'components/Items/TypeItem/TypeItem';
 import { H2Title, List } from './TypeList.styled';
-import { formatTitleString } from 'helpers/functions/formatTitleString';
+import { allSubTypes } from 'data/data';
 
 const TypeList = () => {
   const location = useLocation();
@@ -15,41 +15,34 @@ const TypeList = () => {
   const { subType } = useParams();
   const { isProductsLoading, products } = useProducts();
 
+  const getSubTypeByParams = subType => {
+    const result = allSubTypes.find(type => type.href === subType);
+    return result;
+  };
+  const result = getSubTypeByParams(subType);
+
   useEffect(() => {
-    dispatch(getProducts(subType));
+    const result = getSubTypeByParams(subType);
+    dispatch(getProducts(result.id));
   }, [dispatch, subType]);
 
   return (
     <>
-      <H2Title>{formatTitleString(products.subType)}</H2Title>
+      <H2Title>{result.title}</H2Title>
       {!isProductsLoading && (
         <List>
           {products.products.map(
             ({
-              _id,
-              title,
-              alcohol,
-              imageURL,
-              imageID,
+              id,
+              name,
               price,
-              region,
-              capacity,
-              critics,
-              productImages,
             }) => {
               return (
                 <TypeItem
-                  key={_id}
-                  title={title}
-                  alcohol={alcohol}
-                  imageURL={imageURL}
-                  imageID={imageID}
+                  key={id}
+                  name={name}
                   price={price}
-                  region={region}
-                  capacity={capacity}
-                  id={_id}
-                  critics={critics}
-                  productImages={productImages}
+                  id={id}
                 />
               );
             }

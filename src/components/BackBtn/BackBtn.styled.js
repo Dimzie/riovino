@@ -8,8 +8,9 @@ export const BackBtnLink = styled(Link)`
   width: 150px;
   font-size: 18px;
   padding: 10px 20px;
-  background-color: rgba(1, 1, 1, 0.4);
+  background-color: #000000;
   border: 1px solid #ffffff;
+  color: #ffffff;
   transition: color 100ms ease-in, border-color 100ms ease-in;
   &:hover,
   &:focus {

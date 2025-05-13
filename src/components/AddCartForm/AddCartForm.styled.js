@@ -13,9 +13,9 @@ export const FormDecreaseBtn = styled.button`
   width: 25px;
   height: 35px;
   margin-right: 5px;
-  background-color: rgba(46, 47, 66, 1);
-  border: none;
-  color: white;
+  background-color: transparent;
+  border: 1px solid rgb(0, 0, 0, 0.1);
+  color: #000000;
   cursor: pointer;
   transition: color 100ms ease-in;
   &:hover {
@@ -30,9 +30,9 @@ export const FormIncreaseBtn = styled.button`
   width: 25px;
   height: 35px;
   margin-right: 20px;
-  background-color: rgba(46, 47, 66, 1);
-  border: none;
-  color: white;
+  background-color: transparent;
+  border: 1px solid rgb(0, 0, 0, 0.1);
+  color: #000000;
   cursor: pointer;
   transition: color 100ms ease-in;
   &:hover {
@@ -46,10 +46,10 @@ export const FormInput = styled.input`
   height: 35px;
   margin-right: 5px;
   text-align: center;
-  border: rgba(46, 47, 66, 1);
-  background-color: rgba(46, 47, 66, 1);
+  background-color: transparent;
+  border: 1px solid rgb(0, 0, 0, 0.1);
   padding: 2px 5px;
-  color: white;
+  color: #000000;
   outline: none;
   transition: border-color 200ms ease-in;
   &:focus {

@@ -12,12 +12,14 @@ import { useEffect } from 'react';
 import { getCurrent } from '../redux/auth/operations';
 import RestrictedRoute from './Routes/RestrictedRoute';
 import CartPage from 'pages/CartPage/CartPage';
+// import { getProducts } from '../redux/products/operations';
 
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();
 
   useEffect(() => {
+    // dispatch(getProducts())
     dispatch(getCurrent());
   }, [dispatch]);
 

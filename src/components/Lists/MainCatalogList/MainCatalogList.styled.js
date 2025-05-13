@@ -5,6 +5,7 @@ export const H1Title = styled.h1`
   text-align: center;
   font-size: 72px;
   margin-bottom: 25px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 `;
 
 export const List = styled.ul`

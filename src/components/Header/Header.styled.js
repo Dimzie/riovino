@@ -5,7 +5,7 @@ export const HeaderSection = styled.header`
   position: absolute;
   width: 100%;
   padding: 15px 0px;
-  background-color: rgba(1, 1, 1, 0.3);
+  background: #000000;
 `;
 
 export const HeaderWrapper = styled.div`
@@ -30,6 +30,7 @@ export const AddressList = styled.ul`
 export const AddressItem = styled.li``;
 
 export const AddressLink = styled.a`
+  color: #ffffff;
   display: flex;
   position: relative;
   gap: 5px;
@@ -66,8 +67,7 @@ export const AddressText = styled.p`
 
 export const LogoImgContainer = styled.div`
   display: flex;
-  width: 55px;
-  height: 55px;
+  height: 75px;
 `;
 
 export const HeaderBtnList = styled.ul`
@@ -121,7 +121,7 @@ export const CartBtn = styled.button`
   font-family: 'Roboto';
   height: 40px;
   padding: 0 12px;
-  background-color: rgba(46, 47, 66, 1);
+  background-color: transparent;
   border: 1px solid #ffffff;
   color: #ffffff;
   cursor: pointer;
@@ -178,6 +178,7 @@ export const CartBtnWrapper = styled.div`
 `;
 
 export const QuantNumber = styled.p`
+  color: #ffffff;
   position: absolute;
   font-size: 14px;
   right: 0;
