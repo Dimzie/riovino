@@ -14,15 +14,16 @@ export const getHoldedProducts = createAsyncThunk(
 
 export const getProducts = createAsyncThunk(
   'products/getProducts',
-  async (subType, thunkAPI) => {
-    console.log('subType', subType);
+  async ({ subType, page = 1, limit = 12 }, thunkAPI) => {
     try {
       if (!subType) {
         const response = await instance.get('/products');
         console.log('response.data', response.data);
         return response.data;
       } else {
-        const response = await instance.get(`/products?subType=${subType}`);
+        const response = await instance.get(
+          `/products?page=${page}&limit=${limit}&subType=${subType}`
+        );
         console.log('response.data', response.data);
         return response.data;
       }
