@@ -11,7 +11,7 @@ export const ScrollBtn = styled.button`
   bottom: 100px;
   right: 40px;
   border: 1px solid white;
-  background-color: rgba(1, 1, 1, 0.4);
+  background-color: #000000;
   transition: all 100ms ease-in;
   opacity: ${props => (props.$scrollBtnVisible === 'false' ? '0' : '1')};
   visibility: ${props =>

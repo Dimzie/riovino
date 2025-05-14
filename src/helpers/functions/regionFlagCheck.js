@@ -1,10 +1,42 @@
-import { RegionImg } from 'components/Items/TypeItem/TypeItem.styled';
-import { franceFlag, spainFlag } from 'images/images.index';
+import { Region, RegionImg } from 'components/Items/TypeItem/TypeItem.styled';
+import { spainFlag } from 'images/images.index';
 
-export const regionFlagCheck = region => {
-  if (region.includes('Languedoc-Rosellón')) {
-    return <RegionImg src={franceFlag} alt={region} height="10" />;
-  } else {
-    return <RegionImg src={spainFlag} alt={region} height="10" />;
+export const regionFlagCheck = name => {
+  const lowerName = name.toLowerCase();
+  if (lowerName.includes('ribera del duero')) {
+    return (
+      <>
+        <RegionImg src={spainFlag} alt="spain" height="10" />
+        <Region>D.O. Ribera Del Duero</Region>
+      </>
+    );
+  } else if (lowerName.includes('rueda')) {
+    return (
+      <>
+        <RegionImg src={spainFlag} alt="spain" height="10" />
+        <Region>D.O. Rueda</Region>
+      </>
+    );
+  } else if (lowerName.includes('somontano')) {
+    return (
+      <>
+        <RegionImg src={spainFlag} alt="spain" height="10" />
+        <Region>D.O. Somontano</Region>
+      </>
+    );
+  } else if (lowerName.includes('rias baixas')) {
+    return (
+      <>
+        <RegionImg src={spainFlag} alt="spain" height="10" />
+        <Region>D.O. Rias Baixas</Region>
+      </>
+    );
+  } else if (lowerName.includes('rias baixas')) {
+    return (
+      <>
+        <RegionImg src={spainFlag} alt="spain" height="10" />
+        <Region>D.O. Rias Baixas</Region>
+      </>
+    );
   }
 };

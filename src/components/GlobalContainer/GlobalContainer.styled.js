@@ -9,30 +9,30 @@ export const Container = styled.div`
   padding: 0px 16px;
 
   /* Mobiles Container */
-  @media screen and (min-width: 320px) and (max-width: 480px) {
+  @media screen and (min-width: 320px) and (max-width: 479px) {
     width: 320px;
   }
 
   /* Tablets Container */
-  @media screen and (min-width: 481px) and (max-width: 768px) {
+  @media screen and (min-width: 480px) and (max-width: 767px) {
     flex-grow: 1;
     width: 480px;
   }
 
   /* Laptops Container */
-  @media screen and (min-width: 769px) and (max-width: 1024px) {
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
     flex-grow: 1;
     width: 768px;
   }
 
   /* Desctops Container */
-  @media screen and (min-width: 1025px) and (max-width: 1200px) {
+  @media screen and (min-width: 1024px) and (max-width: 1199px) {
     flex-grow: 1;
     width: 1024px;
   }
 
   /* Televisors Container */
-  @media screen and (min-width: 1201px) {
+  @media screen and (min-width: 1200px) {
     flex-grow: 1;
     width: 1200px;
   }

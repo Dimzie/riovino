@@ -20,7 +20,7 @@ const VinosCatalogList = () => {
     <>
       <H1Title>Vinos</H1Title>
       <List>
-        {vinosCatalogList.map(({ title, img, alt, type, id, countKey }) => {
+        {vinosCatalogList.map(({ title, img, alt, href, id, countKey }) => {
           const totalCount = vinosCount[countKey];
           return (
             <VinosCatalogItem
@@ -29,7 +29,7 @@ const VinosCatalogList = () => {
               key={id}
               alt={alt}
               qty={totalCount}
-              type={type}
+              href={href}
               state={{ from: location }}
             />
           );

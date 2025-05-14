@@ -10,17 +10,16 @@ import {
   HeaderBtnList,
   AuthBtn,
   LogOutBtn,
-  AddBtn,
   UserWrapper,
   UserImgWrapper,
   CartBtn,
   QuantNumber,
   CartBtnWrapper,
+  // LogoImgContainer,
 } from './Header.styled';
 import Container from 'components/GlobalContainer/GlobalContainer';
 import {
   AddBtnIcon,
-  AddIcon,
   LocationIcon,
   PhoneIcon,
 } from 'helpers/Icons/Icons.styled';
@@ -34,13 +33,14 @@ import { useAuth } from '../../hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/auth/operations';
 import { Link, useNavigate } from 'react-router-dom';
+// import headerLogo from '../../images/Header/header_logo.png';
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isProductsLoading } = useProducts();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
   const [cartQuantity, setCartQuantity] = useState(0);
 
   const updateCartQuantity = () => {
@@ -87,14 +87,14 @@ const Header = () => {
             </AddressList>
           </Address>
           {/* <LogoImgContainer>
-            <img src={headerLogo3} alt="Rio Vino Logo" wight="55" height="55" />
+            <img src={headerLogo} alt="Rio Vino Logo" height="75" />
           </LogoImgContainer> */}
           <HeaderBtnList>
-            {user.userType === 'admin' && (
+            {/* {user.userType === 'admin' && (
               <AddBtn type="button" onClick={toggleModal}>
                 <AddIcon />
               </AddBtn>
-            )}
+            )} */}
             <Link to={'/cart'}>
               <CartBtnWrapper>
                 <CartBtn>

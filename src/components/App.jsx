@@ -14,6 +14,7 @@ import RestrictedRoute from './Routes/RestrictedRoute';
 import CartPage from 'pages/CartPage/CartPage';
 import { getHoldedProducts } from '../redux/products/operations';
 
+
 export const App = () => {
   const dispatch = useDispatch();
   const { isRefreshing } = useAuth();

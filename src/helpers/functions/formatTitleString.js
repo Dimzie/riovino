@@ -1,12 +1,14 @@
-export const formatTitleString = str => {
-  if (typeof str !== 'string') {
-    return '';
-  }
-  
-  str = str.replace(/-/g, ' ');
-  str = str.replace(/\b\w+/g, function(word) {
-    return word.toLowerCase() === 'y' ? 'y' : word.charAt(0).toUpperCase() + word.slice(1);
+export const formatTitleString = text => {
+  const matches = text.match(/(["'])(.*?)\1/g);
+
+  if (!matches) return [];
+
+  return matches.map(str => {
+    const content = str.slice(1, -1);
+    return content
+      .toLowerCase()
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   });
-  
-  return str;
 };

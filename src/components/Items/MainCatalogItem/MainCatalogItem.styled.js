@@ -1,10 +1,17 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Li = styled.li`
   /* Responsive, Mobile Li */
-  padding: 20px;
-  background-color: rgba(1, 1, 1, 0.4);
+  background-color: transparent;
+  border: 1px solid rgb(0, 0, 0, 0.1);
   width: 100%;
+  transition: box-shadow 100ms ease-in;
+
+  &:hover,
+  &:focus {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+  }
 
   /* Tablets Li */
   @media screen and (min-width: 481px) and (max-width: 768px) {
@@ -25,4 +32,9 @@ export const ImgContainer = styled.div``;
 
 export const Quantity = styled.p`
   text-align: center;
+`;
+
+export const StyledLink = styled(Link)`
+  display: block;
+  padding: 20px;
 `;

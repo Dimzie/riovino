@@ -3,14 +3,14 @@ import {
   ImgContainer,
   Li,
   Quantity,
+  StyledLink,
   Title,
 } from './DestiladosCatalogItem.styled';
-import { Link } from 'react-router-dom';
 
 const DestiladosCatalogItem = ({ title, type, img, alt, qty, state }) => {
   return (
     <Li>
-      <Link to={`/destilados/${type}`} state={state}>
+      <StyledLink to={`/destilados/${type}`} state={state}>
         <ImgContainer>
           <img src={img} alt={alt} />
         </ImgContainer>
@@ -18,7 +18,7 @@ const DestiladosCatalogItem = ({ title, type, img, alt, qty, state }) => {
         <Quantity>
           (<i>{qty} typos</i>)
         </Quantity>
-      </Link>
+      </StyledLink>
     </Li>
   );
 };

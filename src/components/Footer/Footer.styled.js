@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const FooterSection = styled.footer`
-  background-color: rgba(1, 1, 1, 0.5);
+  background-color: #000000;
   padding: 15px 0px;
 `;
 
@@ -16,6 +16,7 @@ export const FooterList = styled.ul`
 export const FooterItem = styled.li``;
 
 export const FooterSocialLink = styled.a`
+  color: #ffffff;
   position: relative;
   transition: color 100ms ease-in;
 
@@ -47,6 +48,7 @@ export const FooterWarningText = styled.p`
   font-size: 10px;
   line-height: 1.5;
   text-align: center;
+  color: #ffffff;
 
   /* Tablets FooterWarningText */
   @media screen and (min-width: 481px) and (max-width: 768px) {

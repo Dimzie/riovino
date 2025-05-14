@@ -1,19 +1,27 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ImgContainer, Li, Quantity, Title } from './VinosCatalogItem.styled';
+import {
+  ImgContainer,
+  InfoContainer,
+  Li,
+  Quantity,
+  StyledLink,
+  Title,
+} from './VinosCatalogItem.styled';
 
-const VinosCatalogItem = ({ title, img, alt, qty, type, state }) => {
+const VinosCatalogItem = ({ title, img, alt, qty, href, state }) => {
   return (
     <Li>
-      <Link to={`/vinos/${type}`} state={state}>
+      <StyledLink to={`/vinos/${href}`} state={state}>
         <ImgContainer>
           <img src={img} alt={alt} />
         </ImgContainer>
-        <Title>{title}</Title>
-        <Quantity>
-          (<i>{qty} typos</i>)
-        </Quantity>
-      </Link>
+        <InfoContainer>
+          <Title>{title}</Title>
+          <Quantity>
+            (<i>{qty} typos</i>)
+          </Quantity>
+        </InfoContainer>
+      </StyledLink>
     </Li>
   );
 };
