@@ -7,21 +7,35 @@ export const regionFlagCheck = name => {
     return (
       <>
         <RegionImg src={spainFlag} alt="spain" height="10" />
-        <Region>DO. Ribera Del Duero</Region>
+        <Region>D.O. Ribera Del Duero</Region>
       </>
     );
   } else if (lowerName.includes('rueda')) {
     return (
       <>
         <RegionImg src={spainFlag} alt="spain" height="10" />
-        <Region>DO. Rueda</Region>
+        <Region>D.O. Rueda</Region>
       </>
     );
   } else if (lowerName.includes('somontano')) {
     return (
       <>
         <RegionImg src={spainFlag} alt="spain" height="10" />
-        <Region>DO. Somontano</Region>
+        <Region>D.O. Somontano</Region>
+      </>
+    );
+  } else if (lowerName.includes('rias baixas')) {
+    return (
+      <>
+        <RegionImg src={spainFlag} alt="spain" height="10" />
+        <Region>D.O. Rias Baixas</Region>
+      </>
+    );
+  } else if (lowerName.includes('rias baixas')) {
+    return (
+      <>
+        <RegionImg src={spainFlag} alt="spain" height="10" />
+        <Region>D.O. Rias Baixas</Region>
       </>
     );
   }

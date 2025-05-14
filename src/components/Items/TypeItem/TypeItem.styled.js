@@ -89,6 +89,7 @@ export const Price = styled.p`
 `;
 
 export const Iva = styled.p`
+  color: rgb(0, 0, 0, 0.4);
   font-family: 'Roboto';
 `;
 
@@ -120,5 +121,6 @@ export const TypeBtn = styled.button`
 `;
 
 export const LiquidQty = styled.span`
+  color: rgb(0, 0, 0, 0.4);
   font-size: 16px;
 `;
