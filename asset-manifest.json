@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/riovino/static/css/main.d9556dd0.css",
-    "main.js": "/riovino/static/js/main.626be0f8.js",
+    "main.js": "/riovino/static/js/main.4e693e1d.js",
     "static/media/header_logo.png": "/riovino/static/media/header_logo.f014fd918a928fa9cf9c.png",
     "static/media/Montserrat-Regular.ttf": "/riovino/static/media/Montserrat-Regular.24785cc015b27a3e964b.ttf",
     "static/media/Roboto-Regular.ttf": "/riovino/static/media/Roboto-Regular.27f62b53b93858475a7f.ttf",
@@ -11,10 +11,10 @@
     "static/media/spain.webp": "/riovino/static/media/spain.fcb99746967dd3e56d7f.webp",
     "static/media/france.webp": "/riovino/static/media/france.dc33f5220bc906296ffc.webp",
     "main.d9556dd0.css.map": "/riovino/static/css/main.d9556dd0.css.map",
-    "main.626be0f8.js.map": "/riovino/static/js/main.626be0f8.js.map"
+    "main.4e693e1d.js.map": "/riovino/static/js/main.4e693e1d.js.map"
   },
   "entrypoints": [
     "static/css/main.d9556dd0.css",
-    "static/js/main.626be0f8.js"
+    "static/js/main.4e693e1d.js"
   ]
 }
