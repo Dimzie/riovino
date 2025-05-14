@@ -1,26 +1,8 @@
 import React from 'react';
-import zagl from '../../../images/no-photo.png';
-import { ivaInclude } from 'helpers/functions/ivaIncludeCalculate';
 import { Li } from './CartItem.styled';
 
-const CartItem = ({
-  id,
-  title,
-  quantity,
-  price,
-  productImages,
-  deleteItem,
-}) => {
-  const imageSrc =
-    productImages.length > 0 && productImages[0]?.imageURL
-      ? productImages[0].imageURL
-      : zagl;
-  const imageKey =
-    productImages.length > 0 && productImages[0]?.imageID
-      ? productImages[0].imageID
-      : 'zagl';
+const CartItem = ({ id, title, quantity, price, deleteItem}) => {
 
-  const finalPrice = (ivaInclude(price) * quantity).toFixed(2);
   const countCheck = quantity => {
     if (quantity > 1) {
       return `${quantity} botellas`;
@@ -36,12 +18,9 @@ const CartItem = ({
   return (
     <>
       <Li>
-        <div>
-          <img key={imageKey} src={imageSrc} alt="" />
-        </div>
         <p>{title}</p>
         <p>{countCheck(quantity)}</p>
-        <p>{finalPrice}€</p>
+        <p>{price}€</p>
         <button type="button" onClick={handleDelete}>
           del
         </button>

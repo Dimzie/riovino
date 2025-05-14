@@ -31,12 +31,12 @@ export const regionFlagCheck = name => {
         <Region>D.O. Rias Baixas</Region>
       </>
     );
-  } else if (lowerName.includes('rias baixas')) {
+  } else if (lowerName.includes('valdeorras')) {
     return (
       <>
         <RegionImg src={spainFlag} alt="spain" height="10" />
-        <Region>D.O. Rias Baixas</Region>
+        <Region>D.O. Valdeorras</Region>
       </>
     );
-  }
+  } 
 };

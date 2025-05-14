@@ -42,7 +42,7 @@ const TypeList = () => {
     <>
       <H2Title>{result.title}</H2Title>
       <List>
-        {products.products.map(({ id, name, price, stock, desc }) => {
+        {products.products.map(({ id, name, price, stock, desc, taxes }) => {
           return (
             <TypeItem
               key={id}
@@ -51,6 +51,8 @@ const TypeList = () => {
               id={id}
               stock={stock}
               desc={desc}
+              taxes={taxes}
+              state={{ from: location }}
             />
           );
         })}

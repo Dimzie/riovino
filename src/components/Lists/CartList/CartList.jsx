@@ -9,7 +9,7 @@ import {
   TotalPrice,
 } from './CartList.styled';
 import CartItem from 'components/Items/CartItem/CartItem';
-import { ivaInclude } from 'helpers/functions/ivaIncludeCalculate';
+import { priceWithIva } from 'helpers/functions/priceAndIva';
 
 export const CartList = () => {
   const location = useLocation();
@@ -26,7 +26,7 @@ export const CartList = () => {
   };
 
   const totalPrice = cartItems
-    .reduce((sum, item) => sum + ivaInclude(item.price) * item.quantity, 0)
+    .reduce((sum, item) => sum + priceWithIva(item.price) * item.quantity, 0)
     .toFixed(2);
 
   return (

@@ -8,7 +8,7 @@ import {
 } from './AddCartForm.styled';
 import { AddBtnIcon } from 'helpers/Icons/Icons.styled';
 
-const AddCartForm = ({ name, id, price}) => {
+const AddCartForm = ({ name, id, price, taxes}) => {
   const [quantity, setQuantity] = useState(1);
 
   // Increase the quantity with a maximum limit of 1000
@@ -38,7 +38,7 @@ const AddCartForm = ({ name, id, price}) => {
 
   // Function to handle adding item to cart
   const handleAddToCart = () => {
-    const newItem = { id, name,  price, quantity };
+    const newItem = { id, name,  price, quantity, taxes };
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
   
     const existingItemIndex = storedCart.findIndex(item => item.id === id);
@@ -46,7 +46,7 @@ const AddCartForm = ({ name, id, price}) => {
     let updatedCart;
     if (existingItemIndex !== -1) {
       updatedCart = storedCart.map(item =>
-        item.id === id ? { ...item, quantity: item.quantity + quantity } : item
+        item.id === id ? { ...item, quantity: item.quantity + quantity, taxes} : item
       );
     } else {
       updatedCart = [...storedCart, newItem];

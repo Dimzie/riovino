@@ -5,7 +5,7 @@ export const LoaderWrapper = styled.span`
   top: 85px;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 4px;
   display: inline-block;
   background: rgba(1, 1, 1, 0.4);
   overflow: hidden;
@@ -14,7 +14,7 @@ export const LoaderWrapper = styled.span`
   &::after {
     content: '';
     width: 0;
-    height: 2px;
+    height: 4px;
     background: #c0aa41;
     position: absolute;
     top: 0;

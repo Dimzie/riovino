@@ -32,10 +32,11 @@ import { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/auth/operations';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 // import headerLogo from '../../images/Header/header_logo.png';
 
 const Header = () => {
+    const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { isProductsLoading } = useProducts();
   const dispatch = useDispatch();
@@ -95,7 +96,7 @@ const Header = () => {
                 <AddIcon />
               </AddBtn>
             )} */}
-            <Link to={'/cart'}>
+            <Link to={'/cart'} state={{ from: location }}>
               <CartBtnWrapper>
                 <CartBtn>
                   <AddBtnIcon />

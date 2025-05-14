@@ -27,9 +27,11 @@ import { regionFlagCheck } from 'helpers/functions/regionFlagCheck';
 import { formatTitleString } from 'helpers/functions/formatTitleString';
 import { inStockCheck } from 'helpers/functions/inStockCheck';
 import { extractAfterLastDash } from 'helpers/functions/extractAfterLastDash';
+import { Link, useParams } from 'react-router-dom';
+import { extractIvaValue, priceWithIva } from 'helpers/functions/priceAndIva';
 // import { critics } from 'data/data';
 
-const TypeItem = ({ id, name, price, stock, desc }) => {
+const TypeItem = ({ id, name, price, stock, taxes, state }) => {
   // const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   // const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   // const dispatch = useDispatch();
@@ -47,19 +49,26 @@ const TypeItem = ({ id, name, price, stock, desc }) => {
   //   dispatch(removeProduct(id));
   //   setIsDeleteModalOpen(false);
   // };
+  const { subType } = useParams(); // текущая подкатегория (например, "tintos")
+  const pathParts = window.location.pathname.split('/');
+  const category = pathParts[2]; // "vinos", "espumosos" и т.п.
+  const ivaValue = extractIvaValue(taxes);
 
   return (
     <Li>
       <Container>
         <InfoContainer>
-          <Title>
-            {formatTitleString(name)}{' '}
-            <LiquidQty>{extractAfterLastDash(name)}</LiquidQty>
-          </Title>
+          <Link to={`/${category}/${subType}/${id}`} state={state}>
+            <Title>
+              {formatTitleString(name)}{' '}
+              <LiquidQty>{extractAfterLastDash(name)}</LiquidQty>
+            </Title>
+          </Link>
           <RegionContainer>{regionFlagCheck(name)}</RegionContainer>
         </InfoContainer>
-        <ImgContainer>
-          {/* {productImages.length > 0 ? (
+        <Link to={`/${category}/${subType}/${id}`} state={state}>
+          <ImgContainer>
+            {/* {productImages.length > 0 ? (
             <Img
               key={productImages[0].imageID}
               src={productImages[0].imageURL ? productImages[0].imageURL : zagl}
@@ -68,15 +77,16 @@ const TypeItem = ({ id, name, price, stock, desc }) => {
           ) : (
             <Img src={zagl} alt="Sin Foto" />
           )} */}
-          <Img src={zagl} alt="Sin Foto" />
-        </ImgContainer>
+            <Img src={zagl} alt="Sin Foto" />
+          </ImgContainer>
+        </Link>
         {/* <CriticsList critics={critics} /> */}
         <CartContainer>
           <PriceContainer>
-            <Price>{price.toFixed(2)}€</Price>
+            <Price>{priceWithIva(price, ivaValue)}€</Price>
             <Iva>IVA incl.</Iva>
           </PriceContainer>
-          <AddCartForm name={name} id={id} price={price} />
+          <AddCartForm name={name} id={id} price={price} taxes={taxes}/>
         </CartContainer>
         {inStockCheck(stock)}
         {/* {user.userType === 'admin' && (
