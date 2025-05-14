@@ -41,7 +41,6 @@ const TypeList = () => {
   return (
     <>
       <H2Title>{result.title}</H2Title>
-
       <List>
         {products.products.map(({ id, name, price, stock, desc, taxes }) => {
           return (
