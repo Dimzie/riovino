@@ -66,8 +66,18 @@ const productsSlice = createSlice({
       .addCase(getEspumososCount.rejected, handleRejected)
       .addCase(getDestiladosCount.rejected, handleRejected)
       // FULLFILLED
-      .addCase(getProducts.fulfilled, (state, { payload }) => {
-        state.products = payload;
+      .addCase(getProducts.fulfilled, (state, action) => {
+        const { payload } = action;
+        const currentPage = action.meta.arg.page;
+
+        if (currentPage === 1) {
+          state.products = payload;
+        } else {
+          state.products = {
+            ...payload,
+            products: [...state.products.products, ...payload.products],
+          };
+        }
         state.isLoading = false;
         state.error = null;
       })
