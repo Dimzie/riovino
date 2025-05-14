@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import {
   getProducts,
   getCountByType,
@@ -25,6 +27,7 @@ const initialState = {
     products: [],
     totalProducts: 0,
   },
+  cart: [],
   productById: {},
   countByType: {},
   vinosCount: {},
@@ -38,6 +41,41 @@ const initialState = {
 const productsSlice = createSlice({
   name: 'products',
   initialState,
+  reducers: {
+    addToCart: (state, action) => {
+      const { product, quantity = 1 } = action.payload;
+      const existing = state.cart.find(
+        item => item.product._id === product._id
+      );
+
+      if (existing) {
+        existing.quantity += quantity;
+      } else {
+        state.cart.push({ product, quantity });
+      }
+    },
+
+    updateCartItemQuantity: (state, action) => {
+      const { productId, quantity } = action.payload;
+      const existing = state.cart.find(item => item.product._id === productId);
+      if (existing) {
+        existing.quantity = quantity;
+      } else {
+        // Auto-remove if quantity is 0 or negative
+        state.cart = state.cart.filter(item => item.product._id !== productId);
+      }
+    },
+
+    removeFromCart: (state, action) => {
+      const productId = action.payload;
+      state.cart = state.cart.filter(item => item.product._id !== productId);
+    },
+
+    clearCart: state => {
+      state.cart = [];
+    },
+  },
+
   extraReducers: builder => {
     builder
       // PENDING
@@ -137,4 +175,16 @@ const productsSlice = createSlice({
   },
 });
 
-export const productsReducer = productsSlice.reducer;
+const productsPersistConfig = {
+  key: 'products',
+  storage,
+  whitelist: ['cart'], // Only persist the cart
+};
+
+export const { addToCart, removeFromCart, clearCart, updateCartItemQuantity } =
+  productsSlice.actions;
+
+export const persistedProductsReducer = persistReducer(
+  productsPersistConfig,
+  productsSlice.reducer
+);
