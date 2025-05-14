@@ -37,7 +37,7 @@ const TypeList = () => {
               name,
               price,
               stock,
-              desc
+              taxes
             }) => {
               return (
                 <TypeItem
@@ -46,7 +46,8 @@ const TypeList = () => {
                   price={price}
                   id={id}
                   stock={stock}
-                  desc={desc}
+                  taxes={taxes}
+                  state={{ from: location }}
                 />
               );
             }
