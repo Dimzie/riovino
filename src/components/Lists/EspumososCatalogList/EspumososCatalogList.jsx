@@ -20,8 +20,9 @@ const EspumososCatalogList = () => {
     <>
       <H1Title>Espumosos</H1Title>
       <List>
-        {espumososCatalogList.map(({ title, img, alt, type, id, countKey }) => {
+        {espumososCatalogList.map(({ title, img, alt, href, id, countKey }) => {
           const totalCount = espumososCount[countKey];
+          console.log(totalCount);
           return (
             <EspumososCatalogItem
               title={title}
@@ -29,7 +30,7 @@ const EspumososCatalogList = () => {
               key={id}
               alt={alt}
               qty={totalCount}
-              type={type}
+              href={href}
               state={{ from: location }}
             />
           );

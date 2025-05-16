@@ -1,5 +1,5 @@
 import { Region, RegionImg } from 'components/Items/TypeItem/TypeItem.styled';
-import { spainFlag } from 'images/images.index';
+import { franceFlag, spainFlag } from 'images/images.index';
 
 export const regionFlagCheck = name => {
   const lowerName = name.toLowerCase();
@@ -28,7 +28,7 @@ export const regionFlagCheck = name => {
     return (
       <>
         <RegionImg src={spainFlag} alt="spain" height="10" />
-        <Region>D.O. Rias Baixas</Region>
+        <Region>D.O. Rías Baixas</Region>
       </>
     );
   } else if (lowerName.includes('valdeorras')) {
@@ -38,5 +38,22 @@ export const regionFlagCheck = name => {
         <Region>D.O. Valdeorras</Region>
       </>
     );
-  } 
+  }
+
+  //  France
+  else if (lowerName.includes('champagne')) {
+    return (
+      <>
+        <RegionImg src={franceFlag} alt="france" height="10" />
+        <Region>AOC Champagne</Region>
+      </>
+    );
+  } else if (lowerName.includes('cotes de provance')) {
+    return (
+      <>
+        <RegionImg src={franceFlag} alt="spain" height="10" />
+        <Region>AOC Côtes de Provence</Region>
+      </>
+    );
+  }
 };

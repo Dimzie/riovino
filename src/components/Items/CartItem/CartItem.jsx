@@ -1,7 +1,14 @@
 import React from 'react';
-import { Li } from './CartItem.styled';
+import { Li, Title } from './CartItem.styled';
+import { useDispatch } from 'react-redux';
+import { removeFromCart } from '../../../redux/products/productsSlice';
+import DeleteBtn from 'components/DeleteBtn/DeleteBtn';
+import { extractIvaValue, priceWithIva } from 'helpers/functions/priceAndIva';
+import { formatTitleString } from 'helpers/functions/formatTitleString';
 
-const CartItem = ({ id, title, quantity, price, deleteItem}) => {
+const CartItem = ({ id, name, taxes, price, quantity }) => {
+  const dispatch = useDispatch();
+  const ivaValue = extractIvaValue(taxes);
 
   const countCheck = quantity => {
     if (quantity > 1) {
@@ -12,18 +19,17 @@ const CartItem = ({ id, title, quantity, price, deleteItem}) => {
   };
 
   const handleDelete = () => {
-    deleteItem(id); // Call the delete function passed from CartList
+    dispatch(removeFromCart(id));
   };
 
   return (
     <>
       <Li>
-        <p>{title}</p>
+        <Title>{formatTitleString(name)}</Title>
         <p>{countCheck(quantity)}</p>
-        <p>{price}€</p>
-        <button type="button" onClick={handleDelete}>
-          del
-        </button>
+        <p>{priceWithIva(price, ivaValue)}€</p>
+        {/* <button type="button" onClick={handleDelete}>delete</button> */}
+        <DeleteBtn handleDelete={handleDelete} />
       </Li>
     </>
   );

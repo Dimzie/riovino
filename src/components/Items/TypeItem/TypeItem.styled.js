@@ -4,7 +4,7 @@ export const Li = styled.li`
   /* Responsive, Mobile Li */
   position: relative;
   padding: 20px 10px;
-  border: 1px solid rgb(0, 0, 0, 0.1);
+  border: 1px solid rgb(0, 0, 0, 0.2);
   background-color: transparent;
   width: 100%;
   transition: box-shadow 100ms ease-in;
@@ -36,7 +36,6 @@ export const Title = styled.h2`
   font-family: 'Roboto';
   text-align: center;
   margin-bottom: 6px;
-  /* color: #c0aa41; */
   color: #000000;
 `;
 

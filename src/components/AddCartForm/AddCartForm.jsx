@@ -7,9 +7,12 @@ import {
   FormInput,
 } from './AddCartForm.styled';
 import { AddBtnIcon } from 'helpers/Icons/Icons.styled';
+import { addToCart } from '../../redux/products/productsSlice';
+import { useDispatch } from 'react-redux';
 
 const AddCartForm = ({ name, id, price, taxes}) => {
   const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
   // Increase the quantity with a maximum limit of 1000
   const increaseValue = () => {
@@ -36,27 +39,32 @@ const AddCartForm = ({ name, id, price, taxes}) => {
     }
   };
 
-  // Function to handle adding item to cart
   const handleAddToCart = () => {
-    const newItem = { id, name,  price, quantity, taxes };
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    console.log(name)
+    dispatch(addToCart({product: {id, name, price, taxes}, quantity}));
+  }
+  // Function to handle adding item to cart
+
+  // const handleAddToCart = () => {
+  //   const newItem = { id, name,  price, quantity, taxes };
+  //   const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
   
-    const existingItemIndex = storedCart.findIndex(item => item.id === id);
+  //   const existingItemIndex = storedCart.findIndex(item => item.id === id);
   
-    let updatedCart;
-    if (existingItemIndex !== -1) {
-      updatedCart = storedCart.map(item =>
-        item.id === id ? { ...item, quantity: item.quantity + quantity, taxes} : item
-      );
-    } else {
-      updatedCart = [...storedCart, newItem];
-    }
+  //   let updatedCart;
+  //   if (existingItemIndex !== -1) {
+  //     updatedCart = storedCart.map(item =>
+  //       item.id === id ? { ...item, quantity: item.quantity + quantity, taxes} : item
+  //     );
+  //   } else {
+  //     updatedCart = [...storedCart, newItem];
+  //   }
   
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
   
-    // 🔹 Trigger storage event manually
-    window.dispatchEvent(new Event("storage"));
-  };
+  //   // 🔹 Trigger storage event manually
+  //   window.dispatchEvent(new Event("storage"));
+  // };
 
   return (
     <CartForm action="">

@@ -4,7 +4,8 @@ export const Li = styled.li`
   /* Responsive, Mobile Li */
   position: relative;
   padding: 20px 10px;
-  background-color: rgba(1, 1, 1, 0.4);
+  background-color: transparent;
+  border: 1px solid rgb(0,0,0, 0.2);
   width: 100%;
 
   /* Tablets Li */
@@ -14,6 +15,11 @@ export const Li = styled.li`
 
   /* Laptops, Desctops, Televisors Li */
   @media screen and (min-width: 769px) {
-    width: calc((100% - 60px) / 4);
+    width: 848px;
   }
+`;
+
+export const Title = styled.h2`
+  font-family: 'Roboto';
+  color: #000000;
 `;

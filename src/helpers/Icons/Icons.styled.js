@@ -23,8 +23,8 @@ export const PhoneIcon = styled(FiPhone)`
 `;
 
 export const BackIcon = styled(BiArrowBack)`
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
 `;
 
 export const TelegramIcon = styled(LiaTelegram)`
@@ -50,8 +50,8 @@ export const CloseIcon = styled(GrClose)`
 `;
 
 export const TrashIcon = styled(AiOutlineDelete)`
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
 `;
 
 export const UpdateIcon = styled(GrUpdate)`

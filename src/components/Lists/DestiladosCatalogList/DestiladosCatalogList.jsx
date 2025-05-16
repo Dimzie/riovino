@@ -22,13 +22,13 @@ const DestiladosCatalogList = () => {
       <H1Title>Destilados</H1Title>
       <List>
         {destiladosCatalogList.map(
-          ({ title, img, alt, type, id, countKey }) => {
+          ({ title, img, alt, href, id, countKey }) => {
             const totalCount = destiladosCount[countKey];
             return (
               <DestiladosCatalogItem
                 title={title}
                 img={img}
-                type={type}
+                href={href}
                 key={id}
                 alt={alt}
                 qty={totalCount}

@@ -9,6 +9,7 @@ import {
   selectEspumososCount,
   selectDestiladosCount,
   selectIsProductLoading,
+  selectCart,
 } from '../redux/products/selectors';
 
 export const useProducts = () => {
@@ -21,6 +22,7 @@ export const useProducts = () => {
   const isProductsLoading = useSelector(selectIsLoading);
   const isProductLoading = useSelector(selectIsProductLoading);
   const productError = useSelector(selectError);
+  const cart = useSelector(selectCart);
 
   return {
     products,
@@ -32,5 +34,6 @@ export const useProducts = () => {
     isProductsLoading,
     isProductLoading,
     productError,
+    cart
   };
 };

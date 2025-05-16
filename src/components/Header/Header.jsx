@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   AddressItem,
   AddressLink,
@@ -33,31 +33,14 @@ import { useAuth } from '../../hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/auth/operations';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-// import headerLogo from '../../images/Header/header_logo.png';
 
 const Header = () => {
-    const location = useLocation();
+  const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { isProductsLoading } = useProducts();
+  const { isProductsLoading, cart } = useProducts();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
-  const [cartQuantity, setCartQuantity] = useState(0);
-
-  const updateCartQuantity = () => {
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-    const uniqueProductCount = new Set(cartItems.map(item => item.id)).size;
-    setCartQuantity(uniqueProductCount > 99 ? '99+' : uniqueProductCount);
-  };
-
-  useEffect(() => {
-    updateCartQuantity(); // Initial load
-    window.addEventListener('storage', updateCartQuantity); // Listen for changes in localStorage (e.g., from other tabs)
-
-    return () => {
-      window.removeEventListener('storage', updateCartQuantity); // Clean up the event listener when the component unmounts
-    };
-  }, []); // Empty dependency array means this effect runs only once, after the component mounts
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -101,7 +84,7 @@ const Header = () => {
                 <CartBtn>
                   <AddBtnIcon />
                 </CartBtn>
-                {cartQuantity > 0 && <QuantNumber>{cartQuantity}</QuantNumber>}
+                {cart.length > 0 && <QuantNumber>{cart.length}</QuantNumber>}
               </CartBtnWrapper>
             </Link>
             {isModalOpen && (

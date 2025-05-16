@@ -1,60 +1,47 @@
 import BackBtn from 'components/BackBtn/BackBtn';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import {
-  H1Title,
-  List,
-  PayBtn,
-  PaymentWrapper,
-  TotalPrice,
-} from './CartList.styled';
+import { EmptyCartMsg, H1Title, List, CartWrapper } from './CartList.styled';
 import CartItem from 'components/Items/CartItem/CartItem';
-import { priceWithIva } from 'helpers/functions/priceAndIva';
+import { useProducts } from 'hooks/useProducts';
+import { extractIvaValue, priceWithIva } from 'helpers/functions/priceAndIva';
+import PriceForm from 'components/PriceForm/PriceForm';
 
 export const CartList = () => {
   const location = useLocation();
   const backLink = location?.state?.from ?? '/';
-  const [cartItems, setCartItems] = React.useState(
-    JSON.parse(localStorage.getItem('cart')) || []
-  );
 
-  // Function to delete an item from the cart
-  const deleteItem = id => {
-    const updatedCart = cartItems.filter(item => item.id !== id);
-    localStorage.setItem('cart', JSON.stringify(updatedCart)); // Update localStorage
-    setCartItems(updatedCart); // Update state for re-rendering
-  };
+  const { cart } = useProducts();
 
-  const totalPrice = cartItems
-    .reduce((sum, item) => sum + priceWithIva(item.price) * item.quantity, 0)
-    .toFixed(2);
+  const total = cart.reduce((acc, { product, quantity }) => {
+    const ivaValue = extractIvaValue(product.taxes);
+    const itemTotal = priceWithIva(product.price, ivaValue) * quantity;
+    return acc + itemTotal;
+  }, 0);
 
   return (
     <>
       <H1Title>Cesta</H1Title>
-      {cartItems.length === 0 ? (
-        <List>
-          <p>Su cesta está actualmente vacía {'😔'}</p>
-        </List>
-      ) : (
-        <List>
-          {cartItems.map(({ id, quantity, price, title, productImages }) => (
-            <CartItem
-              key={id}
-              id={id}
-              title={title}
-              quantity={quantity}
-              price={price}
-              productImages={productImages}
-              deleteItem={deleteItem}
-            />
-          ))}
-        </List>
+      {cart.length === 0 && (
+        <EmptyCartMsg>Su cesta está actualmente vacía.</EmptyCartMsg>
       )}
-      <PaymentWrapper>
-        <TotalPrice>Total: {totalPrice} €</TotalPrice>
-        {totalPrice > 0 && <PayBtn>Pagar pedido</PayBtn>}
-      </PaymentWrapper>
+      <CartWrapper>
+        {cart.length > 0 && (
+          <List>
+            {cart.map(({ product, quantity }) => (
+              <CartItem
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                quantity={quantity}
+                price={product.price}
+                taxes={product.taxes}
+              />
+            ))}
+          </List>
+        )}
+        {cart.length > 0 && <PriceForm total={total} />}
+      </CartWrapper>
       <BackBtn backLink={backLink} />
     </>
   );
