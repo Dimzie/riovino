@@ -8,6 +8,7 @@ import {
   logout,
   register,
   removeFromCart,
+  updateCartItemQuantity,
 } from './operations';
 
 const handlePending = state => {
@@ -45,12 +46,14 @@ const authSlice = createSlice({
       .addCase(logout.pending, handlePending)
       .addCase(getCurrent.pending, handlePending)
       .addCase(addToCart.pending, handlePending)
+      .addCase(updateCartItemQuantity.pending, handlePending)
       .addCase(removeFromCart.pending, handlePending)
       // REJECTED
       .addCase(register.rejected, handleRejected)
       .addCase(login.rejected, handleRejected)
-      .addCase(addToCart.pending, handleRejected)
-      .addCase(removeFromCart.pending, handleRejected)
+      .addCase(addToCart.rejected, handleRejected)
+      .addCase(updateCartItemQuantity.rejected, handleRejected)
+      .addCase(removeFromCart.rejected, handleRejected)
       .addCase(getCurrent.rejected, state => {
         state.isRefreshing = false;
       })
@@ -82,6 +85,10 @@ const authSlice = createSlice({
         state.rioAccessToken = payload.accessToken;
         state.isLoggedIn = true;
         state.isRefreshing = false;
+      })
+      .addCase(updateCartItemQuantity.fulfilled, (state, { payload }) => {
+        state.user.cart = payload;
+        state.isLoading = false;
       })
       .addCase(addToCart.fulfilled, (state, { payload }) => {
         state.user.cart = payload;

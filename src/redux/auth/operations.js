@@ -83,8 +83,19 @@ export const addToCart = createAsyncThunk(
         product,
         quantity,
       });
-      console.log('cart', response.data);
 
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateCartItemQuantity = createAsyncThunk(
+  'auth/updateCartItemQuantity',
+  async ({ id, quantity }, thunkAPI) => {
+    try {
+      const response = await instance.patch(`auth/cart/${id}`, { quantity });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -97,7 +108,6 @@ export const removeFromCart = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await instance.patch(`/auth/cart/${id}`);
-      console.log('cartAfterRemove', response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
