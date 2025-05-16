@@ -12,20 +12,28 @@ import {
   CartItemInfo,
   LiquidQty,
   CartMultiplier,
+  CartPriceContainer,
 } from './CartItem.styled';
 import { useDispatch } from 'react-redux';
-import { removeFromCart } from '../../../redux/products/productsSlice';
+import {
+  removeFromCart,
+  updateCartItemQuantity,
+} from '../../../redux/products/productsSlice';
 import DeleteBtn from 'components/Buttons/DeleteBtn/DeleteBtn';
 import { extractIvaValue, priceWithIva } from 'helpers/functions/priceAndIva';
 import { formatTitleString } from 'helpers/functions/formatTitleString';
 import { zaglushka } from 'images/images.index';
 import { regionFlagCheck } from 'helpers/functions/regionFlagCheck';
-import AddCartForm from 'components/AddCartForm/AddCartForm';
 import { extractAfterLastDash } from 'helpers/functions/extractAfterLastDash';
+import CartFormCheck from 'components/CartFormCheck/CartFormCheck';
 
 const CartItem = ({ id, name, taxes, price, quantity }) => {
   const dispatch = useDispatch();
   const ivaValue = extractIvaValue(taxes);
+
+  const handleUpdateCartQuantity = newQuantity => {
+    dispatch(updateCartItemQuantity({ id, quantity: newQuantity }));
+  };
 
   const handleDelete = () => {
     dispatch(removeFromCart(id));
@@ -45,14 +53,19 @@ const CartItem = ({ id, name, taxes, price, quantity }) => {
               <RegionContainer>{regionFlagCheck(name)}</RegionContainer>
             </CartItemInfo>
             <CartItemQuantityForm>
-              <AddCartForm quantity={quantity} />
-              <CartMultiplier>x</CartMultiplier>
-              <CartItemPrice>{priceWithIva(price, ivaValue)}€</CartItemPrice>
-              <CartMultiplier>=</CartMultiplier>
-              <CartTotalItemPrice>
-                {(priceWithIva(price, ivaValue) * quantity).toFixed(2)}€
-              </CartTotalItemPrice>
-              <DeleteBtn handleDelete={handleDelete} />
+              <CartFormCheck
+                cartQuantity={quantity}
+                handleUpdateCartQuantity={handleUpdateCartQuantity}
+              />
+              <CartPriceContainer>
+                <CartMultiplier>x</CartMultiplier>
+                <CartItemPrice>{priceWithIva(price, ivaValue)}€</CartItemPrice>
+                <CartMultiplier>=</CartMultiplier>
+                <CartTotalItemPrice>
+                  {(priceWithIva(price, ivaValue) * quantity).toFixed(2)}€
+                </CartTotalItemPrice>
+                <DeleteBtn handleDelete={handleDelete} />
+              </CartPriceContainer>
             </CartItemQuantityForm>
           </CartItemWrapper>
         </CartItemContainer>

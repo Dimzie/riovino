@@ -60,9 +60,8 @@ export const RegionContainer = styled.div`
 
 export const CartItemQuantityForm = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px;
 `;
 
 export const CartItemPrice = styled.p`
@@ -85,4 +84,11 @@ export const CartMultiplier = styled.span`
   font-family: 'Roboto';
   font-size: 24px;
   color: rgb(0, 0, 0, 0.6);
+`;
+
+export const CartPriceContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
 `;

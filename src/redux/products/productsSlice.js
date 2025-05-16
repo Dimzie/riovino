@@ -56,13 +56,13 @@ const productsSlice = createSlice({
     },
 
     updateCartItemQuantity: (state, action) => {
-      const { productId, quantity } = action.payload;
-      const existing = state.cart.find(item => item.product.id === productId);
+      const { id, quantity } = action.payload;
+      const existing = state.cart.find(item => item.product.id === id);
       if (existing) {
         existing.quantity = quantity;
       } else {
         // Auto-remove if quantity is 0 or negative
-        state.cart = state.cart.filter(item => item.product.id !== productId);
+        state.cart = state.cart.filter(item => item.product.id !== id);
       }
     },
 
