@@ -1,7 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { getCurrent, login, logout, register } from './operations';
+import {
+  addToCart,
+  getCurrent,
+  login,
+  logout,
+  register,
+  removeFromCart,
+} from './operations';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -13,7 +20,13 @@ const handleRejected = (state, { payload }) => {
 };
 
 const initialState = {
-  user: {},
+  user: {
+    email: '',
+    name: '',
+    surname: '',
+    userType: 'user',
+    cart: [], // ✅ matches schema: array of { product, quantity }
+  },
   rioAccessToken: null,
   isLoggedIn: false,
   isRefreshing: false,
@@ -31,9 +44,13 @@ const authSlice = createSlice({
       .addCase(login.pending, handlePending)
       .addCase(logout.pending, handlePending)
       .addCase(getCurrent.pending, handlePending)
+      .addCase(addToCart.pending, handlePending)
+      .addCase(removeFromCart.pending, handlePending)
       // REJECTED
       .addCase(register.rejected, handleRejected)
       .addCase(login.rejected, handleRejected)
+      .addCase(addToCart.pending, handleRejected)
+      .addCase(removeFromCart.pending, handleRejected)
       .addCase(getCurrent.rejected, state => {
         state.isRefreshing = false;
       })
@@ -65,6 +82,14 @@ const authSlice = createSlice({
         state.rioAccessToken = payload.accessToken;
         state.isLoggedIn = true;
         state.isRefreshing = false;
+      })
+      .addCase(addToCart.fulfilled, (state, { payload }) => {
+        state.user.cart = payload;
+        state.isLoading = false;
+      })
+      .addCase(removeFromCart.fulfilled, (state, { payload }) => {
+        state.user.cart = payload;
+        state.isLoading = false;
       });
   },
 });

@@ -74,3 +74,33 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+export const addToCart = createAsyncThunk(
+  'auth/addCart',
+  async ({ product, quantity }, thunkAPI) => {
+    try {
+      const response = await instance.patch('/auth/cart', {
+        product,
+        quantity,
+      });
+      console.log('cart', response.data);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const removeFromCart = createAsyncThunk(
+  'auth/removeFromCart',
+  async (id, thunkAPI) => {
+    try {
+      const response = await instance.patch(`/auth/cart/${id}`);
+      console.log('cartAfterRemove', response.data);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
