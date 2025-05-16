@@ -84,7 +84,11 @@ const Header = () => {
                 <CartBtn>
                   <AddBtnIcon />
                 </CartBtn>
-                {cart.length > 0 && <QuantNumber>{cart.length}</QuantNumber>}
+                {cart.length > 0 && (
+                  <QuantNumber>
+                    {cart.length > 99 ? '99+' : cart.length}
+                  </QuantNumber>
+                )}
               </CartBtnWrapper>
             </Link>
             {isModalOpen && (
