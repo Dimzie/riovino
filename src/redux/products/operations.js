@@ -14,7 +14,7 @@ export const getHoldedProducts = createAsyncThunk(
 
 export const getProducts = createAsyncThunk(
   'products/getProducts',
-  async ({ subType, page = 1, limit = 12 }, thunkAPI) => {
+  async ({ subType, page = 1, limit = 20}, thunkAPI) => {
     try {
       if (!subType) {
         const response = await instance.get('/products');
@@ -38,7 +38,8 @@ export const getProductById = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await instance.get(`/products/${id}`);
-      console.log('response.data', response.data);
+      // console.log('response.data', response.data);
+      console.log('by id', response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

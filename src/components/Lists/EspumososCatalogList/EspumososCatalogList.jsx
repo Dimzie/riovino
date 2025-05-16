@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { H1Title, List } from './EspumososCatalogList.styled';
 import { espumososCatalogList } from 'data/data';
 import EspumososCatalogItem from 'components/Items/EspumososCatalogItem/EspumososCatalogItem';
-import BackBtn from 'components/BackBtn/BackBtn';
+import BackBtn from 'components/Buttons/BackBtn/BackBtn';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useProducts } from 'hooks/useProducts';
@@ -20,8 +20,9 @@ const EspumososCatalogList = () => {
     <>
       <H1Title>Espumosos</H1Title>
       <List>
-        {espumososCatalogList.map(({ title, img, alt, type, id, countKey }) => {
+        {espumososCatalogList.map(({ title, img, alt, href, id, countKey }) => {
           const totalCount = espumososCount[countKey];
+          console.log(totalCount);
           return (
             <EspumososCatalogItem
               title={title}
@@ -29,7 +30,7 @@ const EspumososCatalogList = () => {
               key={id}
               alt={alt}
               qty={totalCount}
-              type={type}
+              href={href}
               state={{ from: location }}
             />
           );

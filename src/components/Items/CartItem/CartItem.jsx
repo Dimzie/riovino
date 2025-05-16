@@ -1,50 +1,74 @@
 import React from 'react';
-import zagl from '../../../images/no-photo.png';
-import { ivaInclude } from 'helpers/functions/ivaIncludeCalculate';
-import { Li } from './CartItem.styled';
+import {
+  CartItemContainer,
+  CartItemWrapper,
+  CartItemPrice,
+  CartItemQuantityForm,
+  CartTotalItemPrice,
+  Img,
+  Li,
+  RegionContainer,
+  Title,
+  CartItemInfo,
+  LiquidQty,
+  CartMultiplier,
+  CartPriceContainer,
+} from './CartItem.styled';
+import { useDispatch } from 'react-redux';
+import {
+  removeFromCart,
+  updateCartItemQuantity,
+} from '../../../redux/products/productsSlice';
+import DeleteBtn from 'components/Buttons/DeleteBtn/DeleteBtn';
+import { extractIvaValue, priceWithIva } from 'helpers/functions/priceAndIva';
+import { formatTitleString } from 'helpers/functions/formatTitleString';
+import { zaglushka } from 'images/images.index';
+import { regionFlagCheck } from 'helpers/functions/regionFlagCheck';
+import { extractAfterLastDash } from 'helpers/functions/extractAfterLastDash';
+import CartFormCheck from 'components/CartFormCheck/CartFormCheck';
 
-const CartItem = ({
-  id,
-  title,
-  quantity,
-  price,
-  productImages,
-  deleteItem,
-}) => {
-  const imageSrc =
-    productImages.length > 0 && productImages[0]?.imageURL
-      ? productImages[0].imageURL
-      : zagl;
-  const imageKey =
-    productImages.length > 0 && productImages[0]?.imageID
-      ? productImages[0].imageID
-      : 'zagl';
+const CartItem = ({ id, name, taxes, price, quantity }) => {
+  const dispatch = useDispatch();
+  const ivaValue = extractIvaValue(taxes);
 
-  const finalPrice = (ivaInclude(price) * quantity).toFixed(2);
-  const countCheck = quantity => {
-    if (quantity > 1) {
-      return `${quantity} botellas`;
-    } else {
-      return `${quantity} botella`;
-    }
+  const handleUpdateCartQuantity = newQuantity => {
+    dispatch(updateCartItemQuantity({ id, quantity: newQuantity }));
   };
 
   const handleDelete = () => {
-    deleteItem(id); // Call the delete function passed from CartList
+    dispatch(removeFromCart(id));
   };
 
   return (
     <>
       <Li>
-        <div>
-          <img key={imageKey} src={imageSrc} alt="" />
-        </div>
-        <p>{title}</p>
-        <p>{countCheck(quantity)}</p>
-        <p>{finalPrice}€</p>
-        <button type="button" onClick={handleDelete}>
-          del
-        </button>
+        <CartItemContainer>
+          <Img src={zaglushka} alt="Sin Foto" />
+          <CartItemWrapper>
+            <CartItemInfo>
+              <Title>
+                {formatTitleString(name)}{' '}
+                <LiquidQty>{extractAfterLastDash(name)}</LiquidQty>
+              </Title>
+              <RegionContainer>{regionFlagCheck(name)}</RegionContainer>
+            </CartItemInfo>
+            <CartItemQuantityForm>
+              <CartFormCheck
+                cartQuantity={quantity}
+                handleUpdateCartQuantity={handleUpdateCartQuantity}
+              />
+              <CartPriceContainer>
+                <CartMultiplier>x</CartMultiplier>
+                <CartItemPrice>{priceWithIva(price, ivaValue)}€</CartItemPrice>
+                <CartMultiplier>=</CartMultiplier>
+                <CartTotalItemPrice>
+                  {(priceWithIva(price, ivaValue) * quantity).toFixed(2)}€
+                </CartTotalItemPrice>
+                <DeleteBtn handleDelete={handleDelete} />
+              </CartPriceContainer>
+            </CartItemQuantityForm>
+          </CartItemWrapper>
+        </CartItemContainer>
       </Li>
     </>
   );

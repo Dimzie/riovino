@@ -7,3 +7,4 @@ export const selectDestiladosCount = state => state.products.destiladosCount;
 export const selectIsLoading = state => state.products.isLoading;
 export const selectIsProductLoading = state => state.products.isProductLoading;
 export const selectError = state => state.products.error;
+export const selectCart = state => state.products.cart;

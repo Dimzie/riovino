@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export const Li = styled.li`
   /* Responsive, Mobile Li */
   background-color: transparent;
-  border: 1px solid rgb(0, 0, 0, 0.1);
+  border: 1px solid rgb(0, 0, 0, 0.2);
   width: 100%;
   transition: box-shadow 100ms ease-in;
 

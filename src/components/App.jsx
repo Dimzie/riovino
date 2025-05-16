@@ -13,6 +13,7 @@ import { getCurrent } from '../redux/auth/operations';
 import RestrictedRoute from './Routes/RestrictedRoute';
 import CartPage from 'pages/CartPage/CartPage';
 import { getHoldedProducts } from '../redux/products/operations';
+import SelectedItemPage from 'pages/SelectedItemPage/SelectedItemPage';
 
 
 export const App = () => {
@@ -43,6 +44,7 @@ export const App = () => {
             <Route path="/vinos/:subType" element={<TypePage />} />
             <Route path="/espumosos/:subType" element={<TypePage />} />
             <Route path="/destilados/:subType" element={<TypePage />} />
+            <Route path="/:category/:subType/:itemId" element={<SelectedItemPage />} />
           </Route>
         </Routes>
       )}

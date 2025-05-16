@@ -15,8 +15,8 @@
 body {
   margin: 0;
   font-family: 'Montserrat';
-  background-color: #ffffff;
   color: #000000;
+  background-color: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

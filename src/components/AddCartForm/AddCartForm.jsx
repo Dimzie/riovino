@@ -1,16 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
-  AddBtn,
   CartForm,
   FormDecreaseBtn,
   FormIncreaseBtn,
   FormInput,
 } from './AddCartForm.styled';
-import { AddBtnIcon } from 'helpers/Icons/Icons.styled';
 
-const AddCartForm = ({ name, id, price}) => {
-  const [quantity, setQuantity] = useState(1);
-
+const AddCartForm = ({ setQuantity, quantity }) => {
   // Increase the quantity with a maximum limit of 1000
   const increaseValue = () => {
     setQuantity(prevQuantity =>
@@ -36,28 +32,6 @@ const AddCartForm = ({ name, id, price}) => {
     }
   };
 
-  // Function to handle adding item to cart
-  const handleAddToCart = () => {
-    const newItem = { id, name,  price, quantity };
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-  
-    const existingItemIndex = storedCart.findIndex(item => item.id === id);
-  
-    let updatedCart;
-    if (existingItemIndex !== -1) {
-      updatedCart = storedCart.map(item =>
-        item.id === id ? { ...item, quantity: item.quantity + quantity } : item
-      );
-    } else {
-      updatedCart = [...storedCart, newItem];
-    }
-  
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  
-    // 🔹 Trigger storage event manually
-    window.dispatchEvent(new Event("storage"));
-  };
-
   return (
     <CartForm action="">
       <FormDecreaseBtn type="button" onClick={decreaseValue}>
@@ -73,9 +47,6 @@ const AddCartForm = ({ name, id, price}) => {
       <FormIncreaseBtn type="button" onClick={increaseValue}>
         +
       </FormIncreaseBtn>
-      <AddBtn type="button" onClick={handleAddToCart}>
-        <AddBtnIcon />
-      </AddBtn>
     </CartForm>
   );
 };

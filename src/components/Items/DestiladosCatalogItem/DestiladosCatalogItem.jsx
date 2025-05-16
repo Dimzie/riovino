@@ -7,10 +7,10 @@ import {
   Title,
 } from './DestiladosCatalogItem.styled';
 
-const DestiladosCatalogItem = ({ title, type, img, alt, qty, state }) => {
+const DestiladosCatalogItem = ({ title, href, img, alt, qty, state }) => {
   return (
     <Li>
-      <StyledLink to={`/destilados/${type}`} state={state}>
+      <StyledLink to={`/destilados/${href}`} state={state}>
         <ImgContainer>
           <img src={img} alt={alt} />
         </ImgContainer>

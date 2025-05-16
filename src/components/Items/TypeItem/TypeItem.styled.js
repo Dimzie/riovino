@@ -4,7 +4,7 @@ export const Li = styled.li`
   /* Responsive, Mobile Li */
   position: relative;
   padding: 20px 10px;
-  border: 1px solid rgb(0, 0, 0, 0.1);
+  border: 1px solid rgb(0, 0, 0, 0.2);
   background-color: transparent;
   width: 100%;
   transition: box-shadow 100ms ease-in;
@@ -36,7 +36,6 @@ export const Title = styled.h2`
   font-family: 'Roboto';
   text-align: center;
   margin-bottom: 6px;
-  /* color: #c0aa41; */
   color: #000000;
 `;
 
@@ -51,11 +50,11 @@ export const RegionContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 5px;
 `;
 
 export const RegionImg = styled.img`
   height: 10px;
-  margin-right: 5px;
 `;
 
 export const Region = styled.p`
@@ -89,7 +88,8 @@ export const Price = styled.p`
 `;
 
 export const Iva = styled.p`
-  color: rgb(0, 0, 0, 0.4);
+  font-weight: bold;
+  color: rgb(0, 0, 0, 0.6);
   font-family: 'Roboto';
 `;
 
@@ -121,6 +121,12 @@ export const TypeBtn = styled.button`
 `;
 
 export const LiquidQty = styled.span`
-  color: rgb(0, 0, 0, 0.4);
+  color: rgb(0, 0, 0, 0.6);
   font-size: 16px;
+`;
+
+export const AddFormContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  margin-bottom: 10px;
 `;
