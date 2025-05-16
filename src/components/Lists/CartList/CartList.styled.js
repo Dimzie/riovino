@@ -23,5 +23,6 @@ export const List = styled.ul`
 `;
 
 export const EmptyCartMsg = styled.h2`
-text-align: center;
+  text-align: center;
+  margin-bottom: 25px;
 `;

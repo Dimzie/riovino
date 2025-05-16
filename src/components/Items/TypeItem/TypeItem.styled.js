@@ -50,11 +50,11 @@ export const RegionContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 5px;
 `;
 
 export const RegionImg = styled.img`
   height: 10px;
-  margin-right: 5px;
 `;
 
 export const Region = styled.p`
@@ -123,4 +123,10 @@ export const TypeBtn = styled.button`
 export const LiquidQty = styled.span`
   color: rgb(0, 0, 0, 0.6);
   font-size: 16px;
+`;
+
+export const AddFormContainer = styled.div`
+  display: flex;
+  gap: 20px;
+  margin-bottom: 10px;
 `;

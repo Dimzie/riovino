@@ -4,7 +4,7 @@ import SelectedItem from 'components/Items/SelectedItem/SelectedItem';
 import { getProductById } from '../../redux/products/operations';
 import { useDispatch } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
-import BackBtn from 'components/BackBtn/BackBtn';
+import BackBtn from 'components/Buttons/BackBtn/BackBtn';
 
 const SelectedItemPage = () => {
   const { itemId } = useParams();

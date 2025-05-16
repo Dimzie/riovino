@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Background, Btn, BtnWrapper } from './Authpage.styled';
 import LoginForm from 'components/LoginForm/LoginForm';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
-import BackBtn from 'components/BackBtn/BackBtn';
+import BackBtn from 'components/Buttons/BackBtn/BackBtn';
 import { useLocation } from 'react-router-dom';
 
 const Authpage = () => {

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { H1Title, List } from './DestiladosCatalogList.styled';
 import DestiladosCatalogItem from 'components/Items/DestiladosCatalogItem/DestiladosCatalogItem';
 import { destiladosCatalogList } from 'data/data';
-import BackBtn from 'components/BackBtn/BackBtn';
+import BackBtn from 'components/Buttons/BackBtn/BackBtn';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getDestiladosCount } from '../../../redux/products/operations';

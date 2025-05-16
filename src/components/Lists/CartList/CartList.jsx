@@ -1,4 +1,4 @@
-import BackBtn from 'components/BackBtn/BackBtn';
+import BackBtn from 'components/Buttons/BackBtn/BackBtn';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { EmptyCartMsg, H1Title, List, CartWrapper } from './CartList.styled';

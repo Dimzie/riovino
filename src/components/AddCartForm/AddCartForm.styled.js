@@ -4,7 +4,6 @@ export const CartForm = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
 `;
 
 export const FormDecreaseBtn = styled.button`
@@ -15,7 +14,7 @@ export const FormDecreaseBtn = styled.button`
   height: 35px;
   margin-right: 5px;
   background-color: transparent;
-  border: 1px solid rgb(0, 0, 0, 0.1);
+  border: 1px solid rgb(0, 0, 0, 0.2);
   color: #000000;
   cursor: pointer;
   transition: color 100ms ease-in;
@@ -30,9 +29,8 @@ export const FormIncreaseBtn = styled.button`
   padding: 0;
   width: 25px;
   height: 35px;
-  margin-right: 20px;
   background-color: transparent;
-  border: 1px solid rgb(0, 0, 0, 0.1);
+  border: 1px solid rgb(0, 0, 0, 0.2);
   color: #000000;
   cursor: pointer;
   transition: color 100ms ease-in;
@@ -48,7 +46,7 @@ export const FormInput = styled.input`
   margin-right: 5px;
   text-align: center;
   background-color: transparent;
-  border: 1px solid rgb(0, 0, 0, 0.1);
+  border: 1px solid rgb(0, 0, 0, 0.2);
   padding: 2px 5px;
   color: #000000;
   outline: none;
