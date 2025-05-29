@@ -13,7 +13,7 @@ import RestrictedRoute from './Routes/RestrictedRoute';
 import CartPage from 'pages/CartPage/CartPage';
 import { getHoldedProducts } from '../redux/products/operations';
 import SelectedItemPage from 'pages/SelectedItemPage/SelectedItemPage';
-import AuthPage from 'pages/temp/AuthPage';
+import AuthPage from 'pages/AuthPage/AuthPage';
 
 
 export const App = () => {
