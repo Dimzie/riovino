@@ -75,7 +75,7 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
-export const addToCart = createAsyncThunk(
+export const addToUserCart = createAsyncThunk(
   'auth/addCart',
   async ({ product, quantity }, thunkAPI) => {
     try {
@@ -91,7 +91,7 @@ export const addToCart = createAsyncThunk(
   }
 );
 
-export const updateCartItemQuantity = createAsyncThunk(
+export const updateUserCartItemQuantity = createAsyncThunk(
   'auth/updateCartItemQuantity',
   async ({ id, quantity }, thunkAPI) => {
     try {
@@ -103,7 +103,7 @@ export const updateCartItemQuantity = createAsyncThunk(
   }
 );
 
-export const removeFromCart = createAsyncThunk(
+export const removeFromUserCart = createAsyncThunk(
   'auth/removeFromCart',
   async (id, thunkAPI) => {
     try {

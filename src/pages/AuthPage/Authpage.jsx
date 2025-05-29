@@ -1,12 +1,12 @@
 import { Section } from 'pages/Common.styled';
 import React, { useState } from 'react';
-import { Background, Btn, BtnWrapper } from './Authpage.styled';
-import LoginForm from 'components/LoginForm/LoginForm';
-import RegisterForm from 'components/RegisterForm/RegisterForm';
+import { Background, Btn, BtnWrapper } from "./AuthPage.styled";
+import LoginForm from 'components/Forms/LoginForm/LoginForm';
+import RegisterForm from 'components/Forms/RegisterForm/RegisterForm';
 import BackBtn from 'components/Buttons/BackBtn/BackBtn';
 import { useLocation } from 'react-router-dom';
 
-const Authpage = () => {
+const AuthPage = () => {
   const [activeBtn, setActiveBtn] = useState('in');
   const location = useLocation();
   const backLink = location?.state?.from ?? '/';
@@ -35,4 +35,4 @@ const Authpage = () => {
   );
 };
 
-export default Authpage;
+export default AuthPage;

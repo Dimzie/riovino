@@ -26,9 +26,6 @@ import {
 import BurgerMenu from 'components/BurgerMenu/BurgerMenu';
 import Loader from 'components/Loader/Loader';
 import { useProducts } from 'hooks/useProducts';
-import Modal from 'components/Modal/Modal';
-import AddProductForm from 'components/AddProductForm/AddProductForm';
-import { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../redux/auth/operations';
@@ -36,15 +33,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const location = useLocation();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const { isProductsLoading, cart } = useProducts();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLoggedIn } = useAuth();
-
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+  const { user, isLoggedIn, isUserLoading } = useAuth();
+  console.log(isUserLoading);
 
   return (
     <HeaderSection>
@@ -74,28 +67,24 @@ const Header = () => {
             <img src={headerLogo} alt="Rio Vino Logo" height="75" />
           </LogoImgContainer> */}
           <HeaderBtnList>
-            {/* {user.userType === 'admin' && (
-              <AddBtn type="button" onClick={toggleModal}>
-                <AddIcon />
-              </AddBtn>
-            )} */}
             <Link to={'/cart'} state={{ from: location }}>
               <CartBtnWrapper>
                 <CartBtn>
                   <AddBtnIcon />
                 </CartBtn>
-                {cart.length > 0 && (
-                  <QuantNumber>
-                    {cart.length > 99 ? '99+' : cart.length}
-                  </QuantNumber>
-                )}
+                {isLoggedIn
+                  ? user.cart.length > 0 && (
+                      <QuantNumber>
+                        {user.cart.length > 99 ? '99+' : user.cart.length}
+                      </QuantNumber>
+                    )
+                  : cart.length > 0 && (
+                      <QuantNumber>
+                        {cart.length > 99 ? '99+' : cart.length}
+                      </QuantNumber>
+                    )}
               </CartBtnWrapper>
             </Link>
-            {isModalOpen && (
-              <Modal onCloseModal={toggleModal}>
-                <AddProductForm onCloseModal={toggleModal} />
-              </Modal>
-            )}
             {isLoggedIn ? (
               <UserWrapper>
                 <UserImgWrapper>
@@ -111,7 +100,9 @@ const Header = () => {
                 </LogOutBtn>
               </UserWrapper>
             ) : (
-              <AuthBtn to={'/auth'}>Sign In / Sign Up</AuthBtn>
+              <AuthBtn to={'/auth'} state={{ from: location }}>
+                Sign In / Sign Out
+              </AuthBtn>
             )}
           </HeaderBtnList>
           <BurgerMenu />

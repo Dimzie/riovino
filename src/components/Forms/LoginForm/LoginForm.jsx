@@ -1,41 +1,33 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { register } from '../../redux/auth/operations';
+import { login } from '../../../redux/auth/operations';
 import { ErrorMessage, Field, Formik } from 'formik';
-import { RegisterSchema } from 'helpers/yupSchemas/projectSchemas';
-import { Label, StyledForm } from './RegisterForm.styled';
+import { LoginSchema } from 'helpers/yupSchemas/projectSchemas';
+import { Label, StyledForm } from './LoginForm.styled';
 
 const RegisterForm = () => {
   //   const [passVisible, setPassVisible] = useState(false);
-  //   const [repeatePassVisible, setRepeatePassVisible] = useState(false);
   const dispatch = useDispatch();
 
   //   const handlePassVisible = () => {
   //     setPassVisible(!passVisible);
   //   };
-  //   const handleRepeatPassVisible = () => {
-  //     setRepeatePassVisible(!repeatePassVisible);
-  //   };
 
   const initialValues = {
-    name: '',
     email: '',
     password: '',
-    repeatPassword: '',
   };
 
   const handleSubmit = async (values, actions) => {
     const { repeatePassword, ...restValues } = values;
-    console.log('restValues', restValues);
-
-    dispatch(register(restValues));
+    dispatch(login(restValues));
     actions.resetForm();
   };
   return (
     <>
       <Formik
         initialValues={initialValues}
-        validationSchema={RegisterSchema}
+        validationSchema={LoginSchema}
         onSubmit={handleSubmit}
       >
         {props => {
@@ -44,11 +36,6 @@ const RegisterForm = () => {
 
           return (
             <StyledForm autoComplete="on">
-              <Label>
-                Name
-                <Field type="text" name="name" isvalid={isValid('name')} />
-                <ErrorMessage name="name" />
-              </Label>
               <Label>
                 Email
                 <Field type="text" name="email" isvalid={isValid('email')} />
@@ -64,17 +51,7 @@ const RegisterForm = () => {
                 />
                 <ErrorMessage name="password" />
               </Label>
-              <Label>
-                Repeat password
-                <Field
-                  type="password"
-                  name="repeatPassword"
-                  autoComplete="off"
-                  isvalid={isValid('repeatPassword')}
-                />
-                <ErrorMessage name="repeatPassword" />
-              </Label>
-              <button type="submit">Register</button>
+              <button type="submit">Login</button>
             </StyledForm>
           );
         }}

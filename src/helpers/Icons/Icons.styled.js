@@ -11,6 +11,7 @@ import { GrUpdate } from 'react-icons/gr';
 import { IoAddSharp } from 'react-icons/io5';
 import { BsCart4 } from 'react-icons/bs';
 import { GrLogout } from 'react-icons/gr';
+import { IoPersonOutline } from 'react-icons/io5';
 
 export const LocationIcon = styled(IoLocationOutline)`
   width: 16px;
@@ -72,4 +73,9 @@ export const AddBtnIcon = styled(BsCart4)`
 export const LogOutIcon = styled(GrLogout)`
   width: 20px;
   height: 20px;
+`;
+
+export const LogInIcon = styled(IoPersonOutline)`
+  width: 16px;
+  height: 16px;
 `;

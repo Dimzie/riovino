@@ -2,13 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import {
-  addToCart,
+  addToUserCart,
   getCurrent,
   login,
   logout,
   register,
-  removeFromCart,
-  updateCartItemQuantity,
+  removeFromUserCart,
+  updateUserCartItemQuantity,
 } from './operations';
 
 const handlePending = state => {
@@ -45,15 +45,15 @@ const authSlice = createSlice({
       .addCase(login.pending, handlePending)
       .addCase(logout.pending, handlePending)
       .addCase(getCurrent.pending, handlePending)
-      .addCase(addToCart.pending, handlePending)
-      .addCase(updateCartItemQuantity.pending, handlePending)
-      .addCase(removeFromCart.pending, handlePending)
+      .addCase(addToUserCart.pending, handlePending)
+      .addCase(updateUserCartItemQuantity.pending, handlePending)
+      .addCase(removeFromUserCart.pending, handlePending)
       // REJECTED
       .addCase(register.rejected, handleRejected)
       .addCase(login.rejected, handleRejected)
-      .addCase(addToCart.rejected, handleRejected)
-      .addCase(updateCartItemQuantity.rejected, handleRejected)
-      .addCase(removeFromCart.rejected, handleRejected)
+      .addCase(addToUserCart.rejected, handleRejected)
+      .addCase(updateUserCartItemQuantity.rejected, handleRejected)
+      .addCase(removeFromUserCart.rejected, handleRejected)
       .addCase(getCurrent.rejected, state => {
         state.isRefreshing = false;
       })
@@ -84,17 +84,18 @@ const authSlice = createSlice({
         state.user = payload.user;
         state.rioAccessToken = payload.accessToken;
         state.isLoggedIn = true;
+        state.isLoading = false;
         state.isRefreshing = false;
       })
-      .addCase(updateCartItemQuantity.fulfilled, (state, { payload }) => {
+      .addCase(updateUserCartItemQuantity.fulfilled, (state, { payload }) => {
         state.user.cart = payload;
         state.isLoading = false;
       })
-      .addCase(addToCart.fulfilled, (state, { payload }) => {
+      .addCase(addToUserCart.fulfilled, (state, { payload }) => {
         state.user.cart = payload;
         state.isLoading = false;
       })
-      .addCase(removeFromCart.fulfilled, (state, { payload }) => {
+      .addCase(removeFromUserCart.fulfilled, (state, { payload }) => {
         state.user.cart = payload;
         state.isLoading = false;
       });
