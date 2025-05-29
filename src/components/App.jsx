@@ -5,7 +5,7 @@ import VinosCatalogPage from 'pages/VinosCatalogPage/VinosCatalogPage';
 import DestiladosCatalogPage from 'pages/DestiladosCatalogPage/DestiladosCatalogPage';
 import EspumososCatalogPage from 'pages/EspumososCatalogPage/EspumososCatalogPage';
 import TypePage from 'pages/TypePage/TypePage';
-import Authpage from 'pages/AuthPage/AuthPage';
+import AuthPage from 'pages/AuthPage/AuthPage';
 import { useDispatch } from 'react-redux';
 import { useAuth } from 'hooks/useAuth';
 import { useEffect } from 'react';
@@ -34,7 +34,7 @@ export const App = () => {
             <Route
               path="/auth"
               element={
-                <RestrictedRoute redirectTo="/" component={<Authpage />} />
+                <RestrictedRoute redirectTo="/" component={<AuthPage />} />
               }
             />
             <Route path="/cart" element={<CartPage />} />
