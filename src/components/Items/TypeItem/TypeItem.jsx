@@ -15,16 +15,18 @@ import {
   AddFormContainer,
 } from './TypeItem.styled';
 import zagl from '../../../images/no-photo.png';
-import AddCartForm from 'components/AddCartForm/AddCartForm';
+import AddCartForm from 'components/Forms/AddCartForm/AddCartForm';
 import { regionFlagCheck } from 'helpers/functions/regionFlagCheck';
 import { formatTitleString } from 'helpers/functions/formatTitleString';
 import { inStockCheck } from 'helpers/functions/inStockCheck';
 import { extractAfterLastDash } from 'helpers/functions/extractAfterLastDash';
 import { Link, useParams } from 'react-router-dom';
 import { extractIvaValue, priceWithIva } from 'helpers/functions/priceAndIva';
-import AddCartBtn from 'components/AddCartBtn/AddCartBtn';
+import AddCartBtn from 'components/Buttons/AddCartBtn/AddCartBtn';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../redux/products/productsSlice';
+import { useAuth } from 'hooks/useAuth';
+import { addToUserCart } from '../../../redux/auth/operations';
 // import { critics } from 'data/data';
 
 const TypeItem = ({ id, name, price, stock, taxes, state }) => {
@@ -35,10 +37,17 @@ const TypeItem = ({ id, name, price, stock, taxes, state }) => {
   const pathParts = window.location.pathname.split('/');
   const category = pathParts[2]; // "vinos", "espumosos" и т.п.
   const ivaValue = extractIvaValue(taxes);
+  const { isLoggedIn } = useAuth();
 
   const handleAddToCart = () => {
-    console.log(name);
-    dispatch(addToCart({ product: { id, name, price, taxes }, quantity }));
+    console.log({ product: { id, name, price, taxes }, quantity });
+    if (isLoggedIn) {
+      dispatch(
+        addToUserCart({ product: { id, name, price, taxes }, quantity })
+      );
+    } else {
+      dispatch(addToCart({ product: { id, name, price, taxes }, quantity }));
+    }
   };
 
   return (

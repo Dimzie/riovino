@@ -25,7 +25,7 @@ import { formatTitleString } from 'helpers/functions/formatTitleString';
 import { zaglushka } from 'images/images.index';
 import { regionFlagCheck } from 'helpers/functions/regionFlagCheck';
 import { extractAfterLastDash } from 'helpers/functions/extractAfterLastDash';
-import CartFormCheck from 'components/CartFormCheck/CartFormCheck';
+import CartFormCheck from 'components/Forms/CartFormCheck/CartFormCheck';
 
 const CartItem = ({ id, name, taxes, price, quantity }) => {
   const dispatch = useDispatch();

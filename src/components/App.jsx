@@ -5,7 +5,7 @@ import VinosCatalogPage from 'pages/VinosCatalogPage/VinosCatalogPage';
 import DestiladosCatalogPage from 'pages/DestiladosCatalogPage/DestiladosCatalogPage';
 import EspumososCatalogPage from 'pages/EspumososCatalogPage/EspumososCatalogPage';
 import TypePage from 'pages/TypePage/TypePage';
-import Authpage from 'pages/AuthPage/Authpage';
+import Authpage from 'pages/AuthPage/AuthPage';
 import { useDispatch } from 'react-redux';
 import { useAuth } from 'hooks/useAuth';
 import { useEffect } from 'react';

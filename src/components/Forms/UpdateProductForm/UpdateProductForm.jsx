@@ -34,7 +34,7 @@ import {
   // Title,
   Wrapper,
 } from '../AddProductForm/AddProductForm.styled';
-import { updateProduct } from '../../redux/products/operations';
+import { updateProduct } from '../../../redux/products/operations';
 import {
   critics,
   productDestilados,

@@ -1,8 +1,8 @@
+import ScrollToTopBtn from 'components/Buttons/ScrollToTopBtn/ScrollToTopBtn';
 import Footer from 'components/Footer/Footer';
 import GlobalContainer from 'components/GlobalContainer/GlobalContainer';
 import Header from 'components/Header/Header';
 import Loader from 'components/Loader/Loader';
-import ScrollToTopBtn from 'components/ScrollToTopBtn/ScrollToTopBtn';
 import { Suspense, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 

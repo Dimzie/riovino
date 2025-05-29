@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import UpdateProductForm from './UpdateProductForm';
 import { useDispatch } from 'react-redux';
-import { getProductById } from '../../redux/products/operations';
+import { getProductById } from '../../../redux/products/operations';
 import { useProducts } from 'hooks/useProducts';
 
 const UpdateProductModal = ({ id, onCloseModal }) => {
