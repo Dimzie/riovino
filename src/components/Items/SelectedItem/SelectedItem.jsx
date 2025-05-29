@@ -19,6 +19,7 @@ const SelectedItemPage = () => {
     <>
       <p>ID: {itemId}</p>
       <p>Название: {productById?.name}</p>
+      <p>test</p>
     </>
   );
 };
