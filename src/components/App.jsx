@@ -5,7 +5,6 @@ import VinosCatalogPage from 'pages/VinosCatalogPage/VinosCatalogPage';
 import DestiladosCatalogPage from 'pages/DestiladosCatalogPage/DestiladosCatalogPage';
 import EspumososCatalogPage from 'pages/EspumososCatalogPage/EspumososCatalogPage';
 import TypePage from 'pages/TypePage/TypePage';
-import AuthPage from 'pages/AuthPage/AuthPage';
 import { useDispatch } from 'react-redux';
 import { useAuth } from 'hooks/useAuth';
 import { useEffect } from 'react';
@@ -14,6 +13,7 @@ import RestrictedRoute from './Routes/RestrictedRoute';
 import CartPage from 'pages/CartPage/CartPage';
 import { getHoldedProducts } from '../redux/products/operations';
 import SelectedItemPage from 'pages/SelectedItemPage/SelectedItemPage';
+import AuthPage from 'pages/AuthPage/AuthPage';
 
 
 export const App = () => {
